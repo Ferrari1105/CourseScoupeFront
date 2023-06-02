@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import './App.css'
 import NavBar from './componentes/navBar'
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
+import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,11 +12,17 @@ function App() {
     <div>
       <NavBar></NavBar>
     </div>
-      <div>
+      <div className='Banner'>
       <Banner></Banner>
       </div>
-      <div>
-        <CardCurso></CardCurso>
+      <div className='CardsHome'>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
+      <CardCurso img="https://dc722jrlp2zu8.cloudfront.net/media/facebook-ads-c-sharp-principiantes.jpg" name="C#" descripcion="curso de C#"></CardCurso>
       </div>
     </>
   )

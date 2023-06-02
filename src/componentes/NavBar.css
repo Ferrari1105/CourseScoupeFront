@@ -1,0 +1,10 @@
+.navBar{
+    background-color: #393D67;
+}
+.colorTexto{
+    color: beige;
+}
+.SearchBar{
+    display: flex;
+    width: 60%;
+}

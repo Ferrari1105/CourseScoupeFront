@@ -5,7 +5,7 @@ function Boton(props) {
     return (
       <>
         <div className="mb-2">
-          <Button variant="primary" size="lg">
+          <Button variant="primary" size="lg" className='Botones'>
             {props.texto}
           </Button>{' '}
         </div>

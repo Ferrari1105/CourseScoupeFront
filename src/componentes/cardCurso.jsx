@@ -1,10 +1,10 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import BotonCompra from './botonCompra.jsx'
-
+import BotonCompra from './boton.jsx'
+import "./cardCurso.css"; 
 function CardCurso(props) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="cardCurso">
       <Card.Img variant="top" src={props.img} />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
