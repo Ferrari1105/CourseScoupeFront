@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 import './NavBar.css'
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-
+import { Link } from 'react-router-dom' 
 function NavBar() {
     const [show, setShow] = useState(false);
   
@@ -56,7 +56,7 @@ function NavBar() {
     <Navbar className='navBar' collapseOnSelect expand="lg">
       <Container >
       <Image className='LogoNavFoto ' src="./Logo.png" rounded />
-        <Navbar.Brand href="#home" className='colorTexto'>Course Scoupe</Navbar.Brand>
+        <Navbar.Brand  className='colorTexto'><Link to={"/"}>Course Scoupe</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

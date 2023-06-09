@@ -2,14 +2,14 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
-import Boton from './boton.jsx'
+import Button from 'react-bootstrap/Button';
 function Banner() {
   return (
     <Container>
       <Row>
-      <Col className='BotonesBanner'>
-          <Boton texto="Crear Curso"></Boton>
-          <Boton texto="Crear Presentacion"></Boton>
+      <Col className='ButtonesBanner'>
+          <Button>Crear Curso</Button>
+          <Button>Crear Presentacion</Button>
         </Col>
         <Col className='LogoBanner'>
           <Image className='LogoBannerFoto' src="./Logo.png" rounded />
