@@ -1,0 +1,39 @@
+.store.container {
+  display: flex;
+  height: 100vh;
+}
+
+
+.left-side {
+  padding: 50px;
+}
+
+.right-side {
+  padding-top: 80px;
+}
+
+
+.store-info-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.store-info-container > .store-info-item{
+  display: flex;
+  gap: 3px;
+}
+
+.store-info-item > p{
+  width: fit-content;
+}
+
+.store-info-icon{
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+.descripcion-Usuario{
+  font-size: small;
+}

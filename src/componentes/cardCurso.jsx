@@ -12,7 +12,7 @@ function CardCurso(props) {
         <Card.Text>
           {props.descripcion}
         </Card.Text>
-       <Button variant="secondary" ><Link  to={"/store"}>Comprar</Link></Button> 
+       <Button variant="primary" ><Link  to={"/store"}>Comprar</Link></Button> 
       </Card.Body>
     </Card>
   );

@@ -1,6 +1,20 @@
 .navBar{
     background-color: #393D67;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
 .colorTexto{
     color: beige;
 }
@@ -21,4 +35,15 @@ justify-content: center;
     gap: 1rem;
     flex-direction: column;
     justify-content: center !important;
+}
+
+.navbar-button-container{
+  display: flex;
+  gap: 10px;
+  padding-left: 10px;
+}
+.usuario-navbar-foto{
+  height: 100px;
+  width: 100px;
+  background-color: black;
 }

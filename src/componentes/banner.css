@@ -1,0 +1,18 @@
+.banner {
+    position: relative;
+    text-align: center;
+  }
+  
+  .banner-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .banner-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 9rem;
+  }
+  

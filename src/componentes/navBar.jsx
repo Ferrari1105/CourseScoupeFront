@@ -38,23 +38,23 @@ function NavBar() {
               />
             </Form.Group>
             <div className='modalDiv'>
-            <Button className='botonModal' onClick={handleClose} >Entrar</Button>
+            <Button className='botonModal' onClick={handleClose} ><Link to={"/homeiniciada"}>Entrar</Link></Button>
             </div>
           </Form>
         </Modal.Body>
         <Modal.Body>
           <div className='footerDiv'>
           <Button variant="secondary" onClick={handleClose}>
-            Inicia Sesion Con Google
+          <Link to={"/homeiniciada"}>Inicia Sesion Con Google</Link>
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Inicia Sesion Con Facebook
+            <Link to={"/homeiniciada"}>Inicia Sesion Con Facebook</Link>
           </Button>
           </div>
         </Modal.Body>
       </Modal>
     <Navbar className='navBar' collapseOnSelect expand="lg">
-      <Container >
+      <Container className='navbar-container' >
       <Image className='LogoNavFoto ' src="./Logo.png" rounded />
         <Navbar.Brand  className='colorTexto'><Link to={"/"}>Course Scoupe</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -71,7 +71,7 @@ function NavBar() {
         />
       <Button variant="outline-success" className='colorTexto'>Search</Button>
     </Form>
-          <Nav>
+          <Nav className='navbar-button-container'>
             <Button  className='colorTexto sinFondo' onClick={handleShow} >Iniciar Sesion</Button>
             <Button  className='colorTexto sinFondo' >Registrarse</Button>
           </Nav>
