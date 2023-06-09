@@ -8,3 +8,17 @@
     display: flex;
     width: 60%;
 }
+.modalDiv{
+    display: flex;
+justify-content: center;
+
+}
+.sinFondo{
+    background-color: transparent;
+}
+.footerDiv{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center !important;
+}
