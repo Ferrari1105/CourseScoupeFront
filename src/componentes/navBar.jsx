@@ -13,7 +13,7 @@ function NavBar({data}) {
     const [usuarioApi, setUsuarioApi] = useState()
   
     useEffect(() => async() => {
-      const response = await fetch('http://localhost:3000/usuariosXNombre?usuario=Usuario1', {},
+      const response = await fetch('http://localhost:3000/usuarios',
       {
         headers: {
              "Content-Type": "application/json"
@@ -109,7 +109,7 @@ function NavBar({data}) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="./MisPresentaciones" className='colorTexto'>Mis Presentaciones</Nav.Link>
+            <Link to={"./MisPresentaciones"} className='colorTexto'>Mis Presentaciones</Link> 
           </Nav>
      <Form className="SearchBar">
       <Form.Control
