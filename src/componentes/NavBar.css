@@ -43,7 +43,11 @@ justify-content: center;
   padding-left: 10px;
 }
 .usuario-navbar-foto{
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
   background-color: black;
+}
+
+.usuario-navbar-Nombre{
+  color: aliceblue;
 }
