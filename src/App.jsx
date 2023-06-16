@@ -14,7 +14,7 @@ function App() {
   return (
     <>
     <div>
-      <NavBar></NavBar>
+      <NavBar data={test}></NavBar>
     </div>
       <div className='Banner'>
         <span></span>

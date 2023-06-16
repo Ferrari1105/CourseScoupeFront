@@ -7,12 +7,45 @@ import './NavBar.css'
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
-function NavBar() {
+
+function NavBar({data}) {
+    let baseUrl=""
+
     const [show, setShow] = useState(false);
-  
+
     const handleClose = () => setShow(false);
+
     const handleShow = () => setShow(true);
+
+    const [nombre,setNombre]= useState("")
+
+    const [contraseña,setContraseña]= useState("")
   
+    const [error, setError] = useState(false)
+
+    const handleSubmit=(e)=>{
+      e.preventDefault()
+      if (nombre === "" || contraseña === "") {
+        setError(true)
+        return
+      }/*else{
+       if(a){
+
+       }
+      }*/
+      setError(false)
+    }
+   /* iniciarSesion= async()=>
+    {
+      await axios.get(baseUrl,{params: {username: nombre, password: contraseña }})
+      .then(response =>{
+        console.log(response.data)
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    }
+    */
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -20,12 +53,13 @@ function NavBar() {
           <Modal.Title>Iniciar Sesion</Modal.Title>
         </Modal.Header>
         <Modal.Body >
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
+                onChange={(e) => setNombre(e.target.value)}
                 autoFocus
               />
             </Form.Group>
@@ -34,13 +68,15 @@ function NavBar() {
               <Form.Control
                 type="password"
                 placeholder="1234"
+                onChange={(e) => setContraseña(e.target.value)}
                 autoFocus
               />
             </Form.Group>
             <div className='modalDiv'>
-            <Button className='botonModal' onClick={handleClose} ><Link to={"/homeiniciada"}>Entrar</Link></Button>
+            <Button  className='botonModal' ><Link >Entrar</Link></Button>
             </div>
           </Form>
+          {error && <p>Todos los campos son obligatorios</p>}
         </Modal.Body>
         <Modal.Body>
           <div className='footerDiv'>
