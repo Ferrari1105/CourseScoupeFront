@@ -4,13 +4,25 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { Form, Button } from 'react-bootstrap';
 import './NavBar.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
 
 function NavBar({data}) {
     let baseUrl=""
-
+    const [usuarioApi, setUsuarioApi] = useState()
+  
+    useEffect(() => async() => {
+      const response = await fetch('http://localhost:3000/usuariosXNombre?usuario=Usuario1', {},
+      {
+        headers: {
+             "Content-Type": "application/json"
+        }
+      })
+      const respuesta = await response.json()
+      setUsuarioApi(respuesta)
+      console.log(usuarioApi)
+    }, [])
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -26,6 +38,7 @@ function NavBar({data}) {
     const handleSubmit=(e)=>{
       e.preventDefault()
       if (nombre === "" || contraseña === "") {
+        console.log(data)
         setError(true)
         return
       }/*else{
@@ -73,10 +86,10 @@ function NavBar({data}) {
               />
             </Form.Group>
             <div className='modalDiv'>
-            <Button  className='botonModal' ><Link >Entrar</Link></Button>
+            <Button  className='botonModal' type="submit"><Link >Entrar</Link></Button>
             </div>
           </Form>
-          {error && <p>Todos los campos son obligatorios</p>}
+          {error && <p className='error'>Todos los campos son obligatorios</p>}
         </Modal.Body>
         <Modal.Body>
           <div className='footerDiv'>

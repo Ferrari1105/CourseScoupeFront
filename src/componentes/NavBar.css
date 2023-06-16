@@ -47,3 +47,8 @@ justify-content: center;
   width: 100px;
   background-color: black;
 }
+.error{
+  background-color: red;
+  border: black;
+  border-width: 2px;
+}
