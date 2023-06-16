@@ -6,6 +6,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom' 
 import Store from './Store.jsx'
 import Home from './Home-Iniciada.jsx'
+import MisPresentaciones from './MisPresentaciones.jsx';
 const routes = createBrowserRouter([{
   path: "/",
   element: <App />
@@ -15,6 +16,9 @@ const routes = createBrowserRouter([{
 },{
   path: "/homeiniciada",
   element: <Home />
+},{
+  path: "/mispresentaciones",
+  element: <MisPresentaciones />
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

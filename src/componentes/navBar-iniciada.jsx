@@ -17,7 +17,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features" className='colorTexto'>Mis Presentaciones</Nav.Link>
+            <Nav.Link className='colorTexto'><Link to={"/MisPresentaciones"}>Course Scoupe</Link>Mis Presentaciones</Nav.Link>
           </Nav>
      <Form className="SearchBar">
       <Form.Control
@@ -30,7 +30,7 @@ function NavBar() {
     </Form>
           <Nav className='navbar-container'>
             <div >  
-            <p>Fran</p><Image className='usuario-navbar-foto' src="https://pbs.twimg.com/media/EIOHEVlXkAE0QWW.jpg" rounded />
+            <p className='usuario-navbar-Nombre'>Fran</p><Image className='usuario-navbar-foto' src="https://pbs.twimg.com/media/EIOHEVlXkAE0QWW.jpg" rounded />
             </div>
           </Nav>
         </Navbar.Collapse>

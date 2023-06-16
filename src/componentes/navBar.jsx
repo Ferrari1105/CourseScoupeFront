@@ -109,7 +109,7 @@ function NavBar({data}) {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features" className='colorTexto'>Mis Presentaciones</Nav.Link>
+            <Nav.Link href="./MisPresentaciones" className='colorTexto'>Mis Presentaciones</Nav.Link>
           </Nav>
      <Form className="SearchBar">
       <Form.Control
