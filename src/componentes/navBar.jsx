@@ -4,61 +4,40 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { Form, Button } from 'react-bootstrap';
 import './NavBar.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
 
-function NavBar({data}) {
-    let baseUrl=""
-    const [usuarioApi, setUsuarioApi] = useState()
-  
-    useEffect(() => async() => {
-      const response = await fetch('http://localhost:3000/usuarios',
-      {
+function NavBar() {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [error, setError] = useState(false)
+    
+    const [usuario, setUsuario] = useState()
+    const handleChange = e => {
+      setUsuario({ ...usuario, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit= async(e) =>{
+      e.preventDefault()
+
+      try {
+        const response = await fetch('http://localhost:3000/usuarios/' + nombre, {
         headers: {
-             "Content-Type": "application/json"
+          "Content-Type": "application/json"
         }
       })
-      const respuesta = await response.json()
-      setUsuarioApi(respuesta)
-      console.log(usuarioApi)
-    }, [])
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-
-    const handleShow = () => setShow(true);
-
-    const [nombre,setNombre]= useState("")
-
-    const [contraseña,setContraseña]= useState("")
-  
-    const [error, setError] = useState(false)
-
-    const handleSubmit=(e)=>{
-      e.preventDefault()
-      if (nombre === "" || contraseña === "") {
-        console.log(data)
+      const dbUser = await response.json()
+      } catch {
+        // no nos pudimos logear
         setError(true)
-        return
-      }/*else{
-       if(a){
+      }
+      if (dbUser.password === usuario.password) {
+        // estamos logeados
+      }
+    }
 
-       }
-      }*/
-      setError(false)
-    }
-   /* iniciarSesion= async()=>
-    {
-      await axios.get(baseUrl,{params: {username: nombre, password: contraseña }})
-      .then(response =>{
-        console.log(response.data)
-      })
-      .catch(error=>{
-        console.log(error)
-      })
-    }
-    */
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -71,8 +50,9 @@ function NavBar({data}) {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
+                name="email"
                 placeholder="name@example.com"
-                onChange={(e) => setNombre(e.target.value)}
+                onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
@@ -80,8 +60,9 @@ function NavBar({data}) {
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"
+                name="contraseña"
                 placeholder="1234"
-                onChange={(e) => setContraseña(e.target.value)}
+                onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
