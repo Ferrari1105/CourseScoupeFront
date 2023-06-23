@@ -5,7 +5,9 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom' 
 import Store from './Store.jsx'
+import Profile from './Profile.jsx';
 import Home from './Home-Iniciada.jsx'
+import CardCart from './CardCart.jsx';
 import MisPresentaciones from './MisPresentaciones.jsx';
 const routes = createBrowserRouter([{
   path: "/",
@@ -19,6 +21,12 @@ const routes = createBrowserRouter([{
 },{
   path: "/mispresentaciones",
   element: <MisPresentaciones />
+},{
+  path: "/profile",
+  element: <Profile />
+},{
+  path: "/cardcart",
+  element: <CardCart />
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

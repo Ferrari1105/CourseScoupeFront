@@ -1,4 +1,3 @@
-
 import NavBar from './componentes/navBar'
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'

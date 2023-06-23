@@ -3,13 +3,17 @@ import NavBar from './componentes/navBar-iniciada'
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
 import './App.css'
-import Profile from './Profile'
+import MisPresentaciones from './MisPresentaciones'
 
-export default function MisPresentaciones(){
+
+function Profile(){
     return(
         <div>
             <NavBar></NavBar>
         </div>
     )
 }
+
+export default Profile
+
 
