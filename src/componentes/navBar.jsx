@@ -7,6 +7,8 @@ import './NavBar.css'
 import { useId, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
+import { useContext } from "react"
+import { UsuarioContext } from "./../../context/usuarioContext"
 
 function NavBar() {
     const [show, setShow] = useState(false);
@@ -14,7 +16,7 @@ function NavBar() {
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
     const linkHome = useId()
-    
+    const {setUsuarioG} = useContext(UsuarioContext)
     const [usuario, setUsuario] = useState()
     const handleChange = e => {
       setUsuario({ ...usuario, [e.target.name]: e.target.value })
@@ -34,6 +36,7 @@ function NavBar() {
       console.log(dbUser)
       if ( dbUser.NombreUsuario === usuario.usuario && dbUser.Contraseña === usuario.contraseña) {
         console.log("entrasteeeeee")
+        setUsuarioG(dbUser)
         document.getElementById(linkHome).click()
       }
       else{

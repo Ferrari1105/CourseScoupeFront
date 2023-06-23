@@ -47,6 +47,16 @@ justify-content: center;
   width: 70px;
   background-color: black;
 }
+.usuario-navbar-Nombre{
+color: white;
+margin-top: 20px;
+margin: 3px;
+}
+.usuario-navbar{
+  border: 1px solid #000;
+  border-color: white;
+  gap: 2px;
+}
 .error{
   background-color: red;
   border: black;

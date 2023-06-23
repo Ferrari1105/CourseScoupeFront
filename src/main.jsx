@@ -9,6 +9,7 @@ import Profile from './Profile.jsx';
 import Home from './Home-Iniciada.jsx'
 import CardCart from './CardCart.jsx';
 import MisPresentaciones from './MisPresentaciones.jsx';
+import { UsuarioProvider } from '../context/usuarioContext.jsx';
 const routes = createBrowserRouter([{
   path: "/",
   element: <App />
@@ -30,6 +31,8 @@ const routes = createBrowserRouter([{
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <UsuarioProvider>
     <RouterProvider router={routes}/>
+    </UsuarioProvider>
   </React.StrictMode>,
 )
