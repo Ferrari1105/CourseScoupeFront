@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { Form, Button } from 'react-bootstrap';
 import './NavBar.css'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
 
@@ -13,6 +13,7 @@ function NavBar() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [error, setError] = useState(false)
+    const linkHome = useId()
     
     const [usuario, setUsuario] = useState()
     const handleChange = e => {
@@ -21,25 +22,34 @@ function NavBar() {
 
     const handleSubmit= async(e) =>{
       e.preventDefault()
-
+      console.log(usuario)
+      console.log('http://localhost:3000/usuarios/' + usuario.usuario)
       try {
-        const response = await fetch('http://localhost:3000/usuarios/' + nombre, {
+        const response = await fetch('http://localhost:3000/usuarios/' + usuario.usuario, {
         headers: {
           "Content-Type": "application/json"
         }
       })
       const dbUser = await response.json()
-      } catch {
-        // no nos pudimos logear
+      console.log(dbUser)
+      if ( dbUser.NombreUsuario === usuario.usuario && dbUser.Contraseña === usuario.contraseña) {
+        console.log("entrasteeeeee")
+        document.getElementById(linkHome).click()
+      }
+      else{
+        console.log("no entraste")
         setError(true)
       }
-      if (dbUser.password === usuario.password) {
+    } catch {
+      // no nos pudimos logear
+      setError(true)
+    }
         // estamos logeados
-      }
     }
 
   return (
     <>
+    <Link to={'/homeiniciada'} className='d-none' id={linkHome} >Entrar</Link>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Iniciar Sesion</Modal.Title>
@@ -47,11 +57,11 @@ function NavBar() {
         <Modal.Body >
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>Usuario</Form.Label>
               <Form.Control
-                type="email"
-                name="email"
-                placeholder="name@example.com"
+                type="text"
+                name="usuario"
+                placeholder="user1234"
                 onChange={handleChange}
                 autoFocus
               />
@@ -67,10 +77,10 @@ function NavBar() {
               />
             </Form.Group>
             <div className='modalDiv'>
-            <Button  className='botonModal' type="submit"><Link >Entrar</Link></Button>
+            <Button  className='botonModal' type="submit">Entrar</Button>
             </div>
           </Form>
-          {error && <p className='error'>Todos los campos son obligatorios</p>}
+          {error && <p className='error'>Fijense que todos los campos esten correctamente llenados</p>}
         </Modal.Body>
         <Modal.Body>
           <div className='footerDiv'>
