@@ -31,10 +31,10 @@ function MCrearCurso3() {
         <div className="photo-container">
           <img src="foto6.jpg" alt="Foto 6" className="photo" />
         </div>
-        <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
+      </div>
+      <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
         Siguiente
           </Link>
-      </div>
     </div>
   );
 }
