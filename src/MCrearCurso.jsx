@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './MCrearCurso.css';
+import { Link } from 'react-router-dom';
 
 function MCrearCurso() {
   const [selectedLesson, setSelectedLesson] = useState('');
@@ -12,6 +13,7 @@ function MCrearCurso() {
   const handleResourcesChange = (event) => {
     setAdditionalResources(event.target.value);
   };
+  const [proceso, setProceso] = useState(null);
 
   return (
     <div>
@@ -19,23 +21,23 @@ function MCrearCurso() {
         <div className="formularios-view-column">
           <form>
             <div className="form-group">
-              <label htmlFor="campo1">Título del curso</label>
-              <input type="text" id="campo1" className="input-field" />
+              <h2 htmlFor="campo1">Título del curso:</h2>
+              <input type="text" id="campo1" className="input-field large-input" placeholder="Ingrese el titulo del curso:" />
             </div>
             <div className="form-group">
-              <label htmlFor="campo2">Descripción del curso</label>
-              <input type="text" id="campo2" className="input-field" />
+              <h2 htmlFor="campo2">Descrpicion del curso:</h2>
+              <input type="text" id="campo2" className="input-field large-input" placeholder="Ingrese la descripción del curso:" />
             </div>
             <div className="form-group">
-              <label htmlFor="campo3">Contenido del curso</label>
-              <input type="text" id="campo3" className="input-field" />
+              <h2 htmlFor="campo3">Contenidos del curso:</h2>
+              <input type="text" id="campo3" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" />
             </div>
           </form>
         </div>
         <div className="formularios-view-column">
           <form>
             <div className="form-group">
-              <label htmlFor="campo4">Estilos</label>
+              <h2 htmlFor="campo4">Estilos:</h2>
               <div className="button-group">
                 <button className="white-button">Creativo</button>
                 <button className="white-button">Elegante</button>
@@ -44,39 +46,21 @@ function MCrearCurso() {
               </div>
             </div>
           </form>
-          <h2>Número de lecciones</h2>
+          <h2>Número de lecciones:</h2>
           <div className="lesson-menu">
-            <div
-              className={`menu-option ${selectedLesson === '1' ? 'selected' : ''}`}
-              onClick={() => handleLessonSelect('1')}
-            >
-              1
-            </div>
-            <div
-              className={`menu-option ${selectedLesson === '2' ? 'selected' : ''}`}
-              onClick={() => handleLessonSelect('2')}
-            >
-              2
-            </div>
-            <div
-              className={`menu-option ${selectedLesson === '3' ? 'selected' : ''}`}
-              onClick={() => handleLessonSelect('3')}
-            >
-              3
-            </div>
+            <div className={`menu-option ${selectedLesson === '1' ? 'selected' : ''}`} onClick={() => handleLessonSelect('1')}>1</div>
+            <div className={`menu-option ${selectedLesson === '2' ? 'selected' : ''}`} onClick={() => handleLessonSelect('2')}>2</div>
+            <div className={`menu-option ${selectedLesson === '3' ? 'selected' : ''}`} onClick={() => handleLessonSelect('3')}>3</div>
+            <div className={`menu-option ${selectedLesson === '4' ? 'selected' : ''}`} onClick={() => handleLessonSelect('4')}>4</div>
+            <div className={`menu-option ${selectedLesson === '5' ? 'selected' : ''}`} onClick={() => handleLessonSelect('5')}>5</div>
           </div>
-          <h2>Recursos Adicionales</h2>
           <form>
             <div className="form-group">
-              <label htmlFor="additionalResources">Recursos adicionales</label>
-              <textarea
-                id="additionalResources"
-                className="input-field"
-                value={additionalResources}
-                onChange={handleResourcesChange}
-              ></textarea>
+              <h2 htmlFor="additionalResources">Recursos adicionales</h2>
+              <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={additionalResources} onChange={handleResourcesChange}></textarea>
             </div>
           </form>
+          <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
         </div>
       </div>
     </div>
