@@ -1,0 +1,91 @@
+/* MCrearCurso.css */
+
+.formularios-view-container {
+    display: flex;
+  }
+  
+  .formularios-view-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e4f1f5;
+    color: rgb(0, 0, 0);
+  }
+  
+  .checklist-group {
+    margin-top: 10px;
+  }
+  
+  .checklist-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .checklist-option label {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .checklist-option input[type="checkbox"] {
+    position: relative;
+    margin-right: 10px;
+    appearance: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  .checklist-option input[type="checkbox"]:checked {
+    background-color: #000000;
+    border-color: #000000;
+  }
+  
+  .checklist-option input[type="checkbox"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  
+  .crear-curso-option {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .crear-curso-option:hover {
+    background-color: #4287f5;
+    color: #fff;
+  }
+  
