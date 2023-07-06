@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import './MCrearCurso.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-function MCrearCurso() {
-  const [selectedLesson, setSelectedLesson] = useState('');
+function MCrearCurso2() {
+  const { selectedLesson } = useParams();
   const [additionalResources, setAdditionalResources] = useState('');
-
-  const handleLessonSelect = (lesson) => {
-    setSelectedLesson(lesson);
-  };
 
   const handleResourcesChange = (event) => {
     setAdditionalResources(event.target.value);
@@ -21,16 +17,16 @@ function MCrearCurso() {
         <div className="formularios-view-column">
           <form>
             <div className="form-group">
-              <h2 htmlFor="campo1">Título del curso:</h2>
-              <input type="text" id="campo1" className="input-field large-input" placeholder="Ingrese el titulo del curso:" />
+              <h2 htmlFor="campo1">Lección 1: Presentación</h2>
+              <input type="text" id="campo1" className="input-field large-input" />
             </div>
             <div className="form-group">
-              <h2 htmlFor="campo2">Descrpicion del curso:</h2>
-              <input type="text" id="campo2" className="input-field large-input" placeholder="Ingrese la descripción del curso:" />
+              <h2 htmlFor="campo2">Lección 2: Preparación</h2>
+              <input type="text" id="campo2" className="input-field large-input" />
             </div>
             <div className="form-group">
-              <h2 htmlFor="campo3">Contenidos del curso:</h2>
-              <input type="text" id="campo3" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" />
+              <h2 htmlFor="campo3">Lección 3: Creación de contenidos</h2>
+              <input type="text" id="campo3" className="input-field large-input" />
             </div>
           </form>
         </div>
@@ -60,11 +56,11 @@ function MCrearCurso() {
               <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={additionalResources} onChange={handleResourcesChange}></textarea>
             </div>
           </form>
-          <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
+          <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default MCrearCurso;
+export default MCrearCurso2;
