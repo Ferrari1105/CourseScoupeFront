@@ -1,0 +1,49 @@
+.crear-curso-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .crear-curso-form {
+    width: 50%;
+    max-width: 500px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .crear-curso-sidebar {
+    width: 50%;
+    max-width: 500px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .crear-curso-estilos-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .crear-curso-estilos-buttons a {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    text-decoration: none;
+  }
+  
+  .crear-curso-estilos-buttons a.active {
+    background-color: #4287f5;
+    color: #fff;
+  }
+  

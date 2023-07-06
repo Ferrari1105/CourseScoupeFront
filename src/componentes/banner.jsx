@@ -1,4 +1,5 @@
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
@@ -15,7 +16,7 @@ function Banner() {
           <h5>Course Scope la mejor pagina de cursos al alcance de todos</h5>
         </div>
         <div className='banner-buttons'>
-          <Button>Crear Curso</Button>
+          <Button><Link to="/CrearCurso">Crear Curso</Link></Button>
           <Button>Crear Presentacion</Button>
         </div>
         </Col>

@@ -8,6 +8,8 @@ import Store from './Store.jsx'
 import Profile from './Profile.jsx';
 import Home from './Home-Iniciada.jsx'
 import CardCart from './CardCart.jsx';
+import CrearCurso from './CrearCurso.jsx';
+import CrearCursoM from './CrearCursoM.jsx';
 import MisPresentaciones from './MisPresentaciones.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 const routes = createBrowserRouter([{
@@ -28,6 +30,12 @@ const routes = createBrowserRouter([{
 },{
   path: "/cardcart",
   element: <CardCart />
+},{
+  path: "/CrearCurso",
+  element: <CrearCurso />
+},{
+  path: "/CrearCursoM",
+  element: <CrearCursoM />
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
