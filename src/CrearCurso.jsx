@@ -17,7 +17,7 @@ function CrearCurso() {
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?
         </h2>
         <div className="crear-curso-options">
-        <Link to="/CrearCursoM" className={`crear-curso-option ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opción Manual</Link>
+        <Link to="/MCrearCurso" className={`crear-curso-option ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opción Manual</Link>
         <Link to="/CrearCursoIA" className={`crear-curso-option ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
         </div>
         <div className="crear-curso-info">

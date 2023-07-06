@@ -1,0 +1,71 @@
+/* MCrearCurso.css */
+
+.formularios-view-container {
+  display: flex;
+}
+
+.formularios-view-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.formularios-view-column h2 {
+  font-size: 24px;
+  margin-bottom: 15px; /* Aumenta el espacio entre el título y los campos */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Aumenta la separación entre los grupos de formulario */
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 20px;
+  background-color: #999;
+  color: white;
+}
+
+.button-group {
+  display: flex;
+}
+
+
+.white-button:focus,
+.white-button:hover {
+  background-color: lightblue;
+}
+
+.white-button {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.lesson-menu {
+  display: flex;
+}
+
+.menu-option {
+  padding: 8px;
+  margin-right: 10px;
+  background-color: #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-option.selected {
+  background-color: lightblue;
+}
