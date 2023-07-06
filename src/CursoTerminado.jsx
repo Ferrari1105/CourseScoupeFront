@@ -1,10 +1,14 @@
 import React from 'react';
 import './CursoTerminado.css';
 import { Link, useParams } from 'react-router-dom';
+import NavBar from './componentes/navBar';
+import { Navbar } from 'react-bootstrap';
 
 function CursoTerminado() {
   return (
-    <div className="photo-details-container">
+    <div>
+        <NavBar></NavBar>
+        <div className="photo-details-container">
       <div className="info-container">
         <h1 className="info-curso">Curso de Fotografía</h1>
         <hr className="divider" />
@@ -58,6 +62,8 @@ function CursoTerminado() {
         </div>
         <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
     </div>
+    </div>
+    
   );
 }
 

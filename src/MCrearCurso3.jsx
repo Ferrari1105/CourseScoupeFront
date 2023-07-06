@@ -1,10 +1,13 @@
 import React from 'react';
 import './MCrearCurso3.css';
+import NavBar from './componentes/navBar';
 import { Link, useParams } from 'react-router-dom';
 
 function MCrearCurso3() {
   return (
-    <div className="three-rows-view">
+    <div>
+        <NavBar></NavBar>
+        <div className="three-rows-view">
       <div className="row">
         <h2 className="row-title">Fotos 1</h2>
         <div className="photo-container">
@@ -36,6 +39,8 @@ function MCrearCurso3() {
         Siguiente
           </Link>
     </div>
+    </div>
+
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './MCrearCurso.css';
 import { Link } from 'react-router-dom';
+import NavBar from './componentes/navBar';
+import { Navbar } from 'react-bootstrap';
 
 function MCrearCurso() {
   const [selectedLesson, setSelectedLesson] = useState('');
@@ -17,6 +19,7 @@ function MCrearCurso() {
 
   return (
     <div>
+      <NavBar />
       <div className="formularios-view-container">
         <div className="formularios-view-column">
           <form>

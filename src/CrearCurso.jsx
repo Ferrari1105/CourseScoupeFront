@@ -11,7 +11,6 @@ function CrearCurso() {
 
   return (
     <div>
-
       <div className="crear-curso-container">
         <h2 className="crear-curso-title">
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?

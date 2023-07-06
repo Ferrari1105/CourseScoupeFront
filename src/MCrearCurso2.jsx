@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './MCrearCurso2.css';
 import { Link, useParams } from 'react-router-dom';
+import NavBar from './componentes/navBar';
 
 function MCrearCurso2() {
   const { selectedLesson } = useParams();
@@ -72,6 +73,7 @@ function MCrearCurso2() {
 
   return (
     <div>
+        <NavBar></NavBar>
       <div className="formularios-view-container">
         <div className="formularios-view-column">
           <form>
