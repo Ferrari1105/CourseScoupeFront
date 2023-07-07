@@ -1,7 +1,7 @@
 import React from 'react';
 import './CursoTerminado.css';
 import { Link, useParams } from 'react-router-dom';
-import NavBar from './componentes/navBar';
+import NavBar from '../componentes/navBar.jsx';
 import { Navbar } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap'
 import {Button } from 'react-bootstrap';

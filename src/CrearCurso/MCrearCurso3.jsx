@@ -1,6 +1,6 @@
 import React from 'react';
 import './MCrearCurso3.css';
-import NavBar from './componentes/navBar';
+import NavBar from '../componentes/navBar.jsx';
 import { Link, useParams } from 'react-router-dom';
 
 function MCrearCurso3() {

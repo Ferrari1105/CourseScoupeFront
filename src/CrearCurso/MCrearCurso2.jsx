@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MCrearCurso2.css';
 import { Link, useParams } from 'react-router-dom';
-import NavBar from './componentes/navBar';
+import NavBar from '../componentes/navBar.jsx';
 
 function MCrearCurso2() {
   const { selectedLesson } = useParams();

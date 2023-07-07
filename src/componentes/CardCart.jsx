@@ -2,7 +2,7 @@ import { useState } from 'react';
 import NavBar from './navBar-iniciada';
 import CardCurso from './cardCurso';
 import Cart from './Cart';
-import './App.css';
+import '../App.css';
 import Button from 'react-bootstrap/Button';
 import Store from '../Store';
 import { Link } from 'react-router-dom'
