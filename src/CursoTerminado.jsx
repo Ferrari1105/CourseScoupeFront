@@ -3,64 +3,52 @@ import './CursoTerminado.css';
 import { Link, useParams } from 'react-router-dom';
 import NavBar from './componentes/navBar';
 import { Navbar } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap'
+import {Button } from 'react-bootstrap';
 
 function CursoTerminado() {
   return (
     <div>
         <NavBar></NavBar>
-        <div className="photo-details-container">
-      <div className="info-container">
-        <h1 className="info-curso">Curso de Fotografía</h1>
-        <hr className="divider" />
-        <div className="info-row">
-          <div className="info-label">Creador:</div>
-          <div className="info-value">John Doe</div>
-        </div>
-        <div className="info-row">
-          <div className="info-label">Valoración:</div>
-          <div className="info-value">4.5</div>
-        </div>
-        <div className="info-row">
-          <div className="info-label">Estudiantes:</div>
-          <div className="info-value">500+</div>
-        </div>
-        <div className="info-row">
-          <div className="info-label">Audio:</div>
-          <div className="info-value">Sí</div>
-        </div>
-        <div className="info-row">
-          <div className="info-label">Subtítulos:</div>
-          <div className="info-value">Español, Inglés</div>
-        </div>
-        <div className="info-row">
-            <div className="info-label">Precio:</div>
-            <div className="info-value">$99.99</div>
-          </div>
-          <div className="info-row">
-            <div className="info-label">Descuento:</div>
-            <div className="info-value">Sí</div>
-          </div>
-          <div className="info-row">
-            <div className="info-label">Lecciones:</div>
-            <div className="info-value">10</div>
-          </div>
-          <div className="info-row">
-            <div className="info-label">Nivel:</div>
-            <div className="info-value">Avanzado</div>
-          </div>
-          <div className="info-row">
-            <div className="info-label">Categorías:</div>
-            <div className="info-value">Fotografía, Diseño</div>
-          </div>
-      </div>
-      <div className="photo-container">
-        <img src="/foto1.jpg" alt="Foto Grande" className="photo" />
-      </div>
-      <div className="summary-container">
-        <h2 className="summary-title">Resumen del Curso</h2>
-        <p className="summary-text">Dentro de las posibilidades que ofrecen las redes sociales hoy en día, no cabe duda de que Instagram Stories es la herramienta del momento, ya que además de compartir imágenes y vídeo nos permite generar tráfico directo hacia sitios web o listas de suscripción.</p>
-        </div>
-        <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
+    <div className='store-container'>
+      <Row>
+        <Col sm={8} className='left-side'>
+            <h1 class="name">Creación y edición de contenido para Instagram Stories</h1>
+            <h6>Un Curso de: Lucas Vazquez</h6>
+            <img class="img" src="foto1.jpg" alt="" />
+            <br />
+            <h3>Resumen del curso:</h3>
+            <h3 class="descripcion">Dentro de las posibilidades que ofrecen las redes sociales hoy en día, no cabe duda de que Instagram Stories es la herramienta del momento, ya que además de compartir imágenes y vídeo nos permite generar tráfico directo hacia sitios web o listas de suscripción.</h3>
+
+        </Col >
+        <Col sm={4} className='right-side '>
+            <div><h1>$200</h1></div>
+            <div><p>Descuento: sin codigo </p></div>
+            <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
+        Comprar
+          </Link>
+            <div className='store-info-container'>
+              <div className='store-info-item' >
+              </div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Valoracion: Positiva</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>10.000 Estudiantes</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Audio: Español,Ingles</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Español,Frances,Aleman,Ingles </p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>4 Lecciones</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>5 Recursos Adicionales</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Online y a tu ritmo</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Nivel: Inicial</p></div>
+            </div>
+              <div className='descripcion-Usuario'><p>Un curso de Lucas Vazquez Programador senior, ex-empleado de microsoft </p></div> 
+              <div className='categorias-areas'>
+                <p>aaaaa|bbbbbbb|ccccc|ddddd</p>
+                <p>Areas: 1 | 2 | 3 | 4</p>
+                <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
+        Regalar
+          </Link>
+              </div>
+        </Col>
+      </Row>
     </div>
     </div>
     

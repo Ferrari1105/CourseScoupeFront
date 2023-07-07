@@ -6,7 +6,12 @@
     margin-left: 20px;
 
   }
-  
+  .categorias-areas{
+    margin-top: 10px;
+  }
+  .store-info-item{
+    margin-top: 3px;
+  }
   .content {
     display: flex;
     align-items: flex-start;
@@ -23,7 +28,7 @@
   }
   
   .photo {
-    width: 100%;
+    width: auto;
     height: auto;
     border-radius: 20px;
   }

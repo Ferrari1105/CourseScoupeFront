@@ -9,13 +9,13 @@ function MCrearCurso3() {
         <NavBar></NavBar>
         <div className="three-rows-view">
       <div className="row">
-        <h2 className="row-title">Fotos 1</h2>
+        <h2 className="row-title">Banner:</h2>
         <div className="photo-container">
           <img src="/foto1.jpg" alt="Foto 1" className="photo" />
         </div>
       </div>
       <div className="row">
-        <h2 className="row-title">Fotos 2</h2>
+        <h2 className="row-title">Imagenes:</h2>
         <div className="photo-container">
           <img src="foto2.jpg" alt="Foto 2" className="photo" />
         </div>
@@ -24,15 +24,9 @@ function MCrearCurso3() {
         </div>
       </div>
       <div className="row">
-        <h2 className="row-title">Fotos 3</h2>
+        <h2 className="row-title">Videos:</h2>
         <div className="photo-container">
-          <img src="foto4.jpg" alt="Foto 4" className="photo" />
-        </div>
-        <div className="photo-container">
-          <img src="foto5.jpg" alt="Foto 5" className="photo" />
-        </div>
-        <div className="photo-container">
-          <img src="foto6.jpg" alt="Foto 6" className="photo" />
+          <img src="video.jpeg" alt="Foto 6" className="photo" />
         </div>
       </div>
       <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>

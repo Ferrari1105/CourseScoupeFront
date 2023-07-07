@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import NavBar from './componentes/navBar'
 import { Row, Col } from 'react-bootstrap'
-import './Store.css'
 import {Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import './Store.css'
+
 function Store({ idCurso }) {
   // fetch para acceder al curso a partir del id
   // mostar la info del curso

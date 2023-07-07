@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from './componentes/navBar-iniciada';
+import NavBar from './componentes/navBar';
 import Banner from './componentes/banner';
 import CardCurso from './componentes/cardCurso';
 import './CrearCurso.css';
@@ -11,6 +11,7 @@ function CrearCurso() {
 
   return (
     <div>
+      <NavBar></NavBar>
       <div className="crear-curso-container">
         <h2 className="crear-curso-title">
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?
