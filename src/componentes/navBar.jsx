@@ -22,32 +22,35 @@ function NavBar() {
       setUsuario({ ...usuario, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit= async(e) =>{
+    const handleSubmit = async(e) =>{
       e.preventDefault()
-      console.log(usuario)
-      console.log('http://localhost:3000/usuarios/' + usuario.usuario)
       try {
-        const response = await fetch('http://localhost:3000/usuarios/' + usuario.usuario, {
-        headers: {
-          "Content-Type": "application/json"
+        // 1. Comprobar si el usuario ya está en la BD
+        const response = await fetch(`http://localhost:3000/usuarios/${usuario.nombre}`)
+        const usuarioNombre= await response.json()
+        // 2. Si está, logearlo | LOG IN
+        if (usuarioNombre.Contraseña === usuario.contraseña) document.getElementById(linkHome).click(), setUsuarioG(usuarioNombre) // LOG IN
+        else console.log("contra incorrecta") // CONTRASEÑA INCORRECTA
+      } catch {
+        // 3. Si no está, crearlo y logearlo | SIGN IN
+        try {
+          // crear usuario
+          console.log("usuario", JSON.stringify(usuario))
+          const response = await fetch('http://localhost:3000/usuarios', {
+            method: 'POST',
+            headers: { "Accept": 'application/json', "Content-Type": 'application/json' },
+            body: JSON.stringify(usuario)
+          })
+          const dbUser = await response.json()
+          // logear usuario
+          setUsuarioG(dbUser)
+          console.log("dbUser", dbUser)
+        //  document.getElementById(linkHome).click()
         }
-      })
-      const dbUser = await response.json()
-      console.log(dbUser)
-      if ( dbUser.NombreUsuario === usuario.usuario && dbUser.Contraseña === usuario.contraseña) {
-        console.log("entrasteeeeee")
-        setUsuarioG(dbUser)
-        document.getElementById(linkHome).click()
+        catch (error){
+          throw new Error(error)
+        }
       }
-      else{
-        console.log("no entraste")
-        setError(true)
-      }
-    } catch {
-      // no nos pudimos logear
-      setError(true)
-    }
-        // estamos logeados
     }
 
   return (
@@ -59,17 +62,17 @@ function NavBar() {
         </Modal.Header>
         <Modal.Body >
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" >
               <Form.Label>Usuario</Form.Label>
               <Form.Control
                 type="text"
-                name="usuario"
+                name="nombre"
                 placeholder="user1234"
                 onChange={handleChange}
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"

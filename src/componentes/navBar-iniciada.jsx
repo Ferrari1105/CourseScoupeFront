@@ -11,7 +11,6 @@ import { UsuarioContext } from "./../../context/usuarioContext"
 
 function NavBar() {
   const {usuarioG}= useContext(UsuarioContext)
-  console.log(usuarioG)
   return (
     <>
     <Navbar className='navBar' collapseOnSelect expand="lg">
@@ -21,9 +20,9 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link className='colorTexto'>
+            <Nav className='colorTexto'>
               <Link to={"/MisPresentaciones"}>Mis Presentaciones</Link>
-            </Nav.Link>
+            </Nav>
           </Nav>
           <Form className="SearchBar">
             <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
