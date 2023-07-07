@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import NavBar from './componentes/navBar-iniciada';
-import CardCurso from './componentes/cardCurso';
-import Cart from './componentes/Cart';
+import NavBar from './navBar-iniciada';
+import CardCurso from './cardCurso';
+import Cart from './Cart';
 import './App.css';
 import Button from 'react-bootstrap/Button';
-import Store from './Store';
+import Store from '../Store';
 import { Link } from 'react-router-dom'
 
 export default function CardCart() {

@@ -21,7 +21,7 @@ function Banner() {
         </div>
         </Col>
         <Col className='LogoBanner'>
-          <Image className='LogoBannerFoto' src="./Logo.png" rounded />
+          <Image className='LogoBannerFoto' src="src\Imgs\Logo.png" rounded />
         </Col>
       </Row>
     </Container>

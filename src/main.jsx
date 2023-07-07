@@ -7,12 +7,12 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Store from './Store.jsx'
 import Profile from './Profile.jsx';
 import Home from './Home-Iniciada.jsx'
-import CardCart from './CardCart.jsx';
-import CrearCurso from './CrearCurso.jsx';
-import MCrearCurso from './MCrearCurso.jsx';
-import MCrearCurso2 from './MCrearCurso2.jsx';
-import MCrearCurso3 from './MCrearCurso3.jsx';
-import CursoTerminado from './CursoTerminado.jsx';
+import CardCart from './componentes/CardCart.jsx';
+import CrearCurso from './CrearCurso/CrearCurso.jsx';
+import MCrearCurso from './CrearCurso/MCrearCurso.jsx';
+import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
+import MCrearCurso3 from './CrearCurso/MCrearCurso3.jsx';
+import CursoTerminado from './CrearCurso/CursoTerminado.jsx';
 import MisPresentaciones from './MisPresentaciones.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 const routes = createBrowserRouter([{

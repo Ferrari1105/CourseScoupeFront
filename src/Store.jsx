@@ -26,7 +26,7 @@ function Store({ idCurso }) {
         <Col sm={4} className='right-side '>
             <div><h1>$200</h1></div>
             <div><p>Descuento: sin codigo </p></div>
-            <Button><Link to ={"/CardCart"} >Comprar</Link></Button>
+            <Button><Link to ={"src/componentes/CardCart.jsx"} >Comprar</Link></Button>
             <div className='store-info-container'>
               <div className='store-info-item' >
                 <div className='store-info-icon'></div>
