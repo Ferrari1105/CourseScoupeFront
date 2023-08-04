@@ -3,7 +3,6 @@ import NavBar from './navBar-iniciada';
 import Banner from './banner';
 import Button from 'react-bootstrap/Button';
 import CardCurso from './cardCurso';
-import MisPresentaciones from '../MisPresentaciones';
 import Card from 'react-bootstrap/Card';
 import './Cart.css';
 

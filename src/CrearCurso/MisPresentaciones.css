@@ -1,0 +1,137 @@
+.presentation-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .columns-container {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .left-column {
+    flex: 4;
+    width: 25%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+  }
+  
+  .presentation-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .suggested-text {
+    font-size: 16px;
+    margin: 10px 0;
+    color: black;
+  }
+  .fotos{
+    margin-right: 10px;
+    border-radius: 10px;
+  }
+  .search-input {
+    width: 900px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1.2px solid #000000;
+    border-radius: 50px; /* Hacemos el borde circular */
+    margin-bottom: 10px;
+    background-color: #6B72BF;
+    color: #000000;
+    
+  }
+  .search-input::placeholder { 
+    color: black; 
+  }
+
+  .presentation-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .presentation-item {
+    padding: 5px;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .new-presentation-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .add-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    background-color: #ccc; /* Cambiar a gris */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Agregamos transición para el cambio de color */
+  }
+  
+  .add-button:hover {
+    background-color: #4287f5;
+    color: #fff;
+  }
+  
+  .right-column {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .new-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    background-color: #6B72BF; /* Cambiar a gris */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s; /* Agregamos transición para el cambio de color */
+  }
+
+  .new-button:hover {
+    background-color: #000000;
+    color: #fff;
+  }
+  
+  .sidebar {
+    margin-top: 20px;
+  }
+  
+  .sidebar p {
+    margin: 5px;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+  }
+  
+  .sidebar p:hover {
+    color: #4287f5;
+  }
+  
