@@ -13,7 +13,7 @@ import MCrearCurso from './CrearCurso/MCrearCurso.jsx';
 import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
 import MCrearCurso3 from './CrearCurso/MCrearCurso3.jsx';
 import CursoTerminado from './CrearCurso/CursoTerminado.jsx';
-import MisPresentaciones from './MisPresentaciones.jsx';
+import MisPresentaciones from './CrearCurso/MisPresentaciones.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 const routes = createBrowserRouter([{
   path: "/",
@@ -25,7 +25,7 @@ const routes = createBrowserRouter([{
   path: "/homeiniciada",
   element: <Home />
 },{
-  path: "/mispresentaciones",
+  path: "/Mispresentaciones",
   element: <MisPresentaciones />
 },{
   path: "/profile",

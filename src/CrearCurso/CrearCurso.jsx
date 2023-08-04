@@ -4,7 +4,7 @@ import NavBar from '../componentes/navBar.jsx';
 import Banner from '../componentes/banner';
 import CardCurso from '../componentes/cardCurso';
 import './CrearCurso.css';
-import MisPresentaciones from '../MisPresentaciones';
+import MisPresentaciones from './MisPresentaciones';
 
 function CrearCurso() {
   const [proceso, setProceso] = useState(null);
