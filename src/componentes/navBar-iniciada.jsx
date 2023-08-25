@@ -15,7 +15,7 @@ function NavBar() {
     <>
     <Navbar className='navBar' collapseOnSelect expand="lg">
       <Container className='navbar-container' >
-        <Image className='LogoNavFoto' src="./Logo.png" rounded />
+        <Image className='LogoNavFoto' src="src\Imgs\Logo.png" rounded />
         <Navbar.Brand className='colorTexto'><Link to={"/"}>Course Scoupe</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
