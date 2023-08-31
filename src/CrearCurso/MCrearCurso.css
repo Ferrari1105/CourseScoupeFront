@@ -1,81 +1,61 @@
-/* MCrearCurso.css */
+/* CrearCursoIA2.css */
 
+/* Estilos generales */
 .formularios-view-container {
   display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
 
 .formularios-view-column {
   flex: 1;
   padding: 20px;
-}
-
-.formularios-view-column h2 {
-  font-size: 24px;
-  margin-bottom: 15px; /* Aumenta el espacio entre el título y los campos */
+  border: 1px solid #ccc;
+  margin: 0 10px;
 }
 
 .form-group {
-  margin-bottom: 20px; /* Aumenta la separación entre los grupos de formulario */
+  margin-bottom: 20px;
 }
 
-label {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: #666;
 }
 
 .input-field {
   width: 100%;
-  padding: 8px;
-  border: none;
-  border-radius: 20px;
-  background-color: #e4f1f5;
-  color: rgb(0, 0, 0);
-}
-
-.button-group {
-  display: flex;
-}
-
-.white-button:focus,
-.white-button:hover {
-  background-color: lightblue;
-}
-
-.white-button {
-  padding: 8px 16px;
-  background-color: white;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  outline: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 4px;
 }
 
-.lesson-menu {
+.checklist-group {
   display: flex;
-}
-.large-input {
-  height: 75px; /* Ajusta la altura según tus necesidades */
+  flex-direction: column;
 }
 
-.menu-option {
-  padding: 8px;
-  margin-right: 10px;
-  background-color: #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.checklist-option {
+  margin-bottom: 10px;
 }
 
-.menu-option.selected {
-  background-color: lightblue;
-}
+/* Estilos específicos para el botón "Siguiente" */
 .crear-curso-option {
-  font-size: 18px;
+  display: inline-block;
   padding: 10px 20px;
-  background-color: #f2f2f2;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
+  text-decoration: none;
   cursor: pointer;
+}
+
+.crear-curso-option:hover {
+  background-color: #0056b3;
 }

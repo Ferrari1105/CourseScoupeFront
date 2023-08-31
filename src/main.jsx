@@ -14,6 +14,8 @@ import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
 import MCrearCurso3 from './CrearCurso/MCrearCurso3.jsx';
 import CursoTerminado from './CrearCurso/CursoTerminado.jsx';
 import MisPresentaciones from './CrearCurso/MisPresentaciones.jsx';
+import CrearCursoIA from './CrearCurso/CrearCursoIA.jsx';
+import CrearCursoIA2 from './CrearCurso/CrearCursoIA2.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 const routes = createBrowserRouter([{
   path: "/",
@@ -48,7 +50,13 @@ const routes = createBrowserRouter([{
 },{
   path: "/CursoTerminado",
   element: <CursoTerminado />
-}])
+},{
+  path: "/CrearCursoIA",
+  element: <CrearCursoIA />
+},{
+  path: "/CrearCursoIA2",
+  element: <CrearCursoIA2 />
+},])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UsuarioProvider>

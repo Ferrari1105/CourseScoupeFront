@@ -22,7 +22,7 @@ function CursoTerminado() {
 
         </Col >
         <Col sm={4} className='right-side '>
-            <div><h1>$200</h1></div>
+            <div><h1>$Precio</h1></div>
             <div><p>Descuento: sin codigo </p></div>
             <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
         Comprar
@@ -30,19 +30,17 @@ function CursoTerminado() {
             <div className='store-info-container'>
               <div className='store-info-item' >
               </div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>Valoracion: Positiva</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>10.000 Estudiantes</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>Audio: Español,Ingles</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>Español,Frances,Aleman,Ingles </p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>4 Lecciones</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>5 Recursos Adicionales</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Valoracion: -</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Estudiantes: -</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Audio: Español - Ingles</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Subtitulos: Español - Frances - Aleman - Ingles </p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Lecciones: -</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>Recursos Adicionales: -</p></div>
               <div className='store-info-item' ><div className='store-info-icon'></div><p>Online y a tu ritmo</p></div>
               <div className='store-info-item' ><div className='store-info-icon'></div><p>Nivel: Inicial</p></div>
             </div>
               <div className='descripcion-Usuario'><p>Un curso de Lucas Vazquez Programador senior, ex-empleado de microsoft </p></div> 
               <div className='categorias-areas'>
-                <p>aaaaa|bbbbbbb|ccccc|ddddd</p>
-                <p>Areas: 1 | 2 | 3 | 4</p>
                 <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
         Regalar
           </Link>

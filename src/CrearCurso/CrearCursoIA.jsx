@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './MCrearCurso.css';
+import './CrearCursoIA.css';
 import { Link } from 'react-router-dom';
 import NavBar from '../componentes/navBar.jsx';
-import { Navbar } from 'react-bootstrap';
 
-function MCrearCurso() {
+function CrearCursoIA() {
   const [selectedLesson, setSelectedLesson] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
@@ -16,10 +15,13 @@ function MCrearCurso() {
   const handleStyleSelect = (style) => {
     setSelectedStyle(style);
   }
+
   const handleResourcesChange = (event) => {
     setAdditionalResources(event.target.value);
   };
   const [proceso, setProceso] = useState(null);
+
+  const styleOptions = ['Creativo', 'Elegante', 'Original', 'Más'];
 
   return (
     <div>
@@ -44,7 +46,7 @@ function MCrearCurso() {
         <div className="formularios-view-column">
           <form>
             <div className="form-group">
-            <h2 htmlFor="campo4">Estilos:</h2>
+              <h2 htmlFor="campo4">Estilos:</h2>
               <div className="button-group">
               <div className={`menu-option ${selectedStyle === 'Creativo' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Creativo')}>Creativo</div>
             <div className={`menu-option ${selectedStyle === 'Elegante' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Elegante')}>Elegante</div>
@@ -67,11 +69,11 @@ function MCrearCurso() {
               <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={additionalResources} onChange={handleResourcesChange}></textarea>
             </div>
           </form>
-          <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
+          <Link to="/CrearCursoIA2" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>Siguiente</Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default MCrearCurso;
+export default CrearCursoIA;
