@@ -13,12 +13,12 @@ function CursoTerminado() {
     <div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>
-            <h1 class="name">Creación y edición de contenido para Instagram Stories</h1>
-            <h6>Un Curso de: Lucas Vazquez</h6>
+            <h1 class="name">Titulo</h1>
+            <h6>Un Curso de: </h6>
             <img class="img" src="src/Imgs/foto1.jpg" alt="" />
             <br />
             <h3>Resumen del curso:</h3>
-            <h3 class="descripcion">Dentro de las posibilidades que ofrecen las redes sociales hoy en día, no cabe duda de que Instagram Stories es la herramienta del momento, ya que además de compartir imágenes y vídeo nos permite generar tráfico directo hacia sitios web o listas de suscripción.</h3>
+            <h3 class="descripcion">Descripcion</h3>
 
         </Col >
         <Col sm={4} className='right-side '>

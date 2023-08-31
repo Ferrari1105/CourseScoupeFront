@@ -78,7 +78,7 @@ function CrearCursoIA2() {
               />
             </div>
           </form>
-          <Link to="/" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
+          <Link to="/CrearCursoIA3" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
             Siguiente
           </Link>
         </div>
