@@ -173,9 +173,7 @@ function MCrearCurso2() {
               />
             </div>
           </form>
-          <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
-            Siguiente
-          </Link>
+          <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>Siguiente</Link>
         </div>
       </div>
     </div>

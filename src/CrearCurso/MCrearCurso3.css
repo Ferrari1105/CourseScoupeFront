@@ -1,10 +1,13 @@
-/* Estilos para el formulario */
-.formularios-view-container {
+/* MCrearCurso3.css */
+
+/* Estilos para la página MCrearCurso3 */
+.three-rows-view {
   display: flex;
   justify-content: space-between;
+  margin: 20px;
 }
 
-.formularios-view-column {
+.row {
   flex: 1;
   padding: 20px;
   background-color: #f0f0f0;
@@ -13,76 +16,38 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-/* Estilos para los botones */
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Estilos para los títulos */
-h2 {
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-/* Estilos para la lista de opciones */
-.checklist-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.checklist-option {
+.row-title {
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
-label {
-  display: flex;
-  align-items: center;
+.photo-container {
+  margin: 10px 0;
 }
 
-/* Estilos para el enlace "Siguiente" */
-.crear-curso-option {
-  display: inline-block;
-  padding: 10px 20px;
+.photo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos para el campo de carga de imagen */
+input[type="file"] {
+  display: none; /* Ocultar el campo de carga de archivo original */
+}
+
+/* Estilo personalizado para el botón de cargar imagen */
+.custom-upload-button {
   background-color: #007bff;
-  color: white;
-  text-decoration: none;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
   border-radius: 4px;
-  font-size: 16px;
-  margin-top: 20px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
 }
 
-.crear-curso-option:hover {
+.custom-upload-button:hover {
   background-color: #0056b3;
-}
-
-/* Estilos para el contenedor principal */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
 }

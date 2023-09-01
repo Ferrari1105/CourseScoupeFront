@@ -16,9 +16,9 @@ function CrearCurso() {
         <h2 className="crear-curso-title">
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?
         </h2>
-        <div className="crear-curso-options">
-        <Link to="/MCrearCurso" className={`crear-curso-option ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opción Manual</Link>
-        <Link to="/CrearCursoIA" className={`crear-curso-option ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
+        <div className="botones-siguiente">
+        <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opción Manual</Link>
+        <Link to="/CrearCursoIA" className={`boton-siguiente ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
         </div>
         <div className="crear-curso-info">
           <p className="crear-curso-info-text">Como saber qué opción elegir: Al elegir el modo manual, usted tendrá que ingresar los contenidos del curso y tendrá acceso a una inteligencia artificial como asistente que le dará recomendaciones sobre el contenido. Por otro lado, al elegir Inteligencia Artificial, usted le tendrá que decir a la inteligencia artificial qué debe incluir en el curso.</p>
