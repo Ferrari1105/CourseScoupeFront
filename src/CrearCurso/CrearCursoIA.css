@@ -71,11 +71,3 @@ label {
 .menu-option.selected {
   background-color: lightblue;
 }
-.crear-curso-option {
-  font-size: 18px;
-  padding: 10px 20px;
-  background-color: #f2f2f2;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
