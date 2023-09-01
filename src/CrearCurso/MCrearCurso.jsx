@@ -44,6 +44,7 @@ const siguiente = () => {
           <form>
             <div className="form-group">
               <h2 htmlFor="campo1">Título del curso:</h2>
+              <h5>adasdas</h5>
               <input type="text" id="campo1" name="NombreDelCurso" className="input-field large-input" placeholder="Ingrese el titulo del curso:" onChange={handleChange}/>
             </div>
             <div className="form-group">
