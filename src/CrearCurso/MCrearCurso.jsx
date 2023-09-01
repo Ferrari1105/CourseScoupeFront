@@ -10,7 +10,7 @@ function MCrearCurso() {
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style: "", lesson: "", recAdicionales: "", opciones:[], precio: "", banner: "", imagenes: "", videos: ""}) // Corrección aquí
+  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], precio: "", banner: "", imagenes: "", videos: ""}) // Corrección aquí
   const handleChange = (e) => {
     console.log({...Curso, [e.target.name]: e.target.value})
     setCurso({...Curso, [e.target.name]: e.target.value})
