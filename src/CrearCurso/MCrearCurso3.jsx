@@ -2,11 +2,31 @@ import React from 'react';
 import './MCrearCurso3.css';
 import NavBar from '../componentes/navBar.jsx';
 import { Link, useParams } from 'react-router-dom';
+import { useContext } from "react"
+import { CursoContext } from "./../../context/cursoContext"
 
 function MCrearCurso3() {
+  const {cursoG}= useContext(CursoContext)
+
+  const terminar = async() => {
+    setProceso('automatica')
+    console.log(cursoG)
+    let cursoStringified = JSON.stringify(cursoG);
+    try {
+      const response = await fetch('http://localhost:3000/MCrearCurso3', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json"},
+        body: cursoStringified
+      })
+      return await response.json()
+    }
+    catch {
+      throw new Error(`No se pudo realizar el fetch tipo ${method} :(`)
+    }
+  }
   return (
     <div>
-        <NavBar></NavBar>
+        <NavBar/>
         <div className="three-rows-view">
       <div className="row">
         <h2 className="row-title">Banner:</h2>
@@ -29,8 +49,8 @@ function MCrearCurso3() {
           <img src="src\Imgs\video.jpeg" alt="Foto 6" className="photo" />
         </div>
       </div>
-      <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => setProceso('automatica')}>
-        Siguiente
+      <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => terminar}>
+        Terminar
           </Link>
     </div>
     </div>

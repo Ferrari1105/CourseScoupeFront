@@ -17,6 +17,7 @@ import MisPresentaciones from './CrearCurso/MisPresentaciones.jsx';
 import CrearCursoIA from './CrearCurso/CrearCursoIA.jsx';
 import CrearCursoIA2 from './CrearCurso/CrearCursoIA2.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
+import { CursoProvider } from '../context/cursoContext.jsx';
 import CrearCursoIA3 from './CrearCurso/CrearCursoIA3.jsx';
 const routes = createBrowserRouter([{
   path: "/",
@@ -64,7 +65,9 @@ const routes = createBrowserRouter([{
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UsuarioProvider>
+    <CursoProvider>
     <RouterProvider router={routes}/>
+    </CursoProvider>
     </UsuarioProvider>
   </React.StrictMode>,
 )
