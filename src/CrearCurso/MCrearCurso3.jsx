@@ -9,8 +9,6 @@ function MCrearCurso3() {
   const {cursoG}= useContext(CursoContext)
 
   const terminar = async() => {
-    setProceso('automatica')
-    console.log(cursoG)
     let cursoStringified = JSON.stringify(cursoG);
     try {
       const response = await fetch('http://localhost:3000/MCrearCurso3', {
@@ -49,7 +47,7 @@ function MCrearCurso3() {
           <img src="src\Imgs\video.jpeg" alt="Foto 6" className="photo" />
         </div>
       </div>
-      <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => terminar}>
+      <Link to="/CursoTerminado" className={`crear-curso-option`} onClick={() => terminar()}>
         Terminar
           </Link>
     </div>

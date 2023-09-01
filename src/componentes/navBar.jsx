@@ -29,7 +29,6 @@ function NavBar() {
     
     const handleSubmit2 = async(e) =>{
       let usrStringified = JSON.stringify(usuario);
-      console.log("usuario", usrStringified)
         const response = await fetch('http://localhost:3000/usuarios', {
           method: 'POST',
           headers: { "Content-Type": "application/json"},
@@ -38,7 +37,6 @@ function NavBar() {
         const dbUser = await response.json()
         // logear usuario
         setUsuarioG(dbUser)
-        console.log("dbUser", dbUser)
         //document.getElementById(linkHome).click()
     }
     const handleSubmit = async(e) =>{

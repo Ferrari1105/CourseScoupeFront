@@ -59,12 +59,12 @@ function MCrearCurso2() {
     ));
   };
   const cargarPrecio = (e) => {
-     setCosto(e.target.value)
+     setCursoG({ ...cursoG, precio: e.target.value });
+     console.log(checkedOptions)
   }
   const siguiente = () => {
     setProceso('automatica');
     setCursoG({ ...cursoG, opciones: checkedOptions });
-    setCursoG({ ...cursoG, precio: costo });
   };
   const renderChecklistOptions3 = () => {
     const options3 = ['Inglés', 'Español', 'Otra'];

@@ -6,14 +6,18 @@ import { useState } from 'react'
 
 function App() {
   const [listaCursos, setListaCursos] = useState([])
-  const cargarCursos = async(e) =>{
-    const response = await fetch('http://localhost:3000/cursos', {
-      method: 'GET',
-      headers: { "Content-Type": "application/json"},
-    })
-    const dbUser = await response.json()
-    setListaCursos(dbUser)
-  }
+  const [cursosCargados, setCursosCargados] = useState(false);
+  const cargarCursos = async (e) => {
+    if (!cursosCargados) {
+      const response = await fetch('http://localhost:3000/cursos', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUser = await response.json();
+      setListaCursos(dbUser);
+      setCursosCargados(true); // Marcar que los cursos se han cargado
+    }
+  };
   cargarCursos()
   return (
     <>
@@ -27,7 +31,7 @@ function App() {
       <div className='CardsHome'> 
       {
         listaCursos.map(curso => (
-          <CardCurso img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
+          <CardCurso id={curso.idCurso} img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
         ))
       }
       </div>

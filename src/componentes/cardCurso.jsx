@@ -2,11 +2,23 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./cardCurso.css"; 
+import { useContext, useEffect } from "react"
+import { CursoContext } from "./../../context/cursoContext"
 
 function CardCurso(prop) {
-  const cargarCurso = async(id) => {
-    const response = await fetch(`http://localhost:3000/Cursos/${id}`)
+  const { setCursoG } = useContext(CursoContext);
+
+  const cargarCurso = async () => {
+    const response = await fetch(`http://localhost:3000/Cursos/${prop.id}`, {
+      method: 'GET',
+      headers: { "Content-Type": "application/json"},
+    });
+    const CursoJson = await response.json();
+    setCursoG(CursoJson);
+    console.log(CursoJson)
   }
+
+
   return (
     <Card className="cardCurso">
       <Card.Img variant="top" src={prop.img} />
@@ -15,8 +27,9 @@ function CardCurso(prop) {
         <Card.Text>
           {prop.descripcion}
         </Card.Text>
-        {/*hacer que el boton pase el id del curso para poder ponerlo en un context*/}
-       <Button variant="primary" ><Link to={"/store"} onClick={cargarCurso(prop.id)}>Comprar</Link></Button> 
+        <Button variant="primary" >
+          <Link to={"/Store"} onClick={cargarCurso}>Comprar</Link>
+        </Button> 
       </Card.Body>
     </Card>
   );

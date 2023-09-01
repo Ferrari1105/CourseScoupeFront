@@ -11,9 +11,7 @@ function Home() {
       method: 'GET',
       headers: { "Content-Type": "application/json"},
     })
-    console.log(response)
     const dbUser = await response.json()
-    console.log(dbUser)
     setListaCursos(dbUser)
   }
   cargarCursos()
