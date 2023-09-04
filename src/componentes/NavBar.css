@@ -6,17 +6,15 @@ a {
   color: inherit;
 }
 
-a:hover {
-  text-decoration: none;
-  color: inherit;
-}
-
 a:visited {
   text-decoration: none;
   color: inherit;
 }
 .colorTexto{
     color: beige;
+}
+.colorTexto :hover{
+  color: beige;
 }
 .SearchBar{
     display: flex;

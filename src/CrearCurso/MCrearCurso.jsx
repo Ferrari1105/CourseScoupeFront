@@ -10,16 +10,11 @@ function MCrearCurso() {
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], precio: "", banner: "", imagenes: "", videos: ""}) // Corrección aquí
+  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: "",HechoConIa: false/*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
   const handleChange = (e) => {
     console.log({...Curso, [e.target.name]: e.target.value})
     setCurso({...Curso, [e.target.name]: e.target.value})
   }
-  const handleLessonSelect = (lesson) => {
-    setSelectedLesson(lesson);
-    setCurso({...Curso, lesson: lesson})
-    console.log(Curso)
-  };
 
   const handleStyleSelect = (style) => {
     setSelectedStyle(style);
@@ -52,9 +47,9 @@ const siguiente = () => {
               <input type="text" id="campo2" name="ResumenCurso" className="input-field large-input" placeholder="Ingrese la descripción del curso:" onChange={handleChange} />
             </div>
             <div className="form-group">
-              <h2 htmlFor="campo3">Contenido del curso:</h2>
+              <h2 htmlFor="campo3">Contenidos del curso:</h2>
               {/*aniadir al sql*/}
-              <input type="text" id="campo3" name="ContenidoCurso" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" onChange={handleChange}/>
+              <input type="text" id="campo3" name="ContenidosCurso" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" onChange={handleChange}/>
             </div>
           </form>
         </div>
@@ -70,14 +65,6 @@ const siguiente = () => {
               </div>
             </div>
           </form>
-          <h2>Número de lecciones:</h2>
-          <div className="lesson-menu">
-            <div className={`menu-option ${selectedLesson === '1' ? 'selected' : ''}`} onClick={() => handleLessonSelect('1')}>1</div>
-            <div className={`menu-option ${selectedLesson === '2' ? 'selected' : ''}`} onClick={() => handleLessonSelect('2')}>2</div>
-            <div className={`menu-option ${selectedLesson === '3' ? 'selected' : ''}`} onClick={() => handleLessonSelect('3')}>3</div>
-            <div className={`menu-option ${selectedLesson === '4' ? 'selected' : ''}`} onClick={() => handleLessonSelect('4')}>4</div>
-            <div className={`menu-option ${selectedLesson === '5' ? 'selected' : ''}`} onClick={() => handleLessonSelect('5')}>5</div>
-          </div>
           <form>
             <div className="form-group">
               <h2 htmlFor="additionalResources">Recursos adicionales</h2>

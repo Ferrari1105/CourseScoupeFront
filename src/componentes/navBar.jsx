@@ -4,11 +4,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
 import { Form, Button } from 'react-bootstrap';
 import './NavBar.css'
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom' 
 import { useContext } from "react"
 import { UsuarioContext } from "./../../context/usuarioContext"
+import GoogleLogin from './Login.jsx';
+import {gapi} from 'gapi-script';
+
+const CLIENT_ID = '343392987610-3ol59qmv347dth1niap0o1fu0dibnnvk.apps.googleusercontent.com';
+
 function NavBar() {
     const [show1, setShow1] = useState(false);
     const handleClose1 = () => setShow1(false);
@@ -25,7 +30,6 @@ function NavBar() {
      setUsuario({ ...usuario, [e.target.name]: e.target.value })
      setError(false)
     }
-    
     
     const handleSubmit2 = async(e) =>{
       let usrStringified = JSON.stringify(usuario);
@@ -69,7 +73,15 @@ function NavBar() {
         }
         else setError(true)
     }
-
+    useEffect(() => {
+      function start() {
+        gapi.client.init({
+          'clientId': CLIENT_ID,
+          scope: 'email',
+        })
+      }
+      gapi.load('client:auth2', start)
+    }, [])
   return (
     <>
     <Link to={'/homeiniciada'} className='d-none' id={linkHome} >Entrar</Link>
@@ -107,12 +119,7 @@ function NavBar() {
         </Modal.Body>
         <Modal.Body>
           <div className='footerDiv'>
-          <Button variant="secondary" onClick={handleClose1}>
-          <Link to={"/homeiniciada"}>Inicia Sesion Con Google</Link>
-          </Button>
-          <Button variant="primary" onClick={handleClose1}>
-            <Link to={"/homeiniciada"}>Inicia Sesion Con Facebook</Link>
-          </Button>
+            <GoogleLogin/>
           </div>
         </Modal.Body>
       </Modal>
@@ -165,6 +172,7 @@ function NavBar() {
     <Navbar className='navBar' collapseOnSelect expand="lg">
       <Container className='navbar-container' >
       <Image className='LogoNavFoto ' src="src\Imgs\Logo.png" rounded />
+      {/*hacerlo texto porque el brand tiene un hover predeterminado*/}
         <Navbar.Brand  className='colorTexto'><Link to={"/"}>Course Scoupe</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

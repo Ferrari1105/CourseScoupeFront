@@ -17,12 +17,12 @@ function Store({ idCurso }) {
     <div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>
-            <h1 class="name">{cursoG?.NombreDelCurso}</h1>
+            <h1 className="name">{cursoG?.NombreDelCurso}</h1>
             <h6>Un Curso de: Lucas Vazquez</h6>
-            <img class="img" src={cursoG?.PortadaCurso} alt="" />
+            <img className="img" src={cursoG?.PortadaCurso} alt="" />
             <br />
             <h3>Resumen del curso: {cursoG?.ResumenCurso}</h3>
-            <h3 class="descripcion"></h3>
+            <h3 className="descripcion"></h3>
             <h3>Adelanto:{cursoG?.Adelanto}</h3>
 
         </Col >

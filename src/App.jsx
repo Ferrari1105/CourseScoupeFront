@@ -7,7 +7,7 @@ import { useState } from 'react'
 function App() {
   const [listaCursos, setListaCursos] = useState([])
   const [cursosCargados, setCursosCargados] = useState(false);
-  const cargarCursos = async (e) => {
+  const cargarCursos = async () => {
     if (!cursosCargados) {
       const response = await fetch('http://localhost:3000/cursos', {
         method: 'GET',
@@ -31,7 +31,7 @@ function App() {
       <div className='CardsHome'> 
       {
         listaCursos.map(curso => (
-          <CardCurso id={curso.idCurso} img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
+          <CardCurso key={curso.idCurso} id={curso.idCurso} img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
         ))
       }
       </div>

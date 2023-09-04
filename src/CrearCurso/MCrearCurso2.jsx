@@ -5,11 +5,8 @@ import NavBar from '../componentes/navBar.jsx';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
 
-function MCrearCurso2() {
-  const { selectedLesson } = useParams();
-  const [additionalResources, setAdditionalResources] = useState('');
-  const [checkedOptions, setCheckedOptions] = useState([]);
-  const [proceso, setProceso] = useState();
+function MCrearCurso2()  {
+
   const [costo, setCosto] = useState(0);
   const [currentLesson, setCurrentLesson] = useState(3);
   const [lessonTitles, setLessonTitles] = useState([
@@ -19,77 +16,48 @@ function MCrearCurso2() {
   ]); // Inicializa con 3 lecciones por defecto
   const { setCursoG } = useContext(CursoContext);
   const { cursoG } = useContext(CursoContext);
+  const [selectedCategory, setSelectedCategory] = useState(''); // Estado para la categoría seleccionada
+  const [selectedArea, setSelectedArea] = useState(''); // Estado para el área seleccionada
+  const [selectedLanguage, setSelectedLanguage] = useState(''); // Estado para el idioma seleccionado
+  const [listaCategorias, setListaCategorias] = useState([])
+  const [listaAreas, setListaAreas] = useState([])
+  const [listaIdiomas, setListaIdiomas] = useState([])
+  const [ListasCargadas, setListasCargadas] = useState(true);
+  const cargarListas= async () => {
+    if (ListasCargadas) {
+      const responseC = await fetch('http://localhost:3000/Categorias', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUserC = await responseC.json();
+      setListaCategorias(dbUserC)
+      const responseA = await fetch('http://localhost:3000/Areas', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUserA = await responseA.json();
+      setListaAreas(dbUserA)
+      const responseI = await fetch('http://localhost:3000/Idiomas', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUserI = await responseI.json();
+      setListaIdiomas(dbUserI)
 
-  const handleResourcesChange = (event) => {
-    setAdditionalResources(event.target.value);
+      setListasCargadas(false); // Marcar que las listas se han cargado
+   }
+   else{}
   };
-
-  const handleOptionChange = (option) => {
-    if (checkedOptions.includes(option)) {
-      setCheckedOptions(checkedOptions.filter((item) => item !== option));
-    } else {
-      setCheckedOptions([...checkedOptions, option]);
-    }
-  };
-
-  const renderChecklistOptions = () => {
-    const options = ['Fotografía y Video', 'Marketing', 'Cocina', 'Programación', 'Otra'];
-
-    return options.map((option, index) => (
-      <div key={index} className="checklist-option">
-        <label>
-          <input
-            type="checkbox"
-            checked={checkedOptions.includes(option)}
-            onChange={() => handleOptionChange(option)}
-          />
-          {option}
-        </label>
-      </div>
-    ));
-  };
-
-  const renderChecklistOptions2 = () => {
-    const options = ['Fotografía con celular', 'Desarrollo personal', 'Compra y venta', 'Otra'];
-
-    return options.map((option, index) => (
-      <div key={index} className="checklist-option">
-        <label>
-          <input
-            type="checkbox"
-            checked={checkedOptions.includes(option)}
-            onChange={() => handleOptionChange(option)}
-          />
-          {option}
-        </label>
-      </div>
-    ));
-  };
-  const renderChecklistOptions3 = () => {
-    const options3 = ['Inglés', 'Español', 'Otra'];
-
-    return options3.map((option3, index) => (
-      <div key={index} className="checklist-option">
-        <label>
-          <input
-            type="checkbox"
-            checked={checkedOptions.includes(option3)}
-            onChange={() => handleOptionChange(option3)}
-          />
-          {option3}
-        </label>
-      </div>
-    ));
-  };
-
+  cargarListas()
   const cargarPrecio = (e) => {
+    console.log(cursoG);
     setCosto(e.target.value);
+   // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
   };
-
+  
   const siguiente = () => {
-    setProceso('automatica');
-    setCursoG({ ...cursoG, opciones: checkedOptions });
-    setCursoG({ ...cursoG, precio: costo });
+    setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
+    setCursoG({ ...cursoG, PrecioDelCurso: costo });
   };
 
   const agregarLeccion = () => {
@@ -156,11 +124,38 @@ function MCrearCurso2() {
           <form>
             <div className="form-group">
               <h2 htmlFor="campo4">Categorías:</h2>
-              <div className="checklist-group">{renderChecklistOptions()}</div>
+              <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+                <option value="">Selecciona una Categoría</option>
+                  {
+                  listaCategorias.map(categoria => (
+                    <option key={categoria.NombreCategoria} value={categoria.NombreCategoria}>{categoria.NombreCategoria}</option>
+                  ))
+                 }
+                 {/*hacer funcionar como boton que agregue una categoria*/}
+                <option value="Otra">Escribir Categoria Nueva</option>
+              </select>
               <h2 htmlFor="campo5">Áreas:</h2>
-              <div className="checklist-group">{renderChecklistOptions2()}</div>
+              <select value={selectedArea} onChange={(e) => setSelectedArea(e.target.value)}>
+              <option value="">Selecciona un Area</option>
+                  {
+                  listaAreas.map(area => (
+                    <option key={area.NombreArea} value={area.NombreArea}>{area.NombreArea}</option>
+                  ))
+                 }
+                 {/*hacer funcionar como boton que agregue un Area*/}
+                <option value="Otra">Escribir Area Nueva</option>
+              </select>
               <h2 htmlFor="campo6">Idiomas:</h2>
-              <div className="checklist-group">{renderChecklistOptions3()}</div>
+              <select value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
+              <option value="">Selecciona un Idioma</option>
+                  {
+                  listaIdiomas.map(idioma => (
+                    <option key={idioma.Idioma} value={idioma.Idioma}>{idioma.Idioma}</option>
+                  ))
+                 }
+                 {/*hacer funcionar como boton que agregue un Idioma*/}
+                <option value="Otra">Escribir Otro Idioma</option>
+              </select>
             </div>
             <div className="form-group">
               <h2 htmlFor="campo3">Precio</h2>
@@ -173,7 +168,9 @@ function MCrearCurso2() {
               />
             </div>
           </form>
-          <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>Siguiente</Link>
+          <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
+            Siguiente
+          </Link>
         </div>
       </div>
     </div>

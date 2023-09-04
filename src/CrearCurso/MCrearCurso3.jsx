@@ -6,9 +6,12 @@ import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
 
 function MCrearCurso3() {
-  const { cursoG } = useContext(CursoContext);
-  const [uploadedImage, setUploadedImage] = useState(null);
 
+  const { cursoG } = useContext(CursoContext);
+  const [uploadedBanner, setUploadedBanner] = useState(null);
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedVideo, setUploadedVideo] = useState(null);
+console.log(cursoG)
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -21,9 +24,34 @@ function MCrearCurso3() {
       reader.readAsDataURL(file);
     }
   };
+  const handleBannerUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      setUploadedBanner(e.target.result);
+      //setCursoG({ ...cursoG, PortadaCurso: e.target.result });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleVideoUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      setUploadedVideo(e.target.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
 
   const terminar = async () => {
-    setProceso('automatica');
     console.log(cursoG);
     let cursoStringified = JSON.stringify(cursoG);
     try {
@@ -45,51 +73,70 @@ function MCrearCurso3() {
         <div className="row">
           <h2 className="row-title">Banner:</h2>
           <div className="photo-container">
-            <img src="src/Imgs/foto1.jpg" alt="Foto 1" className="photo" />
+            {uploadedBanner ? (
+              <img src={uploadedBanner} alt="Banner" className="photo" />
+            ) : (
+              <p>No se ha seleccionado ningun banner</p>
+            )}
           </div>
+          <input
+            type="file"
+            accept="banner/*"
+            onChange={handleBannerUpload}
+            id="banner-upload"
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="banner-upload" className="custom-upload-button">
+            Seleccionar Banner
+          </label>
         </div>
+
         <div className="row">
           <h2 className="row-title">Imagenes:</h2>
           <div className="photo-container">
-            <img src="src/Imgs/foto2.jpg" alt="Foto 2" className="photo" />
+            {uploadedImage ? (
+              <img src={uploadedImage} alt="Imagen" className="photo" />
+            ) : (
+              <p>No se ha seleccionado ninguna imagen</p>
+            )}
           </div>
-          <div className="photo-container">
-            <img src="src/Imgs/foto3.jpg" alt="Foto 3" className="photo" />
-          </div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            id="image-upload"
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="image-upload" className="custom-upload-button">
+            Seleccionar Imagen
+          </label>
         </div>
+
         <div className="row">
           <h2 className="row-title">Videos:</h2>
           <div className="photo-container">
-            <img src="src/Imgs/video.jpeg" alt="Foto 6" className="photo" />
-          </div>
-        </div>
-        <div className="row">
-          <h2 className="row-title">Subir Imagen:</h2>
-          <div className="photo-container">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              id="image-upload" // Agrega un ID al campo de carga de imagen
-              style={{ display: 'none' }} // Oculta el campo de carga de imagen original
-            />
-            <label
-              htmlFor="image-upload"
-              className="custom-upload-button"
-            >
-              Seleccionar Imagen
-            </label>
-            {uploadedImage && (
-              <img
-                src={uploadedImage}
-                alt="Imagen Subida"
-                className="photo"
-              />
+            {uploadedVideo ? (
+              <video controls>
+                <source src={uploadedVideo} type="video/mp4" />
+                Tu navegador no admite el elemento de video.
+              </video>
+            ) : (
+              <p>No se ha seleccionado ningún video</p>
             )}
           </div>
+          <input
+            type="file"
+            accept="video/*"
+            onChange={handleVideoUpload}
+            id="video-upload"
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="video-upload" className="custom-upload-button">
+            Seleccionar Video
+          </label>
         </div>
         <Link
-          to="/CursoTerminado"
+          to="/Store"
           className={`crear-curso-option`}
           onClick={terminar}
         >
@@ -101,3 +148,4 @@ function MCrearCurso3() {
 }
 
 export default MCrearCurso3;
+
