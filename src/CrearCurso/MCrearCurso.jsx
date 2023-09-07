@@ -39,15 +39,17 @@ const siguiente = () => {
           <form>
             <div className="form-group">
               <h2 htmlFor="campo1">Título del curso:</h2>
-              <h5>adasdas</h5>
+              <h5>Ingrese un titulo para identificar su curso</h5>
               <input type="text" id="campo1" name="NombreDelCurso" className="input-field large-input" placeholder="Ingrese el titulo del curso:" onChange={handleChange}/>
             </div>
             <div className="form-group">
               <h2 htmlFor="campo2">Descrpicion del curso:</h2>
+              <h5>Ingrese una breve descripcion de lo que va a mostrar en su curso</h5>
               <input type="text" id="campo2" name="ResumenCurso" className="input-field large-input" placeholder="Ingrese la descripción del curso:" onChange={handleChange} />
             </div>
             <div className="form-group">
               <h2 htmlFor="campo3">Contenidos del curso:</h2>
+              <h5>Ingrese un breve punteo de los temas a tratar en el curso</h5>
               {/*aniadir al sql*/}
               <input type="text" id="campo3" name="ContenidosCurso" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" onChange={handleChange}/>
             </div>
