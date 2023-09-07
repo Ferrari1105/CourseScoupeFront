@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom'
 import './Store.css'
 import { useContext } from "react"
 import { CursoContext } from "./../context/cursoContext"
-function Store({ idCurso }) {
-  // fetch para acceder al curso a partir del id
-  // mostar la info del curso
+import { UsuarioContext } from "./../context/usuarioContext"
+import NavBarIniciada from './componentes/navBar-iniciada.jsx'
+
+function Store() {
   const {cursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
   const [lolsas, setLolsas] = useState(false)
+  const {usuarioG} = useContext(UsuarioContext)
   const llamada = async () => {
     if(!lolsas){
    
@@ -28,7 +30,12 @@ function Store({ idCurso }) {
   llamada()
   return (
     <>
-    <NavBar></NavBar>
+     {usuarioG ? (
+              <NavBarIniciada/>
+            ) : (
+              <NavBar/>
+            )}
+    
     <div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>

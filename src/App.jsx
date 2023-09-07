@@ -31,7 +31,7 @@ function App() {
       <div className='CardsHome'> 
       {
         listaCursos.map(curso => (
-          <CardCurso key={curso.idCurso} id={curso.idCurso} img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
+          <CardCurso  key={curso.idCurso} id={curso.idCurso} img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
         ))
       }
       </div>

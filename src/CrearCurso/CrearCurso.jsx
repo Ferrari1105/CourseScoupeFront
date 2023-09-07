@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../componentes/navBar.jsx';
+import NavBar from '../componentes/navBar-iniciada.jsx';
 import Banner from '../componentes/banner';
 import CardCurso from '../componentes/cardCurso';
 import './CrearCurso.css';

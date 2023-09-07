@@ -23,9 +23,18 @@ function NavBar() {
     const handleShow2 = () => setShow2(true);
     const [error, setError] = useState(false)
     const linkHome = useId()
-    const {setUsuarioG} = useContext(UsuarioContext)
+    const {usuarioG,setUsuarioG} = useContext(UsuarioContext)
     const [usuario, setUsuario] = useState({nombre: "", contraseña: "", email:""})
    // const [usuarioCreado, setUsuarioCreado] = useState()
+   const [showModal3, setShowModal3] = useState(false); // Estado para controlar si se muestra el modal
+
+   const handleClose3 = () => {
+     setShowModal3(false);
+   };
+ 
+   const handleShow3 = () => {
+     setShowModal3(true);
+   };
    const handleChange = e => {
      setUsuario({ ...usuario, [e.target.name]: e.target.value })
      setError(false)
@@ -177,7 +186,7 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link to={"./MisPresentaciones"} className='colorTexto'>Mis Presentaciones</Link> 
+              <Link onClick={handleShow3} className='colorTexto'>Mis Presentaciones</Link>
           </Nav>
      <Form className="SearchBar">
       <Form.Control
@@ -195,6 +204,19 @@ function NavBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Modal show={showModal3} onHide={handleClose3}>
+        <Modal.Header closeButton>
+          <Modal.Title>Iniciar sesión</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Debes iniciar sesión para ver tus presentaciones.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose3}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </>
   );
 }

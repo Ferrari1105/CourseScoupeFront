@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MisPresentaciones.css';
 import { Link } from 'react-router-dom';
-import NavBar from '../componentes/navBar.jsx';
+import NavBar from '../componentes/navBar-iniciada.jsx';
 
 const MisPresentaciones = () => {
     const [presentations, setPresentations] = useState([]);
