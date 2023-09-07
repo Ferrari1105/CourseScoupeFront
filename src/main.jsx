@@ -12,7 +12,6 @@ import CrearCurso from './CrearCurso/CrearCurso.jsx';
 import MCrearCurso from './CrearCurso/MCrearCurso.jsx';
 import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
 import MCrearCurso3 from './CrearCurso/MCrearCurso3.jsx';
-import CursoTerminado from './CrearCurso/CursoTerminado.jsx';
 import MisPresentaciones from './CrearCurso/MisPresentaciones.jsx';
 import CrearCursoIA from './CrearCurso/CrearCursoIA.jsx';
 import CrearCursoIA2 from './CrearCurso/CrearCursoIA2.jsx';
@@ -49,9 +48,6 @@ const routes = createBrowserRouter([{
 },{
   path: "/MCrearCurso3",
   element: <MCrearCurso3 />
-},{
-  path: "/CursoTerminado",
-  element: <CursoTerminado />
 },{
   path: "/CrearCursoIA",
   element: <CrearCursoIA />

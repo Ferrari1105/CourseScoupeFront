@@ -10,20 +10,35 @@ function Store({ idCurso }) {
   // fetch para acceder al curso a partir del id
   // mostar la info del curso
   const {cursoG} = useContext(CursoContext)
-  console.log(cursoG)
+  const [Curso, setCurso] = useState()
+  const [lolsas, setLolsas] = useState(false)
+  const llamada = async () => {
+    if(!lolsas){
+   
+      const response = await fetch(`http://localhost:3000/CursoProcesado`, {
+        method: 'post',
+        headers: { "Accept": 'application/json', "Content-Type": 'application/json'},
+        body: JSON.stringify(cursoG)
+      });
+      const dbCurso = await response.json();
+      setCurso(dbCurso)
+      setLolsas(true) 
+    }
+  }
+  llamada()
   return (
     <>
     <NavBar></NavBar>
     <div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>
-            <h1 className="name">{cursoG?.NombreDelCurso}</h1>
+            <h1 className="name">{Curso?.NombreDelCurso}</h1>
             <h6>Un Curso de: Lucas Vazquez</h6>
-            <img className="img" src={cursoG?.PortadaCurso} alt="" />
+            <img className="img" src={Curso?.PortadaCurso} alt="" />
             <br />
-            <h3>Resumen del curso: {cursoG?.ResumenCurso}</h3>
+            <h3>Resumen del curso: {Curso?.ResumenCurso}</h3>
             <h3 className="descripcion"></h3>
-            <h3>Adelanto:{cursoG?.Adelanto}</h3>
+            <h3>Adelanto:{Curso?.Adelanto}</h3>
 
         </Col >
         <Col sm={4} className='right-side '>
@@ -32,14 +47,12 @@ function Store({ idCurso }) {
             <Button><Link to ={"src/componentes/CardCart.jsx"} >Comprar</Link></Button>
             <div className='store-info-container'>
               <div className='store-info-item' >
-                <div className='store-info-icon'></div>
-                <p>Lorem ipsum dolor sit amet consecta.</p>
+                <h3>Clasficaciones:</h3>
               </div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>{cursoG?.idLecciones}</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>{cursoG?.idCategorias}</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>{cursoG?.idAreas}</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>{cursoG?.idEstilo}</p></div>
-              <div className='store-info-item' ><div className='store-info-icon'></div><p>{cursoG?.idRecursosAdicionales}</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>{Curso?.Categorias}</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>{Curso?.Areas}</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>{Curso?.Estilo}</p></div>
+              <div className='store-info-item' ><div className='store-info-icon'></div><p>{Curso?.Idioma}</p></div>
             </div>
               <div className='descripcion-Usuario'><div className='store-info-icon'></div><p>Un curso de Lucas Vazquez Programador senior, ex-empleado de microsoft  </p></div> 
               <Button><Link>Regalo</Link></Button>

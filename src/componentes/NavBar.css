@@ -1,5 +1,7 @@
 .navBar{
     background-color: #393D67;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, .3);
+
 }
 a {
   text-decoration: none;
@@ -57,6 +59,7 @@ margin-top: 20px;
   border-radius: 5px;
   gap: 5px;
   margin-left: 70px;
+  
 }
 .error{
   background-color: red;
