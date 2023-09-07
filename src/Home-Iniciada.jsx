@@ -18,10 +18,10 @@ function Home() {
   return (
     <>
     <div>
-      <NavBar></NavBar>
+      <NavBar ></NavBar>
     </div>
       <div className='Banner'>
-      <Banner></Banner>
+      <Banner ></Banner>
       </div>
       <div className='CardsHome'>
       {

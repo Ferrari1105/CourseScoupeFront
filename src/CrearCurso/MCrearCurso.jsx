@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MCrearCurso.css';
 import { Link } from 'react-router-dom';
-import NavBar from '../componentes/navBar.jsx';
+import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from "react"
 import { CursoContext } from "./../../context/cursoContext"
 
@@ -11,6 +11,7 @@ function MCrearCurso() {
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: "",HechoConIa: false/*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
+  const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
   const handleChange = (e) => {
     console.log({...Curso, [e.target.name]: e.target.value})
     setCurso({...Curso, [e.target.name]: e.target.value})
@@ -71,6 +72,11 @@ const siguiente = () => {
               <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={additionalResources} onChange={handleResourcesChange}></textarea>
             </div>
           </form>
+          {EstaTodoCargado ? (
+               <Link to={"./MisPresentaciones"} className='colorTexto'>Mis Presentaciones</Link> 
+            ) : (
+              <Link onClick={handleShow3} className='colorTexto'>Mis Presentaciones</Link>
+            )}
           <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
         </div>
       </div>

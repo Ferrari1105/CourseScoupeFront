@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MCrearCurso3.css';
-import NavBar from '../componentes/navBar.jsx';
+import NavBar from '../componentes/navBar-iniciada.jsx';
 import { Link, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
