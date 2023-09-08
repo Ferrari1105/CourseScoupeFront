@@ -16,7 +16,9 @@ function MCrearCurso() {
     console.log({...Curso, [e.target.name]: e.target.value})
     setCurso({...Curso, [e.target.name]: e.target.value})
   }
+  const handleShow3 = () => {
 
+  };
   const handleStyleSelect = (style) => {
     setSelectedStyle(style);
     setCurso({...Curso, Style: style})
