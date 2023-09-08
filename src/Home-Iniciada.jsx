@@ -27,7 +27,7 @@ function Home() {
       <div className='CardsHome'>
       {
         listaCursos.map(curso => (
-          <CardCurso img={curso.PortadaCurso} name={curso.NombreDelCurso}  descripcion={curso.ResumenCurso}/>
+          <CardCurso  key={curso?.idCurso} id={curso?.idCurso} img={curso?.PortadaCurso} name={curso?.NombreDelCurso}  descripcion={curso?.ResumenCurso}/>
         ))
       }
       </div>

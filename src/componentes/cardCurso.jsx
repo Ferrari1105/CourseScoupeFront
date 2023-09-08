@@ -9,7 +9,7 @@ function CardCurso(prop) {
   const { setCursoG } = useContext(CursoContext);
 
   const cargarCurso = async () => {
-    const response = await fetch(`http://localhost:3000/Cursos/${prop.id}`, {
+    const response = await fetch(`http://localhost:3000/Cursos/${prop?.id}`, {
       method: 'GET',
       headers: { "Content-Type": "application/json"},
     });
