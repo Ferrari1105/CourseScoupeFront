@@ -15,7 +15,6 @@ function CardCurso(prop) {
     });
     const CursoJson = await response.json();
     setCursoG(CursoJson);
-    console.log(CursoJson)
   }
 
 

@@ -2,7 +2,7 @@ import NavBar from './componentes/navBar'
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
   const [listaCursos, setListaCursos] = useState([])
@@ -18,7 +18,8 @@ function App() {
       setCursosCargados(true); // Marcar que los cursos se han cargado
     }
   };
-  cargarCursos()
+  useEffect(()=>async()=>await cargarCursos(), [])
+ 
   return (
     <>
     <div>

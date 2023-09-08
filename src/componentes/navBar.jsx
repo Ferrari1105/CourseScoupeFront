@@ -62,7 +62,11 @@ function NavBar() {
           const usuarioNombre= await response.json()
           // 2. Si está, logearlo | LOG IN
           if (usuarioNombre.Contraseña === usuario.contraseña) document.getElementById(linkHome).click(), setUsuarioG(usuarioNombre) // LOG IN
-          else console.log("contra incorrecta") // CONTRASEÑA INCORRECTA
+          else{
+            console.log("contra incorrecta") // CONTRASEÑA INCORRECTA
+            setError(true)
+          } 
+            
         } catch {
           // 3. Si no está, crearlo y logearlo | SIGN IN
           try {

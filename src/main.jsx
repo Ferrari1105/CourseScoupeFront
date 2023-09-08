@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Store from './Store.jsx'
 import Profile from './Profile.jsx';
 import Home from './Home-Iniciada.jsx'
-import CardCart from './componentes/CardCart.jsx';
 import CrearCurso from './CrearCurso/CrearCurso.jsx';
 import MCrearCurso from './CrearCurso/MCrearCurso.jsx';
 import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
@@ -34,9 +33,6 @@ const routes = createBrowserRouter([{
 },{
   path: "/profile",
   element: <Profile />
-},{
-  path: "/cardcart",
-  element: <CardCart />
 },{
   path: "/CrearCurso",
   element: <CrearCurso />

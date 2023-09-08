@@ -30,7 +30,7 @@ function NavBar() {
           </Form>
           <Nav className='navbar-container usuario-navbar'>
             <div>  
-              <p className='usuario-navbar-Nombre'>{usuarioG.NombreUsuario}</p>
+              <p className='usuario-navbar-Nombre'>{usuarioG?.NombreUsuario}</p>
             </div>
               <Link to={"/Profile"}>
                 <Image className='usuario-navbar-foto' src="https://pbs.twimg.com/media/EIOHEVlXkAE0QWW.jpg" rounded />

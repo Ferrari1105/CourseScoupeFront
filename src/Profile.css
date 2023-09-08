@@ -65,11 +65,68 @@
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: red;
     cursor: pointer;
   }
   
   .profile-actions button:hover {
-    background-color: #ccc;
+    background-color: crimson;
   }
-  
+  .bannerPerfil{
+    width: 100%;
+    height: 170px;
+    background-color:#25291C;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    padding-top: 10px;
+    color: white;
+    padding-left: 60px;
+  }
+  .fotoBanner{
+    width: 150px;
+    border-radius: 50%;
+  }
+  .contenidoBanner{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .textoBanner{
+    padding-top: 10px;
+  }
+  .botonBanner{
+    border-radius: 10px;
+    border-color: black;
+    color: black;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .textareaPerfil{
+    background-color: #F5F6FC;
+    border-color: black;
+  }
+  .textosPerfil{
+    background-color: #EBF0FF;
+    width: 80%;
+    margin-top: 30px;
+    padding: 40px;
+  }
+  .lista{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .lista>a{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+  }

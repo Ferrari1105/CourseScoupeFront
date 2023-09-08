@@ -8,10 +8,12 @@ import { useContext } from "react"
 import { UsuarioContext } from "./../context/usuarioContext"
 import { Link } from 'react-router-dom';
 
-function Comprar1() {
+function Comprar1() 
+{
     return (
         <div>
             <NavBar ></NavBar>
+            
         </div>
     )
 }
