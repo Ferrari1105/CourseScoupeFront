@@ -1,23 +1,35 @@
-import { useState } from 'react'
-import NavBar from './componentes/navBar-iniciada'
-import Banner from './componentes/banner'
-import CardCurso from './componentes/cardCurso'
-import './App.css'
-import './Profile.css';
-import { useContext } from "react"
-import { UsuarioContext } from "./../context/usuarioContext"
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom'; // Importa useLocation de react-router-dom
+import NavBar from './componentes/navBar';
+import './Comprar1.css';
 
-function Comprar1() 
-{
-    return (
-        <div>
-            <NavBar ></NavBar>
-            <h1>Comprr</h1>
-        </div>
-    )
+function Comprar1() {
+  const location = useLocation();
+  const image = location.state ? location.state.image : null; // Verifica si location.state existe
+
+  return (
+    <>
+      <NavBar />
+      <div className='comprar1-container'>
+        <Modal.Dialog id="modal1" centered size="xl">
+          <Modal.Header></Modal.Header>
+          <Modal.Body>
+            <h2>Carrito</h2>
+          </Modal.Body>
+        </Modal.Dialog>
+      </div>
+      <div className='comprar1-container2'>
+        <Modal.Dialog id="modal2" centered size="xl">
+          <Modal.Header></Modal.Header>
+          <Modal.Body>
+            {image && <img className="img" src={image} alt="" />}
+          </Modal.Body>
+        </Modal.Dialog>
+      </div>
+    </>
+  );
 }
 
-export default Comprar1
-
-
+export default Comprar1;
+    
