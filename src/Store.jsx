@@ -60,7 +60,7 @@ function Store() {
             <div><p>Descuento: sin codigo </p></div>
 
             {usuarioG ? (
-              <Button><Link to ="/Comprar1" >Comprar</Link></Button>
+              <Button><Link to={{ pathname: "/Comprar1", state: { image: Curso?.PortadaCurso } }}>Comprar</Link></Button>
             ) : (
               <Button><Link onClick={handleShow} >Comprar</Link></Button>
             )}
