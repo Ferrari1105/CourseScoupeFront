@@ -4,7 +4,7 @@ const clientId = '343392987610-3ol59qmv347dth1niap0o1fu0dibnnvk.apps.googleuserc
 
 function Login (){
     const onSuccess = (res) => {
-
+        // hacer que guarde en la base de datos con un id determinado y que le asigne los mismos datos que un usuario normal
         console.log('[Login Success] currentUser:', res.profileObj);
     }
     

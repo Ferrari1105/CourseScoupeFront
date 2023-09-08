@@ -13,7 +13,7 @@ function Comprar1()
     return (
         <div>
             <NavBar ></NavBar>
-            
+            <h1>Comprr</h1>
         </div>
     )
 }

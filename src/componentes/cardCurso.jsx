@@ -8,14 +8,7 @@ import { CursoContext } from "./../../context/cursoContext"
 function CardCurso(prop) {
   const { setCursoG } = useContext(CursoContext);
 
-  const cargarCurso = async () => {
-    const response = await fetch(`http://localhost:3000/Cursos/${prop?.id}`, {
-      method: 'GET',
-      headers: { "Content-Type": "application/json"},
-    });
-    const CursoJson = await response.json();
-    setCursoG(CursoJson);
-  }
+  
 
 
   return (
@@ -27,7 +20,7 @@ function CardCurso(prop) {
           {prop.descripcion}
         </Card.Text>
         <Button variant="primary" >
-          <Link to={"/Store"} onClick={cargarCurso}>Comprar</Link>
+          <Link to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
         </Button> 
       </Card.Body>
     </Card>

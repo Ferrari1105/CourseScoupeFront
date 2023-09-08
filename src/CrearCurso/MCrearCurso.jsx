@@ -10,10 +10,9 @@ function MCrearCurso() {
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: "",HechoConIa: false/*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
+  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: null,HechoConIa: false/*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
   const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
   const handleChange = (e) => {
-    console.log({...Curso, [e.target.name]: e.target.value})
     setCurso({...Curso, [e.target.name]: e.target.value})
   }
   const handleShow3 = () => {
@@ -22,12 +21,12 @@ function MCrearCurso() {
   const handleStyleSelect = (style) => {
     setSelectedStyle(style);
     setCurso({...Curso, Style: style})
-    console.log(Curso)
+  
   }
   const handleResourcesChange = (event) => {
     setAdditionalResources(event.target.value);
     setCurso({...Curso, recAdicionales: event.target.value})
-    console.log(Curso)
+    
   };
   const [proceso, setProceso] = useState(null);
 const siguiente = () => {
@@ -77,11 +76,11 @@ const siguiente = () => {
             </div>
           </form>
           {EstaTodoCargado ? (
-               <Link to={"./MisPresentaciones"} className='colorTexto'>Mis Presentaciones</Link> 
+                <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
             ) : (
-              <Link onClick={handleShow3} className='colorTexto'>Mis Presentaciones</Link>
+              <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
             )}
-          <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
+         
         </div>
       </div>
     </div>

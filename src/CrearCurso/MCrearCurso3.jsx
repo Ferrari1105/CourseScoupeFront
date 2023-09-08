@@ -4,14 +4,25 @@ import NavBar from '../componentes/navBar-iniciada.jsx';
 import { Link, useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
-
+import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal
+import Button from 'react-bootstrap/Button';
 function MCrearCurso3() {
 
   const { cursoG } = useContext(CursoContext);
   const [uploadedBanner, setUploadedBanner] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedVideo, setUploadedVideo] = useState(null);
-console.log(cursoG)
+  const [cursoParaPasar,setCursoParaPasar] = useState('');
+  const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
+  
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
+  const handleShow = () => {
+    setShowModal(true);
+  };
+  console.log(cursoG)
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -52,18 +63,21 @@ console.log(cursoG)
   };
 
   const terminar = async () => {
-    console.log(cursoG);
     let cursoStringified = JSON.stringify(cursoG);
     try {
+      
       const response = await fetch('http://localhost:3000/MCrearCurso3', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: cursoStringified,
       });
-      return await response.json();
+      const dbo = await response.json();
+      setCursoParaPasar(dbo.idCurso) 
+      console.log(cursoParaPasar)
     } catch {
-      throw new Error(`No se pudo realizar el fetch tipo ${method} :(`);
+      throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
+    
   };
 
   return (
@@ -135,14 +149,42 @@ console.log(cursoG)
             Seleccionar Video
           </label>
         </div>
+
         <Link
-          to="/Store"
+ 
           className={`crear-curso-option`}
-          onClick={terminar}
+          onClick={handleShow}
+          state={{ from: cursoParaPasar? cursoParaPasar : null }}
         >
           Terminar
         </Link>
       </div>
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Estas Seguro</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Quieres terminar de crear el curso?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button>
+
+        <Link 
+        to="/Store"
+        variant="danger" 
+        onClick={terminar}
+        state={{ from: cursoParaPasar }}
+        >
+            Confirmar
+          </Link>
+          </Button>
+          <Button>
+          <Link variant="danger" onClick={handleClose}>
+            Cerrar
+          </Link>
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

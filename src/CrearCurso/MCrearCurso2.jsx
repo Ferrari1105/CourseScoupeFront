@@ -50,7 +50,6 @@ function MCrearCurso2()  {
   };
   cargarListas()
   const cargarPrecio = (e) => {
-    console.log(cursoG);
     setCosto(e.target.value);
    // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
   };
@@ -160,7 +159,7 @@ function MCrearCurso2()  {
             <div className="form-group">
               <h2 htmlFor="campo3">Precio</h2>
               <input
-                type="text"
+                type="number"
                 name="precio"
                 className="input-field large-input"
                 placeholder="Ingrese el precio"

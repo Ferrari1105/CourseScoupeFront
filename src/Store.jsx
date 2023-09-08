@@ -6,25 +6,39 @@ import { Link } from 'react-router-dom'
 import './Store.css'
 import { useContext } from "react"
 import { CursoContext } from "./../context/cursoContext"
-import { UsuarioContext } from "./../context/usuarioContext"
+import { UsuarioContext } from '../context/usuarioContext';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx'
 import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal  
-
+import { useLocation } from 'react-router-dom'
 function Store() {
   const {cursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
-  const [lolsas, setLolsas] = useState(false)
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
+  const location = useLocation()
+  const { from } = location.state
+  const cargarCurso = async () => {
+    
+  
+
+  }
+  useEffect(()=>async()=>await cargarCurso(), [])
 
   const llamada = async () => {
-    
-    if(!lolsas){
-      const response = await fetch(`http://localhost:3000/CursoProcesado/${cursoG?.idCurso}`);
-      const dbCurso = await response.json();
+    console.log(from)
+    // pasarle nombre en vez del id, y devolver el ultimo curso creado con ese nombre en el backend
+    const response1= await fetch(`http://localhost:3000/Cursos/${from}`, {
+      method: 'GET',
+      headers: { "Content-Type": "application/json"},
+    });
+    const CursoJson = await response1.json();
+    console.log(CursoJson)
+      const response2 = await fetch(`http://localhost:3000/CursoProcesado/${CursoJson.idCurso}`);
+      const dbCurso = await response2.json();
+      console.log(dbCurso)
       setCurso(dbCurso)
-      setLolsas(true) 
-    }
+  
+    
   }
   const handleClose = () => {
     setShowModal(false);
@@ -37,7 +51,7 @@ function Store() {
   useEffect(()=>async()=>await llamada(), [])
   return (
     <>
-     {usuarioG ? (
+     {usuarioG? (
               <NavBarIniciada/>
             ) : (
               <NavBar/>
