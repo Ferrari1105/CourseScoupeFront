@@ -87,3 +87,37 @@ body {
     color: #fff;
 }
   
+/* Estilos para el formulario de tarjeta de crédito */
+.card-payment-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 500px; /* Ajusta el ancho del formulario */
+    display: flex;
+    flex-wrap: wrap; /* Permite el ajuste automático de los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+  }
+  
+  .card-payment-form h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .card-payment-form input {
+    width: calc(100%); /* Ancho del 50% menos el espacio entre elementos */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Estilos para los mensajes de error */
+  .error-message {
+    color: #ff0000;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
