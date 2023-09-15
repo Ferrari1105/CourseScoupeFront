@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
+import Button  from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal
 import './banner.css';
 import { useContext } from "react"
@@ -33,11 +33,11 @@ function Banner( ) {
           </div>
           <div className='banner-buttons'>
             {usuarioG? (
-              <Button><Link to="/CrearCurso">Crear Curso</Link></Button>
+              <Link className='Link' to="/CrearCurso">Crear Curso</Link >
             ) : (
-              <Button onClick={handleShow}>Crear Curso</Button>
+              <Link className='Link' onClick={handleShow}>Crear Curso</Link>
             )}
-            <Button>Crear Presentacion</Button>
+            <Link className='Link'>Crear Presentacion</Link>
           </div>
         </Col>
         <Col className='LogoBanner'>
@@ -55,7 +55,7 @@ function Banner( ) {
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
             Cerrar
-          </Button>
+          </Button >
         </Modal.Footer>
       </Modal>
     </Container>

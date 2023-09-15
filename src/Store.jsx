@@ -15,8 +15,8 @@ function Store() {
   const [Curso, setCurso] = useState()
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
-  //const location = useLocation()
-  //const { from } = location.state
+  const location = useLocation()
+  const { from } = location.state
   const cargarCurso = async () => {
 
   }
@@ -68,7 +68,7 @@ function Store() {
 
         </Col >
         <Col sm={4} className='right-side '>
-            <div><h1>{cursoG?.PrecioDelCurso}</h1></div>
+            <div><h1>${cursoG?.PrecioDelCurso}</h1></div>
             <div><p>Descuento: sin codigo </p></div>
 
             {usuarioG ? (

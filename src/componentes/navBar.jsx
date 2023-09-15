@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Dropdown } from 'react-bootstrap';
 import './NavBar.css'
 import { useEffect, useId, useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
@@ -15,6 +15,8 @@ import {gapi} from 'gapi-script';
 const CLIENT_ID = '343392987610-3ol59qmv347dth1niap0o1fu0dibnnvk.apps.googleusercontent.com';
 
 function NavBar() {
+  const paises = ['Selecciona un país', 'Argentina', 'Chile', 'Colombia', 'México', 'Perú', 'Otro'];
+  const [Pais, paisShow] = useState(paises[0]);
     const [show1, setShow1] = useState(false);
     const handleClose1 = () => setShow1(false);
     const handleShow1 = () => setShow1(true);
@@ -137,51 +139,88 @@ function NavBar() {
         </Modal.Body>
       </Modal>
       <Modal show={show2} onHide={handleClose2} id="modal">
-        <Modal.Header closeButton>
-          <Modal.Title>Crear Cuenta nueva</Modal.Title>
-        </Modal.Header>
-        <Modal.Body >
-          <Form onSubmit={handleSubmit2}>
-            <Form.Group className="mb-3" >
-              <Form.Label>Nombre Usuario</Form.Label>
-              <Form.Control
-                type="text"
-                name="nombre"
-                placeholder="user1234"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                name="contraseña"
-                placeholder="1234"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="E-mail"
-                name="mail"
-                placeholder="blablabla@tatata.com"
-                onChange={handleChange}
-                autoFocus
-              />
-            </Form.Group>
-            <div className='modalDiv'>
-            <Button  className='botonModal' type="submit">Crear</Button>
-            </div>
-            <div className='modalDiv'>
-            <Button  className='botonModal' onClick={handleClose2}>Cancelar</Button>
-            </div>
-          </Form>
-          {error && <p className='error'>Fijense que todos los campos esten correctamente llenados</p>}
-        </Modal.Body>
-        </Modal>
+  <Modal.Header closeButton>
+    <Modal.Title>Crear Cuenta nueva</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form onSubmit={handleSubmit2}>
+    <Form.Group className="mb-3">
+        <Form.Label>Nombre Completo</Form.Label>
+        <Form.Control
+          type="text"
+          name="Nombre"
+          placeholder="Tu nombre completo"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Nombre de Usuario</Form.Label>
+        <Form.Control
+          type="text"
+          name="NombreUsuario"
+          placeholder="user1234"
+          onChange={handleChange}
+          autoFocus
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Contraseña</Form.Label>
+        <Form.Control
+          type="password"
+          name="contraseña"
+          placeholder="1234"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          name="Email"
+          placeholder="blablabla@tatata.com"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+        <Form.Label>Breve Descripción</Form.Label>
+        <Form.Control
+          type="text"
+          name="Biografia"
+          placeholder="Una breve descripción de ti mismo"
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3">
+            <Form.Label>País de Residencia</Form.Label>
+            <Dropdown>
+              <Dropdown.Toggle variant="light">
+                {Pais}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {paises.map((pais, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    onClick={() => paisShow(pais)}
+                   //onChange={ setUsuario({ ...usuario, "Ubicacion":  pais})}
+                  >
+                    {pais}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Form.Group>
+     
+      <div className='modalDiv'>
+        <Button className='botonModal' type="submit">Crear</Button>
+      </div>
+      <div className='modalDiv'>
+        <Button className='botonModal' onClick={handleClose2}>Cancelar</Button>
+      </div>
+    </Form>
+    {error && <p className='error'>Asegúrate de completar todos los campos correctamente</p>}
+  </Modal.Body>
+</Modal>
+
     <Navbar className='navBar' collapseOnSelect expand="lg">
       <Container className='navbar-container' >
       <Image className='LogoNavFoto ' src="src\Imgs\Logo.png" rounded />

@@ -23,6 +23,7 @@ function MCrearCurso2()  {
   const [listaAreas, setListaAreas] = useState([])
   const [listaIdiomas, setListaIdiomas] = useState([])
   const [ListasCargadas, setListasCargadas] = useState(true);
+  const [Lecciones, setLecciones] = useState([])
   const cargarListas= async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
@@ -94,7 +95,7 @@ function MCrearCurso2()  {
           <form>
             {lessonTitles.map((lesson, index) => (
               <div key={index} className="form-group">
-                <h2 htmlFor={`titulo${index + 1}`}>Título de {lesson.title}:</h2>
+                <h2 htmlFor={`titulo${index + 1}`}>Título:</h2>
                 <input
                   type="text"
                   id={`titulo${index + 1}`}
@@ -102,7 +103,7 @@ function MCrearCurso2()  {
                   value={lesson.title}
                   onChange={(e) => handleLessonTitleChange(e, index)}
                 />
-                <h2 htmlFor={`contenido${index + 1}`}>Contenido de {lesson.title}:</h2>
+                <h2 htmlFor={`contenido${index + 1}`}>Contenido:</h2>
                 <textarea
                   id={`contenido${index + 1}`}
                   className="input-field large-input"

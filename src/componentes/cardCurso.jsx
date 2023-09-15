@@ -19,9 +19,8 @@ function CardCurso(prop) {
         <Card.Text>
           {prop.descripcion}
         </Card.Text>
-        <Button variant="primary" >
-          <Link to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
-        </Button> 
+          <Link className='Link' to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
+
       </Card.Body>
     </Card>
   );

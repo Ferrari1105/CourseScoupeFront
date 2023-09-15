@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from "react"
 import { CursoContext } from "./../../context/cursoContext"
+import { UsuarioContext } from "./../../context/usuarioContext"
 
 function MCrearCurso() {
+  const {usuarioG}= useContext(UsuarioContext)
   const [selectedLesson, setSelectedLesson] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: null,HechoConIa: false/*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
+  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario /*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
   const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
   const handleChange = (e) => {
     setCurso({...Curso, [e.target.name]: e.target.value})

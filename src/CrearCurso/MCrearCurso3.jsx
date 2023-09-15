@@ -12,7 +12,7 @@ function MCrearCurso3() {
   const [uploadedBanner, setUploadedBanner] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedVideo, setUploadedVideo] = useState(null);
-  const [cursoParaPasar,setCursoParaPasar] = useState('');
+
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
   
   const handleClose = () => {
@@ -72,8 +72,6 @@ function MCrearCurso3() {
         body: cursoStringified,
       });
       const dbo = await response.json();
-      setCursoParaPasar(dbo.idCurso) 
-      console.log(cursoParaPasar)
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
@@ -151,10 +149,8 @@ function MCrearCurso3() {
         </div>
 
         <Link
- 
           className={`crear-curso-option`}
           onClick={handleShow}
-          state={{ from: cursoParaPasar? cursoParaPasar : null }}
         >
           Terminar
         </Link>
@@ -170,10 +166,9 @@ function MCrearCurso3() {
           <Button>
 
         <Link 
-        to="/Store"
+        to="/"
         variant="danger" 
         onClick={terminar}
-        state={{ from: cursoParaPasar }}
         >
             Confirmar
           </Link>
