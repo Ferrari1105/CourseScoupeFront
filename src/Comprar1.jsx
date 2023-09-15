@@ -3,14 +3,22 @@ import { Button, Modal } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom'; // Importa useLocation de react-router-dom
 import NavBar from './componentes/navBar';
 import './Comprar1.css';
-
+import { Link } from 'react-router-dom';
+import { useContext } from "react"
+import { UsuarioContext } from '../context/usuarioContext';
+import NavBarIniciada from './componentes/navBar-iniciada.jsx'
 function Comprar1() {
+  const {usuarioG} = useContext(UsuarioContext)
   const location = useLocation();
   const image = location.state ? location.state.image : null; // Verifica si location.state existe
 
   return (
     <>
-      <NavBar />
+      {usuarioG? (
+              <NavBarIniciada/>
+            ) : (
+              <NavBar/>
+            )}
       <div className='comprar1-container'>
         <Modal.Dialog id="modal1" centered size="xl">
           <Modal.Header></Modal.Header>
@@ -26,6 +34,11 @@ function Comprar1() {
             {image && <img className="img" src={image} alt="" />}
           </Modal.Body>
         </Modal.Dialog>
+        {usuarioG ? (
+              <Button><Link to={{ pathname: "/MetodoPago" }}>Comprar</Link></Button>
+            ) : (
+              <Button><Link onClick={handleShow} >Comprar</Link></Button>
+            )}
       </div>
     </>
   );

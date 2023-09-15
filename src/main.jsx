@@ -18,6 +18,7 @@ import { UsuarioProvider } from '../context/usuarioContext.jsx';
 import { CursoProvider } from '../context/cursoContext.jsx';
 import CrearCursoIA3 from './CrearCurso/CrearCursoIA3.jsx';
 import Comprar1 from './Comprar1.jsx';
+import MetodoPago from './MetodoPago.jsx';
 const routes = createBrowserRouter([{
   path: "/",
   element: <App />
@@ -57,6 +58,9 @@ const routes = createBrowserRouter([{
 },{
   path: "/Comprar1",
   element: <Comprar1/>
+},{
+  path: "/MetodoPago",
+  element: <MetodoPago/>
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

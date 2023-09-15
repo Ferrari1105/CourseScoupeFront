@@ -15,11 +15,9 @@ function Store() {
   const [Curso, setCurso] = useState()
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
-  const location = useLocation()
-  const { from } = location.state
+  //const location = useLocation()
+  //const { from } = location.state
   const cargarCurso = async () => {
-    
-  
 
   }
   useEffect(()=>async()=>await cargarCurso(), [])
