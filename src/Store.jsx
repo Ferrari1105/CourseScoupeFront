@@ -68,8 +68,12 @@ function Store() {
 
         </Col >
         <Col sm={4} className='right-side '>
-            <div><h1>${cursoG?.PrecioDelCurso}</h1></div>
-            <div><p>Descuento: sin codigo </p></div>
+            <div><h1>${Curso?.PrecioDelCurso}</h1></div>
+            <div>
+              <p>Descuento: 
+              <input type="text" placeholder='Sin Codigo' />
+              </p>
+              </div>
 
             {usuarioG ? (
               <Button><Link to={{ pathname: "/Comprar1", state: { image: Curso?.PortadaCurso } }}>Comprar</Link></Button>
