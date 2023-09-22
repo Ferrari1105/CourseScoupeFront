@@ -1,12 +1,15 @@
-import NavBar from './componentes/navBar'
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
 import './App.css'
 import { useState, useEffect } from 'react'
-
+import NavBar from './componentes/navBar';
+import { useContext } from "react"
+import { UsuarioContext } from '../context/usuarioContext';
+import NavBarIniciada from './componentes/navBar-iniciada.jsx'
 function App() {
   const [listaCursos, setListaCursos] = useState([])
   const [cursosCargados, setCursosCargados] = useState(false);
+  const {usuarioG} = useContext(UsuarioContext)
   const cargarCursos = async () => {
     if (!cursosCargados) {
       const response = await fetch('http://localhost:3000/cursos', {
@@ -22,9 +25,11 @@ function App() {
  
   return (
     <>
-    <div>
-      <NavBar />
-    </div>
+   {usuarioG? (
+              <NavBarIniciada/>
+            ) : (
+              <NavBar/>
+            )}
       <div className='Banner'>
         <span></span>
       <Banner />

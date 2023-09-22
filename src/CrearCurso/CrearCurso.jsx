@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavBar from '../componentes/navBar-iniciada.jsx';
+import NavBarIniciada from '../componentes/navBar-iniciada.jsx';
+import NavBar from '../componentes/navBar.jsx';
 import Banner from '../componentes/banner';
 import CardCurso from '../componentes/cardCurso';
 import './CrearCurso.css';
 import MisPresentaciones from './MisPresentaciones';
-
+import { useContext } from "react"
+import { UsuarioContext } from '../../context/usuarioContext';
 function CrearCurso() {
+  const {usuarioG} = useContext(UsuarioContext)
   const [proceso, setProceso] = useState(null);
 
   return (
     <div>
-      <NavBar></NavBar>
+      {usuarioG? (
+              <NavBarIniciada/>
+            ) : (
+              <NavBar/>
+            )}
       <div className="crear-curso-container">
         <h2 className="crear-curso-title">
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?

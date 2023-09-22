@@ -99,7 +99,7 @@ function NavBar() {
     }, [])
   return (
     <>
-    <Link to={'/homeiniciada'} className='d-none' id={linkHome} >Entrar</Link>
+    <Link to={'/'} className='d-none' id={linkHome} >Entrar</Link>
       <Modal show={show1} onHide={handleClose1} id="modal">
         <Modal.Header closeButton>
           <Modal.Title>Iniciar Sesion</Modal.Title>

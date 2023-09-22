@@ -14,12 +14,12 @@ function CardCurso(prop) {
   return (
     <Card className="cardCurso">
       <Card.Img variant="top" src={prop.img} />
-      <Card.Body>
+      <Card.Body className='cardBody'>
         <Card.Title>{prop.name}</Card.Title>
         <Card.Text>
           {prop.descripcion}
         </Card.Text>
-          <Link className='Link' to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
+          <Link className='Link linkCard' to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
 
       </Card.Body>
     </Card>

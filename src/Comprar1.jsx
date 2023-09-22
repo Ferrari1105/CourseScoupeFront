@@ -37,7 +37,7 @@ function Comprar1() {
         {usuarioG ? (
               <Button><Link to={{ pathname: "/MetodoPago" }}>Comprar</Link></Button>
             ) : (
-              <Button><Link onClick={handleShow} >Comprar</Link></Button>
+              <Button><Link  >Comprar</Link></Button>
             )}
       </div>
     </>

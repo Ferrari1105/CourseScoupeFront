@@ -1,7 +1,11 @@
 .cardCurso{
     width: 23%;
     border-color: black;
+
+
+
 }
+
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
@@ -19,4 +23,8 @@
   }
   .Link:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.linkCard{
+  
+  justify-content: center;
 }

@@ -75,10 +75,12 @@ function Store() {
               </p>
               </div>
 
-            {usuarioG ? (
-              <Button><Link to={{ pathname: "/Comprar1", state: { image: Curso?.PortadaCurso } }}>Comprar</Link></Button>
+            {usuarioG? (
+             //<Link to="/Comprar1" >Comprar</Link> 
+             <Link className='Link' onClick={handleShow} >Comprar</Link>
+
             ) : (
-              <Button><Link onClick={handleShow} >Comprar</Link></Button>
+              <Link className='Link' onClick={handleShow} >Comprar</Link>
             )}
            
             <div className='store-info-container'>
@@ -91,7 +93,7 @@ function Store() {
               <div className='store-info-item' ><div className='store-info-icon'></div><p>{Curso?.Idioma}</p></div>
             </div>
               <div className='descripcion-Usuario'><div className='store-info-icon'></div><p>Un curso de Lucas Vazquez Programador senior, ex-empleado de microsoft  </p></div> 
-              <Button><Link>Regalo</Link></Button>
+             <Link className='Link'>Regalo</Link>
               <div className='categorias-areas'>
                 <p>aaaaa|bbbbbbb|ccccc|ddddd</p>
                 <p>Areas: 1 | 2 | 3 | 4</p>
@@ -104,7 +106,7 @@ function Store() {
           <Modal.Title>Iniciar sesión</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Debes iniciar sesión para crear un curso.
+          Debes iniciar sesión para comprar un curso.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>

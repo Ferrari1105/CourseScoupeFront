@@ -8,21 +8,42 @@ import { UsuarioContext } from "./../../context/usuarioContext"
 
 function MCrearCurso() {
   const {usuarioG}= useContext(UsuarioContext)
-  const [selectedLesson, setSelectedLesson] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", opciones:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario /*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
+  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", idCategorias:null,idAreas:null,idIdioma:null,Lessons:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario /*, PortadaCurso: "", imagenes: "", videos: ""*/}) // Corrección aquí
   const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
+  const [listaEstilos, setListaEstilos] = useState([])
+  const [ListasCargadas, setListasCargadas] = useState(true);
+  const cargarListas= async () => {
+    if (ListasCargadas) {
+      const responseC = await fetch('http://localhost:3000/Estilos', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUserC = await responseC.json();
+      setListaEstilos(dbUserC)
+      setListasCargadas(false); // Marcar que las listas se han cargado
+   }
+   else{}
+  };
+  cargarListas()
   const handleChange = (e) => {
     setCurso({...Curso, [e.target.name]: e.target.value})
+    console.log(Curso)
   }
-  const handleShow3 = () => {
 
-  };
-  const handleStyleSelect = (style) => {
-    setSelectedStyle(style);
-    setCurso({...Curso, Style: style})
+  const handleStyleSelect = (e) => {
+    
+    const estiloBuscado = e.target.value;
+    const estiloEncontrado = listaEstilos.find((estilo) => estilo.NombreEstilo === estiloBuscado);
+    if (estiloEncontrado) {
+      setSelectedStyle(e.target.value)
+    } else {
+      console.log("Malio Sal")
+    }
+    setCurso({...Curso, Style: estiloEncontrado.idEstilo})
+    console.log(Curso)
   
   }
   const handleResourcesChange = (event) => {
@@ -63,12 +84,17 @@ const siguiente = () => {
           <form>
             <div className="form-group">
             <h2 htmlFor="campo4">Estilos:</h2>
-              <div className="button-group">
-              <div className={`menu-option ${selectedStyle === 'Creativo' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Creativo')}>Creativo</div>
-            <div className={`menu-option ${selectedStyle === 'Elegante' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Elegante')}>Elegante</div>
-            <div className={`menu-option ${selectedStyle === 'Original' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Original')}>Original</div>
-            <div className={`menu-option ${selectedStyle === 'Más' ? 'selected' : ''}`} onClick={() => handleStyleSelect('Más')}>Más</div>
-              </div>
+              <select value={selectedStyle} onChange={handleStyleSelect}>
+                <option value="">Selecciona un estilo</option>
+                  {
+                  listaEstilos.map(Estilo => (
+                    <option key={Estilo.IdEstilo} value={Estilo.NombreEstilo}  data-key={Estilo.IdEstilo} >{Estilo.NombreEstilo}</option>
+                  ))
+                 }
+                 {/*hacer funcionar como boton que agregue un Estilo*/}
+                <option value="Otra">Escribir Estilo Nuevo</option>
+              </select>
+            
             </div>
           </form>
           <form>
