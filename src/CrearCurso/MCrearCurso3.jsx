@@ -6,27 +6,39 @@ import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
 import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal
 import Button from 'react-bootstrap/Button';
+import {uploadfile} from '../Firebase/config'
+import {v4} from  'uuid'
 function MCrearCurso3() {
 
-  const { cursoG } = useContext(CursoContext);
+  const { cursoG, setCursoG } = useContext(CursoContext);
   const [uploadedBanner, setUploadedBanner] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedVideo, setUploadedVideo] = useState(null);
-
+  const [fileBanner, setFileBanner] = useState()
+  const [fileFoto, setFileFoto] = useState()
+  const [fileVideo, setFileVideo] = useState()
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
   
   const handleClose = () => {
     setShowModal(false);
   };
 
-  const handleShow = () => {
+  const handleShow = async() => {
+    const urlBanner = await uploadfile(fileBanner)
+    console.log(urlBanner)
+    const urlFoto = await uploadfile(fileFoto)
+    const urlVideo = await uploadfile(fileVideo)
+    setCursoG({...cursoG, PortadaCurso: urlBanner})
+   // setCursoG({...cursoG, imagenes: urlFoto})
+   // setCursoG({...cursoG, videos: urlVideo})
+    console.log(cursoG)
     setShowModal(true);
   };
   console.log(cursoG)
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-
+    setFileFoto(file)
     reader.onload = (e) => {
       setUploadedImage(e.target.result);
     };
@@ -36,8 +48,8 @@ function MCrearCurso3() {
     }
   };
   const handleBannerUpload = (event) => {
-    console.log(event.target.files[0])
     const file = event.target.files[0];
+    setFileBanner(file)
     const reader = new FileReader();
 
     reader.onload = (e) => {
@@ -53,7 +65,7 @@ function MCrearCurso3() {
   const handleVideoUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-
+    setFileVideo(file)
     reader.onload = (e) => {
       setUploadedVideo(e.target.result);
     };
