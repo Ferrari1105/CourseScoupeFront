@@ -10,6 +10,9 @@ import { UsuarioContext } from '../context/usuarioContext';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx'
 import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal  
 import { useLocation } from 'react-router-dom'
+import Card from 'react-bootstrap/Card';
+import Accordions from './componentes/Accordions';
+
 function Store() {
   const {cursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
@@ -50,23 +53,117 @@ function Store() {
   return (
     <>
      {usuarioG? (
-              <NavBarIniciada/>
+       <NavBarIniciada/>
             ) : (
               <NavBar/>
             )}
-    
-    <div className='store-container'>
+             <div className='row'>
+               <div className='col-3'>
+               </div>
+               <div className='col-5 tituloStore'>
+                 <div>
+                   <h1 style={{ color: "black" }}> 100 Days of Code: The Complete Python Pro Bootcamp for 2023</h1>
+                   <h3 style={{ color: "black" }}> Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</h3>
+                   <h6 style={{ color: "gray" }}> 1,021,292 students</h6>
+                   <div style={{ color: "gray" }}>
+                     <h6 >Created by: <Link style={{ color: "blue" }}>Choclo</Link></h6>
+                   </div>
+                   <div style={{ color: "gray" }}>
+                     <text style={{fontSize: "15px", color: "gray"}} >Idioma: Ingles  </text>
+                   </div>
+                 </div>
+             
+                 <div className='row boxPreview'>
+                    <h1 style={{color: "black"}} > What you'll learn </h1>
+                    <div className='col-6'>
+                      <ul style={{fontSize: "15px", color: "gray"}}>
+                         <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
+                         <br />
+                         <li>You will be able to program in Python professionally</li>
+                         <li>Create a portfolio of 100 Python projects to apply for developer jobs</li>
+                         <br /> 
+                         <li>Be able to use Python for data science and machine learning</li>
+                         <br />
+                         <li>Build GUIs and Desktop applications with Python</li>
+                      </ul>
+                    </div>
+                    <div className='col-6'>
+                      <ul style={{fontSize: "15px", color: "gray"}}>
+                       <li>You will learn automation, game, app and web development, data science and machine learning all using Python.</li>
+                       <br />
+                       <li>You will learn Selenium, Beautiful Soup, Request, Flask, Pandas, NumPy, Scikit Learn, Plotly, and Matplotlib.</li>
+                       <br />
+                       <li>Be able to build fully fledged websites and web apps with Python</li>
+                       <br />
+                       <li>Build games like Blackjack, Pong and Snake using Python</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <h1 style={{color: "black"}}>Course Content</h1>
+                  <Accordions></Accordions>
+                  </div>
+                  <div>
+                    <h1 style={{color: "black"}}>Description</h1>
+                    <text  style={{fontSize: "20px", color: "gray"}}>asheee</text>
+                  </div>
+               </div>
+               
+              <div className='col-4'>
+              <Card className="cardStore">
+               <Card.Img className='fotoStore' variant="top" src='https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg' />
+                <Card.Body className='cardBodyStore'>
+                <Card.Title>
+                  <div className='precioCard'>
+                <h1>$14.99</h1>
+                <h5 style={{ textdecoration: "line-through", color: "red"}}> Original Price $74.99</h5>
+                <h5>Discount 80% off</h5>
+                  </div>
+                </Card.Title>
+                <div className='botonesStore'>
+                <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} >Add to cart</Link>
+                <Link className='Link linkCard botonStore' >Comprar Ya!</Link>
+                </div>
+                <Card.Text>
+                 <h4>This course includes:</h4>
+                 <ul>
+                 <li>55 hours on-demand video</li>
+                 <li>Assignments</li>
+                 <li>224 articles</li>
+                 <li>153 downloadable resources</li>
+                 <li>Access on mobile and TV</li>
+                 <li>Full lifetime access</li>
+                 <li>Certificate of completion</li>
+                 </ul>
+                </Card.Text>
+                <div className='extras'>
+                <Link>Gift This Course</Link>
+                <Link>Apply Coupon</Link>
+                </div>
+                </Card.Body>
+               </Card>
+              </div>
+              </div>
+    </>
+  )
+}
+
+export default Store
+
+
+/*
+<div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>
             <h1 className="name">{Curso?.NombreDelCurso}</h1>
-            <h6>Un Curso de: Lucas Vazquez</h6>
+            <h6>Un Curso de:{Curso?.Creador}</h6>
             <img className="img" src={Curso?.PortadaCurso} alt="" />
             <br />
             <h3>Resumen del curso: {Curso?.ResumenCurso}</h3>
             <h3 className="descripcion"></h3>
             <h3>Adelanto:{Curso?.Adelanto}</h3>
-
-        </Col >
+[22:05]
+</Col >
         <Col sm={4} className='right-side '>
             <div><h1>${Curso?.PrecioDelCurso}</h1></div>
             <div>
@@ -82,7 +179,7 @@ function Store() {
             ) : (
               <Link className='Link' onClick={handleShow} >Comprar</Link>
             )}
-           
+
             <div className='store-info-container'>
               <div className='store-info-item' >
                 <h3>Clasficaciones:</h3>
@@ -98,7 +195,8 @@ function Store() {
                 <p>aaaaa|bbbbbbb|ccccc|ddddd</p>
                 <p>Areas: 1 | 2 | 3 | 4</p>
               </div>
-        </Col>
+[22:05]
+</Col>
       </Row>
     </div>
     <Modal show={showModal} onHide={handleClose}>
@@ -114,8 +212,6 @@ function Store() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
-  )
-}
 
-export default Store
+*/
+ 

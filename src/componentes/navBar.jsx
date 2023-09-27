@@ -88,7 +88,7 @@ function NavBar() {
         }
         else setError(true)
     }
-    useEffect(() => {
+   /* useEffect(() => {
       function start() {
         gapi.client.init({
           'clientId': CLIENT_ID,
@@ -96,7 +96,7 @@ function NavBar() {
         })
       }
       gapi.load('client:auth2', start)
-    }, [])
+    }, [])*/
   return (
     <>
     <Link to={'/'} className='d-none' id={linkHome} >Entrar</Link>
@@ -133,9 +133,11 @@ function NavBar() {
           {error && <p className='error'>Fijense que todos los campos esten correctamente llenados</p>}
         </Modal.Body>
         <Modal.Body>
-          <div className='footerDiv'>
-            <GoogleLogin/>
-          </div>
+        {/*
+          <GoogleLogin/>
+         <div className='footerDiv'>
+          </div>*/
+          } 
         </Modal.Body>
       </Modal>
       <Modal show={show2} onHide={handleClose2} id="modal">
@@ -170,7 +172,7 @@ function NavBar() {
           name="contraseña"
           placeholder="1234"
           onChange={handleChange}
-        />
+        />e
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
