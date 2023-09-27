@@ -1,0 +1,113 @@
+/* Estilos para la tarjeta de carrito */
+h2{
+    font-size: 40px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center; 
+    font-weight: bolder;
+}
+
+.carrito-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+    display: flex;
+    flex-direction: column; /* Disposición en columna */
+    justify-content: space-between; /* Alinea los elementos en la parte superior e inferior */
+    height: 100%; /* Asegura que la tarjeta ocupe toda la altura disponible */
+  }
+  
+
+  .carrito-container h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center; 
+    font-weight: bolder;
+    /* Centra el título horizontalmente */
+  }
+  
+  /* Estilos para la tarjeta de curso en el carrito */
+  .curso-en-carrito {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    margin-bottom: 20px;
+
+  }
+  
+  .imagen-curso {
+    color: #000;
+    width: 175px; 
+    height: auto;
+    margin-bottom: 75px;
+    margin-right: 20px;
+  }
+  
+  .info-curso {
+    flex: 1; 
+  }
+  
+  .botones-carrito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para los botones dentro de la tarjeta */
+  .boton-pagos1 {
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: #dfdede;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Cambia a bloque para que ocupen todo el ancho */
+    width: auto;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .boton-pagos1:hover {
+    background-color: #5593f7;
+    color: #fff;
+  }
+  
+
+.boton-pago1-confirm {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #dfdede;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .boton-pago1-confirm:hover {
+    background-color: #4287f5;
+    color: #fff;
+  }
+
+.boton-pagos-otro-curso{
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #dfdede;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto; /* Ancho automático basado en el contenido */
+    text-align: center;
+
+}
+
+.boton-pagos-otro-curso:hover {
+    background-color: #5593f7;
+    color: #fff;
+  }
+  

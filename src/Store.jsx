@@ -19,7 +19,7 @@ function Store() {
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
   const location = useLocation()
-  const { from } = location.state
+  const { from } = location.state || {};
   const cargarCurso = async () => {
 
   }
@@ -126,7 +126,7 @@ function Store() {
                 </Card.Title>
                 <div className='botonesStore'>
                 <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} >Add to cart</Link>
-                <Link className='Link linkCard botonStore' to={"/Comprar1"}>Comprar Ya!</Link>
+                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"}>Comprar Ya!</Link>
                 </div>
                 <Card.Text>
                  <h4>This course includes:</h4>

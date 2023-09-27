@@ -138,7 +138,7 @@ function MetodoPago() {
                         onChange={handleCardInputChange}
                     />
                     
-                    <button className="boton-pagos" onClick={handleCardPayment}>Validar Compra</button>
+                    <Link className='boton-pagos' onClick={handleCardPayment} to={"/"}>Validar Compra</Link>
                 </div>
             )}
 

@@ -18,7 +18,7 @@ import CrearCursoIA2 from './CrearCurso/CrearCursoIA2.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 import { CursoProvider } from '../context/cursoContext.jsx';
 import CrearCursoIA3 from './CrearCurso/CrearCursoIA3.jsx';
-import Comprar1 from './Comprar1.jsx';
+import CarritoDeCompras from './CarritoDeCompras.jsx';
 import MetodoPago from './MetodoPago.jsx';
 const routes = createBrowserRouter([{
   path: "/",
@@ -54,8 +54,8 @@ const routes = createBrowserRouter([{
   path: "/CrearCursoIA3",
   element: <CrearCursoIA3/>
 },{
-  path: "/Comprar1",
-  element: <Comprar1/>
+  path: "/CarritoDeCompras",
+  element: <CarritoDeCompras/>
 },{
   path: "/MetodoPago",
   element: <MetodoPago/>
