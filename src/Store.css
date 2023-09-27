@@ -9,8 +9,8 @@
 }
 .cardStore{
   width: 30rem;
-  height: 55rem
-
+  height: 55rem;
+  position: sticky;
 }
 .tituloStore{
   font-size: 1.5em;
@@ -27,14 +27,26 @@
   display: flex;
   justify-content: space-between;
 }
+.originalPrice{
+  text-decoration: "line-through";
+  color: red;
+}
 
 .botonStore{
   display: flex;
-  justify-content: center;
+  justify-content: space-between; 
   align-items: center;
   width: 40%;
   margin: auto;
   margin-bottom: 15px;  
+
+}
+.botonesStore{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+
 }
 .boxPreview{
   margin-top: 110px;

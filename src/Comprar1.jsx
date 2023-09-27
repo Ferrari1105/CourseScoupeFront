@@ -34,11 +34,7 @@ function Comprar1() {
             {image && <img className="img" src={image} alt="" />}
           </Modal.Body>
         </Modal.Dialog>
-        {usuarioG ? (
-              <Button><Link to={{ pathname: "/MetodoPago" }}>Comprar</Link></Button>
-            ) : (
-              <Button><Link  >Comprar</Link></Button>
-            )}
+              <Link className='Link' to={"/MetodoPago" }>Comprar</Link>
       </div>
     </>
   );

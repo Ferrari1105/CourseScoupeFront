@@ -58,9 +58,9 @@ function Store() {
               <NavBar/>
             )}
              <div className='row'>
-               <div className='col-3'>
-               </div>
-               <div className='col-5 tituloStore'>
+  
+               <div className='col-1'></div>
+               <div className='col-7 tituloStore'>
                  <div>
                    <h1 style={{ color: "black" }}> 100 Days of Code: The Complete Python Pro Bootcamp for 2023</h1>
                    <h3 style={{ color: "black" }}> Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</h3>
@@ -99,30 +99,34 @@ function Store() {
                       </ul>
                     </div>
                   </div>
+                  <br />
+                  <br />
                   <div>
                     <h1 style={{color: "black"}}>Course Content</h1>
                   <Accordions></Accordions>
                   </div>
+                  <br />
+                  <br />
                   <div>
                     <h1 style={{color: "black"}}>Description</h1>
                     <text  style={{fontSize: "20px", color: "gray"}}>asheee</text>
                   </div>
                </div>
                
-              <div className='col-4'>
+              <div className='col-4'style={{ paddingLeft: "5rem" }}>
               <Card className="cardStore">
                <Card.Img className='fotoStore' variant="top" src='https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg' />
                 <Card.Body className='cardBodyStore'>
                 <Card.Title>
                   <div className='precioCard'>
                 <h1>$14.99</h1>
-                <h5 style={{ textdecoration: "line-through", color: "red"}}> Original Price $74.99</h5>
+                <h5 className='originalPrice'> Original Price $74.99</h5>
                 <h5>Discount 80% off</h5>
                   </div>
                 </Card.Title>
                 <div className='botonesStore'>
                 <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} >Add to cart</Link>
-                <Link className='Link linkCard botonStore' >Comprar Ya!</Link>
+                <Link className='Link linkCard botonStore' to={"/Comprar1"}>Comprar Ya!</Link>
                 </div>
                 <Card.Text>
                  <h4>This course includes:</h4>
