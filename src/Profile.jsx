@@ -61,7 +61,7 @@ function Profile() {
               </div>
             </Card.Body>
           </Card>
-          <Button className='boton-perfil-editar'>Editar</Button>
+          <Button className='boton-perfil-editar'>Crear más cursos</Button>
           <h3 className='textos'>Cursos en proceso</h3>
           <Card className="card">
             <Card.Body>
@@ -77,7 +77,7 @@ function Profile() {
               </div>
             </Card.Body>
           </Card>
-          <Button className='boton-perfil-editar'>Editar</Button>
+          <Button className='boton-perfil-editar'>Buscar mas cursos</Button>
           <h3 className='textos'>Cursos terminados</h3>
           <Card className="card">
             <Card.Body>
@@ -93,7 +93,7 @@ function Profile() {
               </div>
             </Card.Body>
           </Card>
-          <Button className='boton-perfil-editar'>Editar</Button>
+          <Button className='boton-perfil-editar'>Seguir con tus cursos</Button>
         </div>
       </div>
       <div className="profile-actions">
