@@ -1,19 +1,12 @@
-import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'; // Importa useLocation de react-router-dom
-import NavBar from './componentes/navBar';
-import './CarritoDeCompras.css';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useContext } from "react"
 import { UsuarioContext } from '../context/usuarioContext';
-import NavBarIniciada from './componentes/navBar-iniciada.jsx'
+import NavBar from './componentes/navBar';
+import NavBarIniciada from './componentes/navBar-iniciada.jsx';
+import './CarritoDeCompras.css';
 
-
-function CarritoDeCompras({ cursoEnCarrito }) {
+function CarritoDeCompras() {
   const { usuarioG } = useContext(UsuarioContext);
-  const location = useLocation();
-  const image = location.state ? location.state.image : null;
 
   // Estado local para almacenar los cursos en el carrito
   const [carrito, setCarrito] = useState([
@@ -21,6 +14,12 @@ function CarritoDeCompras({ cursoEnCarrito }) {
       id: 1,
       nombre: 'The Complete Python Pro Bootcamp',
       precio: 14.99,
+      imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
+    },
+    {
+      id: 1,
+      nombre: 'Tprueba del sexosadasdasdasdasdsa',
+      precio: 99.1,
       imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
     },
   ]);
@@ -31,32 +30,48 @@ function CarritoDeCompras({ cursoEnCarrito }) {
     setCarrito(nuevoCarrito);
   };
 
+  // Función para calcular el precio total
+  const calcularPrecioTotal = () => {
+    return carrito.reduce((total, curso) => total + curso.precio, 0).toFixed(2);
+  };
+
   return (
     <>
       {usuarioG ? <NavBarIniciada /> : <NavBar />}
       <h2>Tu Carrito de Compras</h2>
+      <div className='botones-carrito'>
+        <Link className='boton-pagos-otro-curso' to={'/'}>
+          Agregar otro curso
+        </Link>
+      </div>
       <div className='carrito-container'>
-
         {carrito.map((curso) => (
-          <div className='curso-en-carrito'>
-          <img src={curso.imagen} alt={curso.nombre} className='imagen-curso' />
-          <div className='info-curso'>
-            <p className='nombre-curso'>{curso.nombre}</p>
-            <p className='precio-curso'>Precio: ${curso.precio.toFixed(2)}</p>
-            <button className='boton-pagos1' onClick={() => eliminarCursoDelCarrito(curso.id)}>Eliminar</button>
-
+          <div key={curso.id} className='curso-en-carrito'>
+            <img src={curso.imagen} alt={curso.nombre} className='imagen-curso' />
+            <div className='info-curso'>
+              <p className='nombre-curso'>{curso.nombre}</p>
+              <p className='precio-curso'>Precio: ${curso.precio.toFixed(2)}</p>
+              <button
+                className='boton-pagos1'
+                onClick={() => eliminarCursoDelCarrito(curso.id)}
+              >
+                Eliminar
+              </button>
+            </div>
           </div>
-        </div>
         ))}
       </div>
-      <div className='botones-carrito'>
-      <Link className='boton-pagos-otro-curso' to={"/"}>Agregar otro curso</Link>
-      <Link className='boton-pago1-confirm' to={"/MetodoPago"}>Continuar</Link>
+      <div className='total-container'>
+        <div className='total-card'>
+          <h3>Total a pagar:</h3>
+          <p>${calcularPrecioTotal()}</p>
+          <Link className='boton-pago1-confirm' to={'/MetodoPago'}>
+            Continuar
+          </Link>
+        </div>
       </div>
-
     </>
   );
 }
 
 export default CarritoDeCompras;
-
