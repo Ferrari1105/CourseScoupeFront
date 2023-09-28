@@ -5,13 +5,13 @@ import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from "react"
 import { CursoContext } from "./../../context/cursoContext"
 import { UsuarioContext } from "./../../context/usuarioContext"
-
+import { useEffect } from 'react';
 function MCrearCurso() {
   const {usuarioG}= useContext(UsuarioContext)
   const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
   const [additionalResources, setAdditionalResources] = useState('');
   const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState({ Style:"", lesson: "", recAdicionales: "", idCategorias:null,idAreas:null,idIdioma:null,Lessons:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario, PortadaCurso: "", imagenes: "", videos: ""}) // Corrección aquí
+  const [Curso, setCurso] = useState(null) // Corrección aquí
   const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
   const [listaEstilos, setListaEstilos] = useState([])
   const [ListasCargadas, setListasCargadas] = useState(true);
@@ -27,7 +27,8 @@ function MCrearCurso() {
    }
    else{}
   };
-  cargarListas()
+  useEffect(()=>async()=>await cargarListas(), [usuarioG])
+  
   const handleChange = (e) => {
     setCurso({...Curso, [e.target.name]: e.target.value})
     console.log(Curso)
@@ -55,7 +56,18 @@ function MCrearCurso() {
 const siguiente = () => {
   setProceso('automatica')
   setCursoG(Curso)
+  
 }
+const empezarCurso = async() => {  
+  const response = await fetch('http://localhost:3000/NuevoID', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+  });
+  const idNuevo = await response.json();
+  console.log(idNuevo)
+  setCurso({idCurso :idNuevo, Style:"", lesson: "", recAdicionales: "", idCategorias:null,idAreas:null,idIdioma:null,Lessons:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario, PortadaCurso: "", imagenes: "", videos: ""})
+}
+useEffect(()=>async()=>await empezarCurso(), [])
   return (
     <div>
       <NavBar />

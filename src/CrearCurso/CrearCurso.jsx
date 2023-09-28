@@ -11,7 +11,6 @@ import { UsuarioContext } from '../../context/usuarioContext';
 function CrearCurso() {
   const {usuarioG} = useContext(UsuarioContext)
   const [proceso, setProceso] = useState(null);
-
   return (
     <div>
       {usuarioG? (

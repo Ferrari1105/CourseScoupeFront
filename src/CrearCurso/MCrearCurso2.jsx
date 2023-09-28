@@ -103,6 +103,7 @@ function MCrearCurso2()  {
   };
 
   const agregarLeccion = () => {
+    crearNuevaLeccion()
     setCurrentLesson(currentLesson + 1);
     setLessonTitles([
       ...lessonTitles,
@@ -111,6 +112,7 @@ function MCrearCurso2()  {
   };
 
   const eliminarLeccion = () => {
+    deleteLeccion()
     if (currentLesson > 0) {
       setCurrentLesson(currentLesson - 1);
       setLessonTitles(lessonTitles.slice(0, -1));
@@ -133,7 +135,52 @@ function MCrearCurso2()  {
     console.log(newLessonTitles)
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
     console.log(cursoG)
+    //updateLeccion()
   };
+  const crearNuevaLeccion = async () => {
+  const nuevaLeccion = {
+    idCurso: 1, // Reemplaza con el ID del curso al que deseas agregar la lección
+    nombreLeccion: "Nueva Lección",
+    contenidoLeccion: "Contenido de la nueva lección"
+};
+
+const responseInsert = await fetch('http://localhost:3000/insertLeccion', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevaLeccion)
+});
+ const resultadoInsert = await responseInsert.json();
+  }
+  const deleteLeccion = async () => {
+    const idCurso = 1; // Reemplaza con el ID del curso
+    const idLeccion = 1; // Reemplaza con el ID de la lección que deseas eliminar
+    
+    const responseDelete = await fetch(`http://localhost:3000/deleteLeccion/${idCurso}/${idLeccion}`, {
+        method: 'DELETE',
+        headers: { "Content-Type": "application/json" }
+    });
+    
+    const resultadoDelete = await responseDelete.json();
+    
+  }
+const updateLeccion = async () => {
+  const idCurso = 1; // Reemplaza con el ID del curso
+  const idLeccion = 1; // Reemplaza con el ID de la lección que deseas actualizar
+  const datosActualizados = {
+      nuevoNombre: "Nuevo Nombre",
+      nuevoContenido: "Nuevo Contenido"
+  };
+  
+  const responseUpdate = await fetch(`http://localhost:3000/updateLeccion/${idCurso}/${idLeccion}`, {
+      method: 'PUT',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(datosActualizados)
+  });
+  
+  const resultadoUpdate = await responseUpdate.json();
+  
+}
+
 
   return (
     <div>
