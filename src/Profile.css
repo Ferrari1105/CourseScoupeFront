@@ -109,7 +109,7 @@
     border-color: black;
   }
   .textosPerfil{
-    background-color: #EBF0FF;
+    background-color: #acacac;
     width: 80%;
     margin-top: 30px;
     padding: 40px;
@@ -123,10 +123,66 @@
     margin-top: 20px;
   }
   .lista>a{
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #acacac;
     border-radius: 10px;
     flex: 1;
     padding: 1rem;
     display: flex;
     justify-content: center;
   }
+.card{
+  background-color: #dfdede;
+}
+  .card-images {
+    
+    display: flex;
+    align-items: center; /* Centra verticalmente las imágenes en la tarjeta */
+    margin-top: 10px; /* Margen superior para separar el contenido de la tarjeta */
+  }
+  
+  .card-images img {
+    margin-bottom: 7px;
+    margin-right: 20px;
+    width: 300px;
+    flex: 0 0 30%;
+    max-height: 100%; 
+    object-fit: cover; 
+  }
+
+  .boton-perfil-editar{
+    margin-top: 15px;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #dfdede;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.boton-perfil-editar:hover {
+    background-color: #5593f7;
+    color: #fff;
+}
+  
+.textos{
+  color: #000000;
+
+}
+.crear-otro-curso{
+  margin-top: 15px;
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #5593f7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.crear-otro-curso:hover {
+  background-color: #2d76eb;
+  color: #fff;
+}
