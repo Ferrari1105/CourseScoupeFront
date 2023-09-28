@@ -17,11 +17,12 @@ function CarritoDeCompras() {
       imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
     },
     {
-      id: 1,
-      nombre: 'Tprueba del sexosadasdasdasdasdsa',
-      precio: 99.1,
+      id: 2,
+      nombre: 'Prueba del curso 2',
+      precio: 19.99,
       imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
     },
+    // Agrega más cursos al carrito según sea necesario
   ]);
 
   // Función para eliminar un curso del carrito
@@ -51,19 +52,19 @@ function CarritoDeCompras() {
             <div className='info-curso'>
               <p className='nombre-curso'>{curso.nombre}</p>
               <p className='precio-curso'>Precio: ${curso.precio.toFixed(2)}</p>
-              <button
-                className='boton-pagos1'
-                onClick={() => eliminarCursoDelCarrito(curso.id)}
-              >
-                Eliminar
-              </button>
             </div>
+            <button
+              className='boton-pagos1 eliminar'
+              onClick={() => eliminarCursoDelCarrito(curso.id)}
+            >
+              Eliminar
+            </button>
           </div>
         ))}
       </div>
       <div className='total-container'>
         <div className='total-card'>
-          <h3>Total a pagar:</h3>
+          <h2>Total a pagar:</h2>
           <p>${calcularPrecioTotal()}</p>
           <Link className='boton-pago1-confirm' to={'/MetodoPago'}>
             Continuar
