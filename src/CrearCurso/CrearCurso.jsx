@@ -25,7 +25,6 @@ function CrearCurso() {
         </h2>
         <div className="botones-siguiente"> 
           <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opcion Manual</Link>
-              <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}style={{ backgroundColor: "peru" }}>Editar Curso En Proceso</Link>
         <Link to="/CrearCursoIA" className={`boton-siguiente ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
         </div>
         <div className="crear-curso-info">
@@ -37,3 +36,5 @@ function CrearCurso() {
 }
 
 export default CrearCurso;
+
+//<Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}style={{ backgroundColor: "peru" }}>Editar Curso En Proceso</Link>

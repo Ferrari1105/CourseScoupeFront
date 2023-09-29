@@ -16,6 +16,7 @@ import Accordions from './componentes/Accordions';
 function Store() {
   const {cursoG,setCursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
+  const [cursoLecciones, setcursoLecciones] = useState()
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
   const location = useLocation()
@@ -34,7 +35,10 @@ function Store() {
     });
     const CursoJson = await response1.json();
     console.log(CursoJson)
-      const response2 = await fetch(`http://localhost:3000/CursoProcesado/${CursoJson.idCurso}`);
+      const response2 = await fetch(`http://localhost:3000/CursoProcesado/${CursoJson.idCurso}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json"},
+      });
       const dbCurso = await response2.json();
       console.log(dbCurso)
       setCurso(dbCurso)
@@ -51,6 +55,23 @@ function Store() {
   
   useEffect(()=>async()=>await llamada(), [])
 
+  const añadirCarrito = async()=>
+  {
+    console.log("holaaaaaa")
+    let ids = {
+      idCurso: Curso?.idCurso,
+      idUsuario: usuarioG.idUsuario
+    }
+    let idsStringified = JSON.stringify(ids);
+
+      let response= await fetch(`http://localhost:3000/cargarCarrito`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: idsStringified
+    });
+    const Carrito = await response.json();
+  }
+  
   return (
     <>
      {usuarioG? (
@@ -104,11 +125,10 @@ function Store() {
                   <br />
                   <div>
                     <h1 style={{color: "black"}}>Paso a Paso Del Curso:</h1>
-                    {Curso?.Lecciones.map((item) => (
-                      console.log(item),
-                       <Accordions title={item.NombreLeccion} content={item.ContenidoLeccion} />
+                    {
+                    Curso?.Lecciones.map((item, index) => (
+                       <Accordions title={item.NombreLeccion}  num={index + 1}/>
                     ))}
-                 
                   </div>
                   <br />
                   <br />
@@ -130,8 +150,8 @@ function Store() {
                   </div>
                 </Card.Title>
                 <div className='botonesStore'>
-                <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} >Add to cart</Link>
-                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"}>Comprar Ya!</Link>
+                <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} onclick={añadirCarrito()} >Add to cart</Link>
+                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"} onclick={añadirCarrito()}>Comprar Ya!</Link>
                 </div>
                 <Card.Text>
                  <ul>

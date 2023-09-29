@@ -11,6 +11,8 @@ function Profile() {
   const { usuarioG, setUsuarioG } = useContext(UsuarioContext);
   const cerrarSesion = () => {
     setUsuarioG(null);
+    localStorage.removeItem('usuario')
+    localStorage.removeItem('Cursof1')
   }
 
   // Simula la carga de las URLs de las imágenes

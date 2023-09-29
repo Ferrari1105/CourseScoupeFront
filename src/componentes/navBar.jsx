@@ -63,7 +63,11 @@ function NavBar() {
           const response = await fetch(`http://localhost:3000/usuarios/${usuario.nombre}`)
           const usuarioNombre= await response.json()
           // 2. Si está, logearlo | LOG IN
-          if (usuarioNombre.Contraseña === usuario.contraseña) document.getElementById(linkHome).click(), setUsuarioG(usuarioNombre) // LOG IN
+          if (usuarioNombre.Contraseña === usuario.contraseña) {
+            document.getElementById(linkHome).click()
+            setUsuarioG(usuarioNombre)
+            localStorage.setItem('usuario', JSON.stringify(usuarioNombre))
+          } // LOG IN
           else{
             console.log("contra incorrecta") // CONTRASEÑA INCORRECTA
             setError(true)

@@ -7,8 +7,8 @@ const CustomAccordion = (props) => {
     <div>
       <Accordion defaultActiveKey="0"> 
           <Accordion.Item >
-            <Accordion.Header>{props.title}</Accordion.Header>
-            <Accordion.Body>{props.content}</Accordion.Body>
+            <Accordion.Header>Leccion: {props.num}</Accordion.Header>
+            <Accordion.Body>{props.title}</Accordion.Body>
           </Accordion.Item>
       </Accordion>
     </div>
