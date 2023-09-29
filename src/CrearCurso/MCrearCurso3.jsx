@@ -85,6 +85,7 @@ function MCrearCurso3() {
         body: cursoStringified,
       });
       const dbo = await response.json();
+      localStorage.removeItem('Cursof1')
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }

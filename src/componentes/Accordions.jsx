@@ -1,37 +1,19 @@
 import React from 'react';
-import Accordions from 'react-bootstrap/Accordion';
+import Accordion from 'react-bootstrap/Accordion';
 
-const Accordion = () => {
+const CustomAccordion = (props) => {
+
   return (
     <div>
-        <Accordions defaultActiveKey="0">
-      <Accordions.Item eventKey="0">
-        <Accordions.Header>Titulo 1</Accordions.Header>
-        <Accordions.Body>
-          Leccion 1
-        </Accordions.Body>
-        <Accordions.Body>
-          Leccion 2
-        </Accordions.Body>
-        <Accordions.Body>
-          Leccion 3
-        </Accordions.Body>
-      </Accordions.Item>
-      <Accordions.Item eventKey="1">
-        <Accordions.Header>Titulo 2</Accordions.Header>
-        <Accordions.Body>
-          Leccion 1
-        </Accordions.Body>
-        <Accordions.Body>
-          Leccion 2
-        </Accordions.Body>
-        <Accordions.Body>
-          Leccion 3
-        </Accordions.Body>
-      </Accordions.Item>
-    </Accordions>
+      <Accordion defaultActiveKey="0"> 
+          <Accordion.Item >
+            <Accordion.Header>{props.title}</Accordion.Header>
+            <Accordion.Body>{props.content}</Accordion.Body>
+          </Accordion.Item>
+      </Accordion>
     </div>
   );
-}
+};
 
-export default Accordion;
+export default CustomAccordion;
+

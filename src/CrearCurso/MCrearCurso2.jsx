@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
-
+import { useEffect } from 'react';
 function MCrearCurso2()  {
 
   const [costo, setCosto] = useState(0);
@@ -52,7 +52,7 @@ function MCrearCurso2()  {
   cargarListas()
   const cargarPrecio = (e) => {
     setCosto(e.target.value);
-   // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
+    guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el precio
   };
   const handleIdioma  = (e) => {
     
@@ -112,7 +112,7 @@ function MCrearCurso2()  {
   };
 
   const eliminarLeccion = () => {
-    deleteLeccion()
+    deleteLeccion();
     if (currentLesson > 0) {
       setCurrentLesson(currentLesson - 1);
       setLessonTitles(lessonTitles.slice(0, -1));
@@ -123,19 +123,23 @@ function MCrearCurso2()  {
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].title = event.target.value;
     setLessonTitles(newLessonTitles);
-    console.log(newLessonTitles)
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
-    console.log(cursoG)
+    guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el título
   };
 
+  // Actualizar el contenido de la lección cuando cambia
   const handleLessonContentChange = (event, index) => {
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].content = event.target.value;
     setLessonTitles(newLessonTitles);
-    console.log(newLessonTitles)
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
-    console.log(cursoG)
-    //updateLeccion()
+    guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el contenido
+  };
+
+  // Función para guardar en localStorage
+  const guardarEnLocalStorage = () => {
+    const cursoAGuardar = { ...cursoG, PrecioDelCurso: costo, Lessons: lessonTitles };
+    localStorage.setItem('Cursof1', JSON.stringify(cursoAGuardar));
   };
   const crearNuevaLeccion = async () => {
   const nuevaLeccion = {
@@ -144,12 +148,6 @@ function MCrearCurso2()  {
     contenidoLeccion: "Contenido de la nueva lección"
 };
 
-const responseInsert = await fetch('http://localhost:3000/insertLeccion', {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(nuevaLeccion)
-});
- const resultadoInsert = await responseInsert.json();
   }
   const deleteLeccion = async () => {
     const idCurso = 1; // Reemplaza con el ID del curso
@@ -163,23 +161,17 @@ const responseInsert = await fetch('http://localhost:3000/insertLeccion', {
     const resultadoDelete = await responseDelete.json();
     
   }
-const updateLeccion = async () => {
-  const idCurso = 1; // Reemplaza con el ID del curso
-  const idLeccion = 1; // Reemplaza con el ID de la lección que deseas actualizar
-  const datosActualizados = {
-      nuevoNombre: "Nuevo Nombre",
-      nuevoContenido: "Nuevo Contenido"
-  };
-  
-  const responseUpdate = await fetch(`http://localhost:3000/updateLeccion/${idCurso}/${idLeccion}`, {
-      method: 'PUT',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(datosActualizados)
-  });
-  
-  const resultadoUpdate = await responseUpdate.json();
-  
-}
+  useEffect(() => {
+    const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
+    if (storedCurso) {
+      setCosto(storedCurso.PrecioDelCurso || 0);
+      if (storedCurso.Lessons && Array.isArray(storedCurso.Lessons)) {
+        setLessonTitles(storedCurso.Lessons);
+        setCurrentLesson(storedCurso.Lessons.length);
+      }
+    }
+  }, []);
+
 
 
   return (
@@ -257,6 +249,7 @@ const updateLeccion = async () => {
               <input
                 type="number"
                 name="precio"
+                value={costo}
                 className="input-field large-input"
                 placeholder="Ingrese el precio"
                 onChange={cargarPrecio}

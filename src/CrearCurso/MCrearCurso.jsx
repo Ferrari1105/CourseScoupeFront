@@ -1,73 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MCrearCurso.css';
 import { Link } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
-import { useContext } from "react"
-import { CursoContext } from "./../../context/cursoContext"
-import { UsuarioContext } from "./../../context/usuarioContext"
-import { useEffect } from 'react';
+import { useContext } from "react";
+import { CursoContext } from "./../../context/cursoContext";
+import { UsuarioContext } from "./../../context/usuarioContext";
+
 function MCrearCurso() {
-  const {usuarioG}= useContext(UsuarioContext)
-  const [selectedStyle, setSelectedStyle] = useState('');  // Corrección aquí
+  const { usuarioG } = useContext(UsuarioContext);
+  const [selectedStyle, setSelectedStyle] = useState('');
   const [additionalResources, setAdditionalResources] = useState('');
-  const {setCursoG} = useContext(CursoContext)
-  const [Curso, setCurso] = useState(null) // Corrección aquí
-  const [EstaTodoCargado, setEstaTodoCargado] =useState(false)
-  const [listaEstilos, setListaEstilos] = useState([])
+  const { setCursoG } = useContext(CursoContext);
+
+  // Recuperar datos de localStorage al cargar la página
+  useEffect(() => {
+    const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
+    if (storedCurso) {
+      setCurso(storedCurso);
+    }
+  }, []);
+
+  // Estado inicial del curso
+  const initialCursoState = {
+    NombreDelCurso: "",
+    ResumenCurso: "",
+    ContenidosCurso: "",
+    Style: "",
+    lesson: "",
+    recAdicionales: "",
+    idCategorias: null,
+    idAreas: null,
+    idIdioma: null,
+    Lessons: [],
+    PrecioDelCurso: null,
+    HechoConIa: false,
+    idCreador: usuarioG.IdUsuario,
+    PortadaCurso: "",
+    imagenes: "",
+    videos: ""
+  };
+
+  const [Curso, setCurso] = useState(initialCursoState);
+  const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
+  const [listaEstilos, setListaEstilos] = useState([]);
+  const [cursoGuardado, setCursoGuardado] = useState(null);
   const [ListasCargadas, setListasCargadas] = useState(true);
-  const cargarListas= async () => {
+
+  const cargarListas = async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Estilos', {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
       });
       const dbUserC = await responseC.json();
-      setListaEstilos(dbUserC)
+      setListaEstilos(dbUserC);
       setListasCargadas(false); // Marcar que las listas se han cargado
-   }
-   else{}
+    }
   };
-  useEffect(()=>async()=>await cargarListas(), [usuarioG])
-  
+
+  useEffect(() => {
+    cargarListas();
+  }, [usuarioG]);
+
   const handleChange = (e) => {
-    setCurso({...Curso, [e.target.name]: e.target.value})
-    console.log(Curso)
+    setCurso({ ...Curso, [e.target.name]: e.target.value });
+    localStorage.setItem('Cursof1', JSON.stringify(Curso));
   }
 
   const handleStyleSelect = (e) => {
-    
     const estiloBuscado = e.target.value;
     const estiloEncontrado = listaEstilos.find((estilo) => estilo.NombreEstilo === estiloBuscado);
     if (estiloEncontrado) {
-      setSelectedStyle(e.target.value)
+      setSelectedStyle(e.target.value);
     } else {
-      console.log("Malio Sal")
+      console.log("Malio Sal");
     }
-    setCurso({...Curso, Style: estiloEncontrado.idEstilo})
-    console.log(Curso)
-  
+    setCurso({ ...Curso, Style: estiloEncontrado.idEstilo });
+    localStorage.setItem('Cursof1', JSON.stringify(Curso));
   }
+
   const handleResourcesChange = (event) => {
     setAdditionalResources(event.target.value);
-    setCurso({...Curso, recAdicionales: event.target.value})
-    
+    setCurso({ ...Curso, recAdicionales: event.target.value });
+    localStorage.setItem('Cursof1', JSON.stringify(Curso));
   };
-  const [proceso, setProceso] = useState(null);
-const siguiente = () => {
-  setProceso('automatica')
-  setCursoG(Curso)
-  
-}
-const empezarCurso = async() => {  
-  const response = await fetch('http://localhost:3000/NuevoID', {
-    method: 'POST',
-    headers: { "Content-Type": "application/json" },
-  });
-  const idNuevo = await response.json();
-  console.log(idNuevo)
-  setCurso({idCurso :idNuevo, Style:"", lesson: "", recAdicionales: "", idCategorias:null,idAreas:null,idIdioma:null,Lessons:[], PrecioDelCurso: null,HechoConIa: false, idCreador:usuarioG.IdUsuario, PortadaCurso: "", imagenes: "", videos: ""})
-}
-useEffect(()=>async()=>await empezarCurso(), [])
+
+  const siguiente = () => {
+    // Guardar los datos en localStorage
+   
+    setCursoG(Curso);
+    setEstaTodoCargado(true);
+  }
+
   return (
     <div>
       <NavBar />
@@ -77,18 +101,18 @@ useEffect(()=>async()=>await empezarCurso(), [])
             <div className="form-group">
               <h2 htmlFor="campo1">Título del curso:</h2>
               <h5>Ingrese un titulo para identificar su curso</h5>
-              <input type="text" id="campo1" name="NombreDelCurso" className="input-field large-input" placeholder="Ingrese el titulo del curso:" onChange={handleChange}/>
+              <input value={Curso.NombreDelCurso} type="text" id="campo1" name="NombreDelCurso" className="input-field large-input" placeholder="Ingrese el titulo del curso:" onChange={handleChange}/>
             </div>
             <div className="form-group">
               <h2 htmlFor="campo2">Descrpicion del curso:</h2>
               <h5>Ingrese una breve descripcion de lo que va a mostrar en su curso</h5>
-              <input type="text" id="campo2" name="ResumenCurso" className="input-field large-input" placeholder="Ingrese la descripción del curso:" onChange={handleChange} />
+              <input value={Curso.ResumenCurso} type="text" id="campo2" name="ResumenCurso" className="input-field large-input" placeholder="Ingrese la descripción del curso:" onChange={handleChange} />
             </div>
             <div className="form-group">
               <h2 htmlFor="campo3">Contenidos del curso:</h2>
               <h5>Ingrese un breve punteo de los temas a tratar en el curso</h5>
               {/*aniadir al sql*/}
-              <input type="text" id="campo3" name="ContenidosCurso" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" onChange={handleChange}/>
+              <input value={Curso.ContenidosCurso} type="text" id="campo3" name="ContenidosCurso" className="input-field large-input" placeholder="Ingrese los contenidos del curso:" onChange={handleChange}/>
             </div>
           </form>
         </div>
@@ -112,7 +136,7 @@ useEffect(()=>async()=>await empezarCurso(), [])
           <form>
             <div className="form-group">
               <h2 htmlFor="additionalResources">Recursos adicionales</h2>
-              <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={additionalResources} onChange={handleResourcesChange}></textarea>
+              <textarea id="additionalResources" placeholder="Ingrese los recursos:" className="input-field" value={Curso.recAdicionales} onChange={handleResourcesChange}></textarea>
             </div>
           </form>
           {EstaTodoCargado ? (

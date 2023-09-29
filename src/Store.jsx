@@ -14,7 +14,7 @@ import Card from 'react-bootstrap/Card';
 import Accordions from './componentes/Accordions';
 
 function Store() {
-  const {cursoG} = useContext(CursoContext)
+  const {cursoG,setCursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
@@ -38,7 +38,7 @@ function Store() {
       const dbCurso = await response2.json();
       console.log(dbCurso)
       setCurso(dbCurso)
-  
+      setCursoG(dbCurso)
     
   }
   const handleClose = () => {
@@ -50,6 +50,7 @@ function Store() {
   };
   
   useEffect(()=>async()=>await llamada(), [])
+
   return (
     <>
      {usuarioG? (
@@ -62,14 +63,14 @@ function Store() {
                <div className='col-1'></div>
                <div className='col-7 tituloStore'>
                  <div>
-                   <h1 style={{ color: "black" }}> 100 Days of Code: The Complete Python Pro Bootcamp for 2023</h1>
-                   <h3 style={{ color: "black" }}> Master Python by building 100 projects in 100 days. Learn data science, automation, build websites, games and apps!</h3>
+                   <h1 style={{ color: "black" }}> {Curso?.NombreDelCurso}</h1>
+                   <h3 style={{ color: "black" }}>{Curso?.ResumenCurso}</h3>
                    <h6 style={{ color: "gray" }}> 1,021,292 students</h6>
                    <div style={{ color: "gray" }}>
-                     <h6 >Created by: <Link style={{ color: "blue" }}>Choclo</Link></h6>
+                     <h6 >Created by: <Link style={{ color: "blue" }}>{Curso?.Creador}</Link></h6>
                    </div>
                    <div style={{ color: "gray" }}>
-                     <text style={{fontSize: "15px", color: "gray"}} >Idioma: Ingles  </text>
+                     <text style={{fontSize: "15px", color: "gray"}} >Idioma: Ingles {Curso?.Idioma}  </text>
                    </div>
                  </div>
              
@@ -79,48 +80,52 @@ function Store() {
                       <ul style={{fontSize: "15px", color: "gray"}}>
                          <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
                          <br />
-                         <li>You will be able to program in Python professionally</li>
-                         <li>Create a portfolio of 100 Python projects to apply for developer jobs</li>
+                         <li></li>
+                         <li></li>
                          <br /> 
-                         <li>Be able to use Python for data science and machine learning</li>
+                         <li></li>
                          <br />
-                         <li>Build GUIs and Desktop applications with Python</li>
+                         <li></li>
                       </ul>
                     </div>
                     <div className='col-6'>
                       <ul style={{fontSize: "15px", color: "gray"}}>
-                       <li>You will learn automation, game, app and web development, data science and machine learning all using Python.</li>
+                       <li></li>
                        <br />
-                       <li>You will learn Selenium, Beautiful Soup, Request, Flask, Pandas, NumPy, Scikit Learn, Plotly, and Matplotlib.</li>
+                       <li></li>
                        <br />
-                       <li>Be able to build fully fledged websites and web apps with Python</li>
+                       <li></li>
                        <br />
-                       <li>Build games like Blackjack, Pong and Snake using Python</li>
+                       <li></li>
                       </ul>
                     </div>
                   </div>
                   <br />
                   <br />
                   <div>
-                    <h1 style={{color: "black"}}>Course Content</h1>
-                  <Accordions></Accordions>
+                    <h1 style={{color: "black"}}>Paso a Paso Del Curso:</h1>
+                    {Curso?.Lecciones.map((item) => (
+                      console.log(item),
+                       <Accordions title={item.NombreLeccion} content={item.ContenidoLeccion} />
+                    ))}
+                 
                   </div>
                   <br />
                   <br />
                   <div>
-                    <h1 style={{color: "black"}}>Description</h1>
-                    <text  style={{fontSize: "20px", color: "gray"}}>asheee</text>
+                    <h1 style={{color: "black"}}>Adelanto:</h1>
+                    <text  style={{fontSize: "20px", color: "gray"}}>{Curso?.Adelanto}</text>
                   </div>
                </div>
                
               <div className='col-4'style={{ paddingLeft: "5rem" }}>
               <Card className="cardStore">
-               <Card.Img className='fotoStore' variant="top" src='https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg' />
+               <Card.Img className='fotoStore' variant="top" src={Curso?.PortadaCurso} />
                 <Card.Body className='cardBodyStore'>
                 <Card.Title>
                   <div className='precioCard'>
-                <h1>$14.99</h1>
-                <h5 className='originalPrice'> Original Price $74.99</h5>
+                <h1>${Math.round(Curso?.PrecioDelCurso * 0.2, -1)}</h1>
+                <h5 className='originalPrice'> Original Price $${Curso?.PrecioDelCurso}</h5>
                 <h5>Discount 80% off</h5>
                   </div>
                 </Card.Title>
@@ -129,15 +134,13 @@ function Store() {
                 <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"}>Comprar Ya!</Link>
                 </div>
                 <Card.Text>
-                 <h4>This course includes:</h4>
                  <ul>
-                 <li>55 hours on-demand video</li>
-                 <li>Assignments</li>
-                 <li>224 articles</li>
-                 <li>153 downloadable resources</li>
-                 <li>Access on mobile and TV</li>
-                 <li>Full lifetime access</li>
-                 <li>Certificate of completion</li>
+                 <h4>Categoria:</h4>
+                 <li>{Curso?.Categorias}</li>
+                 <h4>Area:</h4>
+                 <li>{Curso?.Areas}</li>
+                 <h4>Estilo:</h4>
+                 <li>{Curso?.Estilo}</li>
                  </ul>
                 </Card.Text>
                 <div className='extras'>
@@ -159,17 +162,17 @@ export default Store
 <div className='store-container'>
       <Row>
         <Col sm={8} className='left-side'>
-            <h1 className="name">{Curso?.NombreDelCurso}</h1>
-            <h6>Un Curso de:{Curso?.Creador}</h6>
+            <h1 className="name"></h1>
+            <h6>Un Curso de:</h6>
             <img className="img" src={Curso?.PortadaCurso} alt="" />
             <br />
-            <h3>Resumen del curso: {Curso?.ResumenCurso}</h3>
+            <h3>Resumen del curso: </h3>
             <h3 className="descripcion"></h3>
             <h3>Adelanto:{Curso?.Adelanto}</h3>
 [22:05]
 </Col >
         <Col sm={4} className='right-side '>
-            <div><h1>${Curso?.PrecioDelCurso}</h1></div>
+            <div><h1></h1></div>
             <div>
               <p>Descuento: 
               <input type="text" placeholder='Sin Codigo' />

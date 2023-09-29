@@ -4,10 +4,10 @@ import { UsuarioContext } from '../context/usuarioContext';
 import NavBar from './componentes/navBar';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx';
 import './CarritoDeCompras.css';
-
+import { CursoContext } from "./../context/cursoContext"
 function CarritoDeCompras() {
   const { usuarioG } = useContext(UsuarioContext);
-
+ 
   // Estado local para almacenar los cursos en el carrito
   const [carrito, setCarrito] = useState([
     {
