@@ -1,0 +1,8 @@
+        <div className="botones-siguiente">
+        {localStorage.getItem('Cursof1') ? (
+          <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opcion Manual</Link>
+          ) : (
+              <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}style={{ backgroundColor: "peru" }}>Editar Curso En Proceso</Link>
+            )}
+        <Link to="/CrearCursoIA" className={`boton-siguiente ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
+        </div>
