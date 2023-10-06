@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+
 }
 
 .crear-curso-title {
@@ -14,7 +15,7 @@
 
 .botones-siguiente {
   display: flex;
-    align-items: center;
+  align-items: center;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
