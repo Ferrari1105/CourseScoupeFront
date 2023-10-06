@@ -124,115 +124,109 @@ function MCrearCurso3() {
 
           </Card.Body>
         </Card>
-        <div className='row'>
-          <div className='lecciones'>
-            <Card className="lesson-card">
-              <Card.Body>
-                <h2 className="lesson-title">Lección 1:</h2>
-                <div className="row">
-                  <h2 className="row-title">Imagenes:</h2>
-                  <div className="photo-container">
-                    {uploadedImage ? (
-                      <img src={uploadedImage} alt="Imagen" className="photo" />
-                    ) : (
-                      <p className='nashe'>No se ha seleccionado ninguna imagen</p>
-                    )}
-                  </div>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    id="image-upload"
-                    style={{ display: 'none' }}
-                  />
-                  <label htmlFor="image-upload" className="custom-upload-button">
-                    Seleccionar Imagen
-                  </label>
+        <div className='rowLecciones'>
+          <Card className="lesson-card">
+            <Card.Body>
+              <h2 className="lesson-title">Lección 1:</h2>
+              <div className="row">
+                <h2 className="row-title">Imagenes:</h2>
+                <div className="photo-container">
+                  {uploadedImage ? (
+                    <img src={uploadedImage} alt="Imagen" className="photo" />
+                  ) : (
+                    <p className='nashe'>No se ha seleccionado ninguna imagen</p>
+                  )}
                 </div>
-                <div className="row">
-                  <h2 className="row-title">Videos:</h2>
-                  <div className="photo-container">
-                    {uploadedVideo ? (
-                      <video controls>
-                        <source src={uploadedVideo} type="video/mp4" />
-                        Tu navegador no admite el elemento de video.
-                      </video>
-                    ) : (
-                      <p className='nashe'>No se ha seleccionado ningún video</p>
-                    )}
-                  </div>
-                  <input
-                    type="file"
-                    accept="video/*"
-                    onChange={handleVideoUpload}
-                    id="video-upload"
-                    style={{ display: 'none' }}
-                  />
-                  <label htmlFor="video-upload" className="custom-upload-button">
-                    Seleccionar Video
-                  </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  id="image-upload"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="image-upload" className="custom-upload-button">
+                  Seleccionar Imagen
+                </label>
+              </div>
+              <div className="row">
+                <h2 className="row-title">Videos:</h2>
+                <div className="photo-container">
+                  {uploadedVideo ? (
+                    <video controls>
+                      <source src={uploadedVideo} type="video/mp4" />
+                      Tu navegador no admite el elemento de video.
+                    </video>
+                  ) : (
+                    <p className='nashe'>No se ha seleccionado ningún video</p>
+                  )}
                 </div>
-              </Card.Body>
-            </Card>
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={handleVideoUpload}
+                  id="video-upload"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="video-upload" className="custom-upload-button">
+                  Seleccionar Video
+                </label>
+              </div>
+            </Card.Body>
+          </Card>
+          <Card className="lesson-card">
+            <Card.Body>
+              <h2 className="lesson-title">Lección 2:</h2>
+              <div className="row">
+                <h2 className="row-title">Imagenes:</h2>
+                <div className="photo-container">
+                  {uploadedImage ? (
+                    <img src={uploadedImage} alt="Imagen" className="photo" />
+                  ) : (
+                    <p className='nashe'>No se ha seleccionado ninguna imagen</p>
+                  )}
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  id="image-upload"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="image-upload" className="custom-upload-button">
+                  Seleccionar Imagen
+                </label>
+              </div>
+              <div className="row">
+                <h2 className="row-title">Videos:</h2>
+                <div className="photo-container">
+                  {uploadedVideo ? (
+                    <video controls>
+                      <source src={uploadedVideo} type="video/mp4" />
+                      Tu navegador no admite el elemento de video.
+                    </video>
+                  ) : (
+                    <p className='nashe'>No se ha seleccionado ningún video</p>
+                  )}
+                </div>
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={handleVideoUpload}
+                  id="video-upload"
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="video-upload" className="custom-upload-button">
+                  Seleccionar Video
+                </label>
+              </div>
 
-
-            <div className='row2'>
-              <Card className="lesson-card">
-                <Card.Body>
-                  <h2 className="lesson-title">Lección 2:</h2>
-                  <div className="row">
-                    <h2 className="row-title">Imagenes:</h2>
-                    <div className="photo-container">
-                      {uploadedImage ? (
-                        <img src={uploadedImage} alt="Imagen" className="photo" />
-                      ) : (
-                        <p className='nashe'>No se ha seleccionado ninguna imagen</p>
-                      )}
-                    </div>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      id="image-upload"
-                      style={{ display: 'none' }}
-                    />
-                    <label htmlFor="image-upload" className="custom-upload-button">
-                      Seleccionar Imagen
-                    </label>
-                  </div>
-                  <div className="row">
-                    <h2 className="row-title">Videos:</h2>
-                    <div className="photo-container">
-                      {uploadedVideo ? (
-                        <video controls>
-                          <source src={uploadedVideo} type="video/mp4" />
-                          Tu navegador no admite el elemento de video.
-                        </video>
-                      ) : (
-                        <p className='nashe'>No se ha seleccionado ningún video</p>
-                      )}
-                    </div>
-                    <input
-                      type="file"
-                      accept="video/*"
-                      onChange={handleVideoUpload}
-                      id="video-upload"
-                      style={{ display: 'none' }}
-                    />
-                    <label htmlFor="video-upload" className="custom-upload-button">
-                      Seleccionar Video
-                    </label>
-                  </div>
-
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
+            </Card.Body>
+          </Card>
         </div>
-        <Link className={`crear-curso-option`} onClick={handleShow}>
-          Terminar
-        </Link>
       </div>
+      <Link className={`crear-curso-option`} onClick={handleShow}>
+        Terminar
+      </Link>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Estas Seguro</Modal.Title>
