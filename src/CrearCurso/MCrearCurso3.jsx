@@ -77,14 +77,15 @@ function MCrearCurso3() {
 
   const terminar = async () => {
     let cursoStringified = JSON.stringify(cursoG);
+    //setCursoG()
     try {
       
-      const response = await fetch('http://localhost:3000/MCrearCurso3', {
+      const response = await fetch(`http://localhost:3000/CrearCurso`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: cursoStringified,
       });
-      const dbo = await response.json();
+
       localStorage.removeItem('Cursof1')
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);

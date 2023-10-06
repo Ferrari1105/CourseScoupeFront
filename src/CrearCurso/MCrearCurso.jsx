@@ -8,9 +8,9 @@ import { UsuarioContext } from "./../../context/usuarioContext";
 
 function MCrearCurso() {
   const { usuarioG } = useContext(UsuarioContext);
-  const [selectedStyle, setSelectedStyle] = useState('');
-  const [additionalResources, setAdditionalResources] = useState('');
-  const { setCursoG } = useContext(CursoContext);
+  const [ selectedStyle, setSelectedStyle] = useState('');
+  const [ additionalResources, setAdditionalResources] = useState('');
+  const { cursoG, setCursoG } = useContext(CursoContext);
 
   // Recuperar datos de localStorage al cargar la página
   useEffect(() => {
@@ -25,6 +25,7 @@ function MCrearCurso() {
     NombreDelCurso: "",
     ResumenCurso: "",
     ContenidosCurso: "",
+    NumeroEstudiantes:  Math.floor(Math.random() * 1000000),
     Style: "",
     lesson: "",
     recAdicionales: "",
@@ -87,12 +88,47 @@ function MCrearCurso() {
 
   const siguiente = () => {
     // Guardar los datos en localStorage
-   
+    Guardar()
     setCursoG(Curso);
     setEstaTodoCargado(true);
   }
-
-  return (
+  const Guardar = async() => {
+    if(Curso.idCurso)
+    {
+      console.log("updateCurso", Curso.idCurso)
+      let cursoStringified = JSON.stringify(Curso);
+      try {
+        
+        const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: cursoStringified,
+        });
+      } catch {
+        throw new Error(`No se pudo realizar el fetch tipo POST :(`);
+      }
+    }
+    else
+    {      console.log("crearCurso", Curso)
+    let cursoStringified = JSON.stringify(Curso);
+    try {
+      const response = await fetch('http://localhost:3000/CrearCurso', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: cursoStringified,
+      });
+      const dbo = await response.json();
+      console.log("dboashe", dbo)
+      setCurso({ ...Curso, idCurso: dbo.idCurso })
+      console.log("seteando id: ", Curso)
+    } catch {
+      throw new Error(`No se pudo realizar el fetch tipo POST :(`);
+    }
+  
+    }
+      
+    }
+    return (
     <div>
       <NavBar />
       <div className="formularios-view-container">
@@ -140,13 +176,14 @@ function MCrearCurso() {
             </div>
           </form>
           {EstaTodoCargado ? (
-                <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
+            <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
             ) : (
               <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
-            )}
+              )}
          
         </div>
       </div>
+              <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
     </div>
   );
 }

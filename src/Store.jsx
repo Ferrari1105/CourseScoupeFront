@@ -57,19 +57,19 @@ function Store() {
 
   const añadirCarrito = async()=>
   {
-    console.log("holaaaaaa")
+    let index = 0
     let ids = {
       idCurso: Curso?.idCurso,
-      idUsuario: usuarioG.idUsuario
+      idUsuario: usuarioG.IdUsuario
     }
     let idsStringified = JSON.stringify(ids);
-
+    console.log("prueba", index++)
       let response= await fetch(`http://localhost:3000/cargarCarrito`, {
       method: 'POST',
       headers: { "Content-Type": "application/json"},
       body: idsStringified
     });
-    const Carrito = await response.json();
+   // const Carrito = await response.json();
   }
   
   return (
@@ -145,13 +145,13 @@ function Store() {
                 <Card.Title>
                   <div className='precioCard'>
                 <h1>${Math.round(Curso?.PrecioDelCurso * 0.2, -1)}</h1>
-                <h5 className='originalPrice'> Original Price $${Curso?.PrecioDelCurso}</h5>
+                <h5 className='originalPrice'> Original Price ${Curso?.PrecioDelCurso}</h5>
                 <h5>Discount 80% off</h5>
                   </div>
                 </Card.Title>
                 <div className='botonesStore'>
-                <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} onclick={añadirCarrito()} >Add to cart</Link>
-                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"} onclick={añadirCarrito()}>Comprar Ya!</Link>
+                <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} onClick={añadirCarrito} >Add to cart</Link>
+                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"} onClick={añadirCarrito}>Comprar Ya!</Link>
                 </div>
                 <Card.Text>
                  <ul>

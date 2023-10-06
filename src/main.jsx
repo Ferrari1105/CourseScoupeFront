@@ -6,8 +6,6 @@ import './index.css'
 import { createBrowserRouter, RouterProvider} from 'react-router-dom' 
 import Store from './Store.jsx'
 import Profile from './Profile.jsx';
-
-
 import CrearCurso from './CrearCurso/CrearCurso.jsx';
 import MCrearCurso from './CrearCurso/MCrearCurso.jsx';
 import MCrearCurso2 from './CrearCurso/MCrearCurso2.jsx';
@@ -17,6 +15,7 @@ import CrearCursoIA from './CrearCurso/CrearCursoIA.jsx';
 import CrearCursoIA2 from './CrearCurso/CrearCursoIA2.jsx';
 import { UsuarioProvider } from '../context/usuarioContext.jsx';
 import { CursoProvider } from '../context/cursoContext.jsx';
+import { CarritoProvider } from '../context/carritoContext.jsx';
 import CrearCursoIA3 from './CrearCurso/CrearCursoIA3.jsx';
 import CarritoDeCompras from './CarritoDeCompras.jsx';
 import MetodoPago from './MetodoPago.jsx';
@@ -63,9 +62,11 @@ const routes = createBrowserRouter([{
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <UsuarioProvider>
+      <CarritoProvider>
     <CursoProvider>
     <RouterProvider router={routes}/>
     </CursoProvider>
+      </CarritoProvider>
     </UsuarioProvider>
   </React.StrictMode>,
 )

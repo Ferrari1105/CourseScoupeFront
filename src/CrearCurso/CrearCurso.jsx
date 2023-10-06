@@ -12,6 +12,11 @@ function CrearCurso() {
   const {usuarioG} = useContext(UsuarioContext)
   const [proceso, setProceso] = useState(null);
   console.log(localStorage.getItem('Cursof1'))
+  const crearCursoManual = () =>
+  {
+    setProceso('manual')
+    
+  }
   return (
     <div>
       {usuarioG? (
@@ -24,7 +29,7 @@ function CrearCurso() {
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?
         </h2>
         <div className="botones-siguiente"> 
-          <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}onClick={() => setProceso('manual')}>Opcion Manual</Link>
+          <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`}onClick={() => crearCursoManual()}>Opcion Manual</Link>
         <Link to="/CrearCursoIA" className={`boton-siguiente ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
         </div>
         <div className="crear-curso-info">

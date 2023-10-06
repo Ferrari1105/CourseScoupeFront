@@ -5,11 +5,32 @@ import NavBar from './componentes/navBar';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx';
 import './CarritoDeCompras.css';
 import { CursoContext } from "./../context/cursoContext"
+import { useEffect } from 'react';
 function CarritoDeCompras() {
   const { usuarioG } = useContext(UsuarioContext);
- 
-  // Estado local para almacenar los cursos en el carrito
+  const llamada = async () => {
+   
+    // pasarle nombre en vez del id, y devolver el ultimo curso creado con ese nombre en el backend
+    const usuarioGJSON = JSON.stringify(usuarioG);
+    const response= await fetch(`http://localhost:3000/traerCarrito`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: usuarioGJSON
+    });
+    const CursoJson = await response.json();
+   console.log(CursoJson)
+   const ids = JSON.stringify(CursoJson);
+   const response1= await fetch(`http://localhost:3000/cursosById`, {
+     method: 'POST',
+     headers: { "Content-Type": "application/json"},
+     body: ids
+   });
+   const ListaCursos= await response1.json();
+   console.log(ListaCursos)
+  }
+  useEffect(()=>async()=>await llamada(), [])
   const [carrito, setCarrito] = useState([
+  // Estado local para almacenar los cursos en el carrito
     {
       id: 1,
       nombre: 'The Complete Python Pro Bootcamp',
