@@ -1,60 +1,64 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UsuarioContext } from '../context/usuarioContext';
 import NavBar from './componentes/navBar';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx';
 import './CarritoDeCompras.css';
-import { CursoContext } from "./../context/cursoContext"
-import { useEffect } from 'react';
+import { CursoContext } from "./../context/cursoContext";
+
 function CarritoDeCompras() {
   const { usuarioG } = useContext(UsuarioContext);
+  const [carrito, setCarrito] = useState([]);
+
   const llamada = async () => {
-   
-    // pasarle nombre en vez del id, y devolver el ultimo curso creado con ese nombre en el backend
     const usuarioGJSON = JSON.stringify(usuarioG);
-    const response= await fetch(`http://localhost:3000/traerCarrito`, {
+    const response = await fetch(`http://localhost:3000/traerCarrito`, {
       method: 'POST',
       headers: { "Content-Type": "application/json"},
       body: usuarioGJSON
     });
     const CursoJson = await response.json();
-   console.log(CursoJson)
-   const ids = JSON.stringify(CursoJson);
-   const response1= await fetch(`http://localhost:3000/cursosById`, {
-     method: 'POST',
-     headers: { "Content-Type": "application/json"},
-     body: ids
-   });
-   const ListaCursos= await response1.json();
-   console.log(ListaCursos)
+
+    const ids = JSON.stringify(CursoJson);
+    const response1 = await fetch(`http://localhost:3000/cursosById`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json"},
+      body: ids
+    });
+    const listaCursos = await response1.json();
+    setCarrito(listaCursos);
   }
-  useEffect(()=>async()=>await llamada(), [])
-  const [carrito, setCarrito] = useState([
-  // Estado local para almacenar los cursos en el carrito
-    {
-      id: 1,
-      nombre: 'The Complete Python Pro Bootcamp',
-      precio: 14.99,
-      imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
-    },
-    {
-      id: 2,
-      nombre: 'Prueba del curso 2',
-      precio: 19.99,
-      imagen: 'https://i.ytimg.com/vi/yQojEZeEJB8/maxresdefault.jpg',
-    },
-    // Agrega más cursos al carrito según sea necesario
-  ]);
+
+  useEffect(() => {
+    llamada();
+  }, []);
 
   // Función para eliminar un curso del carrito
-  const eliminarCursoDelCarrito = (cursoId) => {
-    const nuevoCarrito = carrito.filter((curso) => curso.id !== cursoId);
-    setCarrito(nuevoCarrito);
+  const eliminarCursoDelCarrito = async (cursoId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/eliminarCursoDelCarrito`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({ idCurso: cursoId })
+      });
+  
+      if (response.ok) {
+        const nuevoCarrito = carrito.filter((curso) => curso.id !== cursoId);
+        setCarrito(nuevoCarrito);
+      } else {
+        console.error('Error al eliminar el curso del carrito');
+      }
+    } catch (error) {
+      console.error('Error al enviar la solicitud al servidor:', error);
+    }
   };
-
+  
   // Función para calcular el precio total
   const calcularPrecioTotal = () => {
-    return carrito.reduce((total, curso) => total + curso.precio, 0).toFixed(2);
+    if (carrito) {
+      return carrito.reduce((total, curso) => total + curso.PrecioDelCurso, 0).toFixed(2);
+    }
+    return "0.00"; // Valor predeterminado si carrito es undefined
   };
 
   return (
@@ -67,16 +71,16 @@ function CarritoDeCompras() {
         </Link>
       </div>
       <div className='carrito-container'>
-        {carrito.map((curso) => (
-          <div key={curso.id} className='curso-en-carrito'>
-            <img src={curso.imagen} alt={curso.nombre} className='imagen-curso' />
+        {carrito?.map((curso) => (
+          <div key={curso.idCurso} className='curso-en-carrito'>
+            <img alt={curso.NombreDelCurso} className='imagen-curso' />
             <div className='info-curso'>
-              <p className='nombre-curso'>{curso.nombre}</p>
-              <p className='precio-curso'>Precio: ${curso.precio.toFixed(2)}</p>
+              <p className='nombre-curso'>{curso.NombreDelCurso}</p>
+              <p className='precio-curso'>Precio: ${curso.PrecioDelCurso.toFixed(2)}</p>
             </div>
             <button
               className='boton-pagos1 eliminar'
-              onClick={() => eliminarCursoDelCarrito(curso.id)}
+              onClick={() => eliminarCursoDelCarrito(curso.idCurso)}
             >
               Eliminar
             </button>
