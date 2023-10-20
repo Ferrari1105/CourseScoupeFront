@@ -80,13 +80,8 @@ function MCrearCurso3() {
     let cursoStringified = JSON.stringify(cursoG);
     //setCursoG()
     try {
-<<<<<<< HEAD
       
       const response = await fetch(`http://localhost:3000/CrearCurso`, {
-=======
-
-      const response = await fetch('http://localhost:3000/MCrearCurso3', {
->>>>>>> 986d6c45327806f5256abe0d75956fe94e51e05c
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: cursoStringified,

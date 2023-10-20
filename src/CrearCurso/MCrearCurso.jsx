@@ -26,7 +26,7 @@ function MCrearCurso() {
     ResumenCurso: "",
     ContenidosCurso: "",
     NumeroEstudiantes:  Math.floor(Math.random() * 1000000),
-    Style: "",
+    Style: null,
     lesson: "",
     recAdicionales: "",
     idCategorias: null,

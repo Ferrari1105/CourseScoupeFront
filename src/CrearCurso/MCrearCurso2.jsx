@@ -97,8 +97,8 @@ function MCrearCurso2()  {
   }
   const siguiente = () => {
    // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
+   Guardar()
    setCursoG({ ...cursoG, PrecioDelCurso: costo });
-   
     
   };
 
@@ -172,7 +172,22 @@ function MCrearCurso2()  {
     }
   }, []);
 
-
+  const Guardar = async() => {
+  
+      console.log("updateCurso", cursoG.idCurso)
+      let cursoStringified = JSON.stringify(cursoG);
+      try {
+        
+        const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: cursoStringified,
+        });
+      } catch {
+        throw new Error(`No se pudo realizar el fetch tipo POST :(`);
+      }
+    
+    }
 
   return (
     <div>
@@ -261,6 +276,9 @@ function MCrearCurso2()  {
           </Link>
         </div>
       </div>
+      <div>
+              <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
+    </div>
     </div>
   );
 }

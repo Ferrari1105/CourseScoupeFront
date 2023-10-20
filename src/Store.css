@@ -31,7 +31,9 @@
   text-decoration: "line-through";
   color: red;
 }
-
+.content{
+ margin-left: 20%;
+}
 .botonStore{
   display: flex;
   justify-content: space-between; 

@@ -79,9 +79,8 @@ function Store() {
             ) : (
               <NavBar/>
             )}
-             <div className='row'>
+             <div className='row content'>
   
-               <div className='col-1'></div>
                <div className='col-7 tituloStore'>
                  <div>
                    <h1 style={{ color: "black" }}> {Curso?.NombreDelCurso}</h1>
