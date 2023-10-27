@@ -12,20 +12,23 @@ function CarritoDeCompras() {
 
   const llamada = async () => {
     const usuarioGJSON = JSON.stringify(usuarioG);
+    console.log(usuarioGJSON)
     const response = await fetch(`http://localhost:3000/traerCarrito`, {
       method: 'POST',
       headers: { "Content-Type": "application/json"},
       body: usuarioGJSON
     });
     const CursoJson = await response.json();
-
+    console.log(CursoJson)
     const ids = JSON.stringify(CursoJson);
+    console.log(ids)
     const response1 = await fetch(`http://localhost:3000/cursosById`, {
       method: 'POST',
       headers: { "Content-Type": "application/json"},
       body: ids
     });
     const listaCursos = await response1.json();
+    console.log("listaCursos", listaCursos)
     setCarrito(listaCursos);
   }
 
@@ -33,25 +36,35 @@ function CarritoDeCompras() {
     llamada();
   }, []);
 
-  // Función para eliminar un curso del carrito
-  const eliminarCursoDelCarrito = async (cursoId) => {
-    try {
-      const response = await fetch(`http://localhost:3000/eliminarCursoDelCarrito`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({ idCurso: cursoId })
+
+// Función para eliminar un curso del carrito
+const eliminarCursoDelCarrito = async (cursoId) => {
+  const ids = JSON.stringify({ idCurso: cursoId, idUsuario: usuarioG.IdUsuario });
+  console.log("id", ids);
+
+  try {
+    const response = await fetch(`http://localhost:3000/eliminarCursoDelCarrito`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: ids
+    });
+
+    if (response.ok) {
+      // Utiliza prevState para actualizar carrito
+      setCarrito((prevState) => {
+        const nuevoCarrito = prevState.filter((curso) => curso.id !== cursoId);
+        return nuevoCarrito;
       });
-  
-      if (response.ok) {
-        const nuevoCarrito = carrito.filter((curso) => curso.id !== cursoId);
-        setCarrito(nuevoCarrito);
-      } else {
-        console.error('Error al eliminar el curso del carrito');
-      }
-    } catch (error) {
-      console.error('Error al enviar la solicitud al servidor:', error);
+    } else {
+      console.error('Error al eliminar el curso del carrito');
     }
-  };
+  } catch (error) {
+    console.error('Error al enviar la solicitud al servidor:', error);
+  }
+};
+
+// ...
+
   
   // Función para calcular el precio total
   const calcularPrecioTotal = () => {
@@ -72,7 +85,7 @@ function CarritoDeCompras() {
       </div>
       <div className='carrito-container'>
         {carrito?.map((curso) => (
-          <div key={curso.idCurso} className='curso-en-carrito'>
+          <div className='curso-en-carrito'>
             <img alt={curso.NombreDelCurso} className='imagen-curso' />
             <div className='info-curso'>
               <p className='nombre-curso'>{curso.NombreDelCurso}</p>
