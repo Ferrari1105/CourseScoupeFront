@@ -19,6 +19,7 @@ import { CarritoProvider } from '../context/carritoContext.jsx';
 import CrearCursoIA3 from './CrearCurso/CrearCursoIA3.jsx';
 import CarritoDeCompras from './CarritoDeCompras.jsx';
 import MetodoPago from './MetodoPago.jsx';
+import VerCurso from './VerCurso.jsx';
 const routes = createBrowserRouter([{
   path: "/",
   element: <App />
@@ -58,6 +59,9 @@ const routes = createBrowserRouter([{
 },{
   path: "/MetodoPago",
   element: <MetodoPago/>
+},{
+  path: "/VerCurso",
+  element: <VerCurso/>
 }])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

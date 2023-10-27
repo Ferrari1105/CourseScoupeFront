@@ -71,7 +71,7 @@ function Profile() {
               <div className="card-images">
                 {imagenes.map((imagen, index) => (
                   <div key={index} className="image-wrapper">
-                    <Link to="/Store">
+                    <Link to="/VerCurso">
                       <Card.Img src={imagen} alt={`Imagen ${index + 1}`} />
                     </Link>
                   </div>

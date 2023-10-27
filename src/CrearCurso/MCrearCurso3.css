@@ -27,7 +27,7 @@
 .rowLecciones {
   margin-top: 30px; 
   flex-direction: row;
-  background-color: #ff0000;
+  background-color: #cfcfcf;
   display: flex;
   gap: 40px;
 }
