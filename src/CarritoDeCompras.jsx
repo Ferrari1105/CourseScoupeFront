@@ -48,21 +48,11 @@ const eliminarCursoDelCarrito = async (cursoId) => {
       headers: { "Content-Type": "application/json" },
       body: ids
     });
-
-    if (response.ok) {
-      // Utiliza prevState para actualizar carrito
-      setCarrito((prevState) => {
-        const nuevoCarrito = prevState.filter((curso) => curso.id !== cursoId);
-        return nuevoCarrito;
-      });
-    } else {
-      console.error('Error al eliminar el curso del carrito');
-    }
-  } catch (error) {
+    window.location.reload()
+    } catch (error) {
     console.error('Error al enviar la solicitud al servidor:', error);
   }
 };
-
 // ...
 
   

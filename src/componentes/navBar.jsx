@@ -251,6 +251,7 @@ function NavBar() {
             <Button  className='colorTexto sinFondo' onClick={handleShow2}>Registrarse</Button>
           </Nav>
         </Navbar.Collapse>
+        
       </Container>
     </Navbar>
     <Modal show={showModal3} onHide={handleClose3}>

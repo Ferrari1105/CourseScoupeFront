@@ -95,10 +95,10 @@ function MCrearCurso2()  {
     console.log(cursoG)
   
   }
-  const siguiente = () => {
+  const siguiente = async() => {
    // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
-   Guardar()
-   setCursoG({ ...cursoG, PrecioDelCurso: costo });
+   await Guardar()
+   await setCursoG({ ...cursoG, PrecioDelCurso: costo });
     
   };
 
