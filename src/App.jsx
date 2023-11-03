@@ -30,10 +30,8 @@ function App() {
             ) : (
               <NavBar/>
             )}
-      <div className='Banner'>
         <span></span>
       <Banner />
-      </div>
       <div className='CardsHome'> 
       {
         listaCursos.map(curso => (

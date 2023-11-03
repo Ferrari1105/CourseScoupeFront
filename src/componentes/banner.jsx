@@ -23,7 +23,7 @@ function Banner( ) {
   };
 
   return (
-    <Container>
+    <Container  style={{height: "50%"}}>
       <Row>
         <Col className='banner'>
           <div className='banner-text'>

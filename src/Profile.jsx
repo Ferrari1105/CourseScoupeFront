@@ -31,8 +31,8 @@ function Profile() {
           <div className='contenidoBanner'>
             <img className='fotoBanner' src={usuarioG?.FotoDePerfil} alt="Avatar" />
             <div className='textoBanner'>
-              <h4>{usuarioG?.NombreUsuario}</h4>
-              <h3>@{usuarioG?.NombreUsuario}</h3>
+              <h4>@{usuarioG?.NombreUsuario}</h4>
+              <h3>{usuarioG?.Email}</h3>
               <h5>📍{usuarioG?.Ubicacion}</h5>
               <button className='botonBanner'>Editar perfil</button>
             </div>

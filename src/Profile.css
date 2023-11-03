@@ -83,10 +83,17 @@
     color: white;
     padding-left: 60px;
   }
-  .fotoBanner{
-    width: 150px;
-    border-radius: 50%;
+  .fotoBanner {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 ;
+    max-height: 150px; /* Puedes ajustar esta propiedad según tus necesidades */
+    border: 1px solid #ddd; /* Un borde opcional para resaltar la imagen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    border-radius: 5px; /* Bordes redondeados */
   }
+  
   .contenidoBanner{
     width: 100%;
     display: flex;
