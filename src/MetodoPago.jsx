@@ -7,17 +7,31 @@ import { Link } from 'react-router-dom';
 import { useContext } from "react";
 import { UsuarioContext } from '../context/usuarioContext';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx';
-
+import { useEffect } from 'react';
 function MetodoPago() {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
     const [qrData, setQrData] = useState(''); // Aquí almacenaremos los datos para el QR
+    const [carrito, setCarrito] = useState(''); // Aquí almacenaremos los datos para el QR
     const { usuarioG } = useContext(UsuarioContext);
     const [cardData, setCardData] = useState({
         cardNumber: '',
         expirationDate: '',
         cvv: '',
     });
-
+    const llamada = async () => {
+        const usuarioGJSON = JSON.stringify(usuarioG);
+        const response = await fetch(`http://localhost:3000/traerCarrito`, {
+          method: 'POST',
+          headers: { "Content-Type": "application/json"},
+          body: usuarioGJSON
+        });
+        const CursoJson = await response.json();
+        setCarrito(CursoJson)
+      }
+    
+      useEffect(() => {
+        llamada();
+      }, []);
     const handleQRPayment = () => {
         // Lógica para generar el QR de pago
         // Dependiendo del proveedor de pago, obtén los datos necesarios para el QR
@@ -33,11 +47,29 @@ function MetodoPago() {
         setCardData({ ...cardData, [name]: value });
     };
 
-    const handlePaymentMethodSelect = (method) => {
+    const handlePaymentMethodSelect = async(method) => {
         setSelectedPaymentMethod(method);
+        async function eliminarCursoDelCarrito(id) {
+            try {
+              const response = await fetch(`http://localhost:3000/eliminarCursoDelCarrito`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+              });
+              // Aquí puedes manejar la respuesta si es necesario
+            } catch (error) {
+              console.error(`Error al eliminar curso con ID ${id}:`, error);
+            }
+          }
+          
+          // Recorre la lista de IDs y realiza un fetch para cada uno
+          carrito.forEach(id => {
+            eliminarCursoDelCarrito(id);
+          });
     };
 
     const handleCardPayment = () => {
+
         // Lógica para procesar el pago con tarjeta de crédito usando cardData
         // Aquí puedes realizar la validación de la tarjeta y enviar los datos al backend
     };

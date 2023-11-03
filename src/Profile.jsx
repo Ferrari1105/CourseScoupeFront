@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 function Profile() {
   const { usuarioG, setUsuarioG } = useContext(UsuarioContext);
+  console.log(usuarioG)
   const cerrarSesion = () => {
     setUsuarioG(null);
     localStorage.removeItem('usuario')
@@ -28,11 +29,11 @@ function Profile() {
       <div className="profile-page">
         <div className='bannerPerfil'>
           <div className='contenidoBanner'>
-            <img className='fotoBanner' src="https://pbs.twimg.com/media/EIOHEVlXkAE0QWW.jpg" alt="Avatar" />
+            <img className='fotoBanner' src={usuarioG?.FotoDePerfil} alt="Avatar" />
             <div className='textoBanner'>
               <h4>{usuarioG?.NombreUsuario}</h4>
               <h3>@{usuarioG?.NombreUsuario}</h3>
-              <h5>📍Localidad</h5>
+              <h5>📍{usuarioG?.Ubicacion}</h5>
               <button className='botonBanner'>Editar perfil</button>
             </div>
           </div>

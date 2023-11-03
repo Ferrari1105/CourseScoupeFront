@@ -1,6 +1,11 @@
 import { initializeApp } from "firebase/app";
 import {getStorage, ref, uploadBytes ,getDownloadURL} from 'firebase/storage'
 import {v4} from 'uuid'
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCkgBHdLw1FsAZ1xaQ5dAxdLRoW30DqXvg",
   authDomain: "course-scope-398003.firebaseapp.com",

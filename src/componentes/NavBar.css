@@ -65,3 +65,16 @@ margin-top: 20px;
   border: black;
   border-width: 2px;
 }
+.cuadrado-perfil{
+  display: flex;
+}
+
+.carrito{
+  position: relative;
+}
+
+.notificaciones{
+  position: absolute;
+  top: 5px;
+  right: -10px;
+}

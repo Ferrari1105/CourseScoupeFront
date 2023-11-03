@@ -12,19 +12,18 @@ import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal
 import { useLocation } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import Accordions from './componentes/Accordions';
-
+import { CarritoContext } from '../context/carritoContext';
 function Store() {
   const {cursoG,setCursoG} = useContext(CursoContext)
   const [Curso, setCurso] = useState()
   const [cursoLecciones, setcursoLecciones] = useState()
   const {usuarioG} = useContext(UsuarioContext)
   const [showModal, setShowModal] = useState(false); // Estado para controlar si se muestra el modal
+  const [carritoBack, setCarritoBack] = useState([]); 
   const location = useLocation()
   const { from } = location.state || {};
-  const cargarCurso = async () => {
-
-  }
-  useEffect(()=>async()=>await cargarCurso(), [])
+  const {setCarritoG} = useContext(CarritoContext)
+ 
 
   const llamada = async () => {
     console.log(from)
@@ -55,22 +54,40 @@ function Store() {
   
   useEffect(()=>async()=>await llamada(), [])
 
-  const añadirCarrito = async()=>
-  {
-    let index = 0
-    let ids = {
+  const añadirCarrito = async () => {
+    const ids = {
       idCurso: Curso?.idCurso,
       idUsuario: usuarioG.IdUsuario
-    }
-    let idsStringified = JSON.stringify(ids);
-    console.log("prueba", index++)
-      let response= await fetch(`http://localhost:3000/cargarCarrito`, {
+    };
+  
+    // Realizar una solicitud para obtener el carrito actual del usuario
+    const usuarioGJSON = JSON.stringify(usuarioG);
+    const response1 = await fetch(`http://localhost:3000/traerCarrito`, {
       method: 'POST',
-      headers: { "Content-Type": "application/json"},
-      body: idsStringified
+      headers: { "Content-Type": "application/json" },
+      body: usuarioGJSON
     });
-   // const Carrito = await response.json();
-  }
+    const carritoActual = await response1.json();
+  
+    // Comprobar si el curso ya está en el carrito
+    const cursoExistente = carritoActual.find(item => item.idCurso === ids.idCurso);
+  
+    if (cursoExistente) {
+      alert("El curso ya está en el carrito");
+      // Puedes mostrar un mensaje al usuario o realizar alguna otra acción
+    } else {
+      // El curso no está en el carrito, puedes agregarlo
+      const idsStringified = JSON.stringify(ids);
+      setCarritoG(idsStringified)
+      const response = await fetch(`http://localhost:3000/cargarCarrito`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: idsStringified
+      });
+      console.log("Curso agregado al carrito");
+    }
+  };
+  
   
   return (
     <>
