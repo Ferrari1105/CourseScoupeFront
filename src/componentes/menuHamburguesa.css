@@ -1,0 +1,27 @@
+/* MenuHamburguesa.css */
+
+.container {
+    display: flex;
+    height: 100vh; /* Establece la altura de la página al 100% de la ventana */
+}
+
+.left-half {
+    width: 50%;
+    overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
+}
+
+.right-half {
+    width: 50%;
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+    position: relative;
+}
+
+.wider {
+    width: 100%; /* Ancho completo para el dropdown */
+}
+
+.image {
+    width: 100%; /* Hace que la imagen ocupe el 100% del ancho del contenedor */
+    height: 100%; /* Establece la altura de la imagen al 100% del contenedor */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor manteniendo las proporciones */
+}
