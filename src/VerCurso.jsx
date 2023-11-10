@@ -8,7 +8,7 @@ import { Col, Row, Accordion } from 'react-bootstrap';
 
 function VerCurso() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [imagenSeleccionada, setImagenSeleccionada] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw5lOdTBvvWpCvfsl-bxnRuanTl2nnNX8W4igMJTVGilQHTTrDIt2q1OME71wN5FmcUk8&usqp=CAU");
+  const [imagenSeleccionada, setImagenSeleccionada] = useState("https://www.lukcomunicacion.com/wp-content/uploads/2017/06/5-webs-donde-encontrar-fotografi%CC%81as-de-calidad-gratis-unsplash.jpg");
   const [tituloSeleccionado, setTituloSeleccionado] = useState("");
   const [contenidoSeleccionado, setContenidoSeleccionado] = useState("lol");
   const { usuarioG } = useContext(UsuarioContext);

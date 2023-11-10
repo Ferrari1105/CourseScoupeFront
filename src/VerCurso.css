@@ -1,12 +1,13 @@
 /* MenuHamburguesa.css */
 
-.container {
+.container-vercurso {
   display: flex;
   height: 100vh; 
 }
 .rowinsta{
   max-width: none;
 }
+
 .left-half {
   width: 100%;
   overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
