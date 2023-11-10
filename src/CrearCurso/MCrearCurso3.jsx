@@ -8,7 +8,8 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal'; // Importar el componente Modal
 import Button from 'react-bootstrap/Button';
 import { uploadfile } from '../Firebase/config'
-import { v4 } from 'uuid'
+//import { v4 } from 'uuid'
+
 function MCrearCurso3() {
 
   const { cursoG, setCursoG } = useContext(CursoContext);

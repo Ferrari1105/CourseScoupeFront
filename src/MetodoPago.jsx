@@ -69,7 +69,7 @@ function MetodoPago() {
     };
 
     const handleCardPayment = () => {
-
+        
         // Lógica para procesar el pago con tarjeta de crédito usando cardData
         // Aquí puedes realizar la validación de la tarjeta y enviar los datos al backend
     };
