@@ -2,11 +2,13 @@
 
 .container {
   display: flex;
-  height: 100vh; /* Establece la altura de la página al 100% de la ventana */
+  height: 100vh; 
 }
-
+.rowinsta{
+  max-width: none;
+}
 .left-half {
-  width: 50%;
+  width: 100%;
   overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
 }
 

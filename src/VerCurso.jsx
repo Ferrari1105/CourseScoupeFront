@@ -12,6 +12,8 @@ function VerCurso() {
   const [tituloSeleccionado, setTituloSeleccionado] = useState("");
   const [contenidoSeleccionado, setContenidoSeleccionado] = useState("lol");
   const { usuarioG } = useContext(UsuarioContext);
+  const [AccordeonSeleccionado, setAccordeonSeleccionado] = useState(0);
+
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -21,12 +23,12 @@ function VerCurso() {
     lecciones: [
       {
         titulo: "Gente arriba de un libro",
-        foto: "https://ichef.bbci.co.uk/news/640/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png",
+        foto: "https://www.lukcomunicacion.com/wp-content/uploads/2017/06/5-webs-donde-encontrar-fotografi%CC%81as-de-calidad-gratis-unsplash.jpg",
         contenido: "Contenido de la lección 1"
       },
       {
         titulo: "Personas mirando una laptop",
-        foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzqJfYaPsCvkQ9RElXcf3-6Eup2Zikz0oz8A&usqp=CAU",
+        foto: "https://ovacen.com/wp-content/uploads/2020/02/mejorar-calidad-imagenes.jpg",
         contenido: "Contenido de la lección 2"
       },
       // ... Otras lecciones
@@ -38,15 +40,17 @@ function VerCurso() {
     setImagenSeleccionada(leccionSeleccionada.foto);
     setTituloSeleccionado(leccionSeleccionada.titulo);
     setContenidoSeleccionado(leccionSeleccionada.contenido);
+    setAccordeonSeleccionado(index);
   };
+
 
   return (
     <>
-    
+
       {usuarioG ? <NavBarIniciada /> : <NavBar />}
       <div className="ver-curso-container">
         <div className="container-fluid">
-          <Row>
+          <Row className='rowinsta'>
             <Col sm={6}>
               <img src={imagenSeleccionada} alt="Imagen" className="image" />
             </Col>
@@ -62,7 +66,7 @@ function VerCurso() {
                       eventKey={index.toString()}
                       onClick={() => cambiarLeccion(index)}
                     >
-                      Leccion {index+1}: {leccion.titulo}
+                      Leccion {index + 1}: {leccion.titulo}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>
@@ -71,22 +75,21 @@ function VerCurso() {
           </Row>
         </div>
         <div className="leccion-seleccionada">
-          <Row>
-            <Col sm={6}>
-            <Accordion defaultActiveKey="0">
-              {
-                curso.lecciones.map((leccion, index) => (
-                  <Accordion.Item eventKey={index}>
-                  <Accordion.Header>#{index + 1}: {leccion.titulo}</Accordion.Header>
-                  <Accordion.Body> { leccion.contenido } </Accordion.Body>
-                </Accordion.Item>
-                ))
-              }
-            </Accordion>
+          <Row className='rowinsta'>
+            <Col sm={12}>
+              <Accordion activeKey={AccordeonSeleccionado.toString()}>
+                {
+                  curso.lecciones.map((leccion, index) => (
+                    <Accordion.Item key={index} eventKey={index.toString()}>
+                      <Accordion.Header>#{index + 1}: {leccion.titulo}</Accordion.Header>
+                      <Accordion.Body> {leccion.contenido} </Accordion.Body>
+                    </Accordion.Item>
+                  ))
+                }
+              </Accordion>
             </Col>
           </Row>
-          
-          </div>
+        </div>
       </div>
     </>
   );
