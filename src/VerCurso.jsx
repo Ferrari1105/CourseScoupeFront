@@ -5,44 +5,57 @@ import NavBarIniciada from './componentes/navBar-iniciada.jsx';
 import { UsuarioContext } from '../context/usuarioContext';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Col, Row, Accordion } from 'react-bootstrap';
+import Banner from './componentes/banner'
+import CardCurso from './componentes/cardCurso'
+import './App.css'
+import { useEffect } from 'react'
+
 
 function VerCurso() {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [imagenSeleccionada, setImagenSeleccionada] = useState("https://www.lukcomunicacion.com/wp-content/uploads/2017/06/5-webs-donde-encontrar-fotografi%CC%81as-de-calidad-gratis-unsplash.jpg");
+  const [lecciones, setLecciones] = useState(null);
+  const [imagenSeleccionada, setImagenSeleccionada] = useState("");
   const [tituloSeleccionado, setTituloSeleccionado] = useState("");
   const [contenidoSeleccionado, setContenidoSeleccionado] = useState("lol");
   const { usuarioG } = useContext(UsuarioContext);
+  const [cursosCargados, setCursosCargados] = useState(false);
   const [AccordeonSeleccionado, setAccordeonSeleccionado] = useState(0);
 
+  const [listaLecciones, setListaLecciones] = useState([])
+  const [LeccionesCargados, setLeccionesCargados] = useState(false);
+
+  const cargarLecciones = async () => {
+
+    if (!cursosCargados) {
+      const response = await fetch('http://localhost:3000/lecciones', {
+        method: 'GET',
+        headers: { "Content-Type": "application/json" },
+      });
+      const dbUser = await response.json();
+      setListaLecciones(dbUser);
+      setLeccionesCargados(true); // Marcar que los cursos se han cargado
+    }
+  };
+
+  useEffect(() => async () => await cargarLecciones(), [])
+
+  // api get leccionXcurso- 
+  // lecciones[]
+  //useeffcect (()=>{ setLecciones}), []
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
 
-  const curso = {
-    lecciones: [
-      {
-        titulo: "Gente arriba de un libro",
-        foto: "https://www.lukcomunicacion.com/wp-content/uploads/2017/06/5-webs-donde-encontrar-fotografi%CC%81as-de-calidad-gratis-unsplash.jpg",
-        contenido: "Contenido de la lección 1"
-      },
-      {
-        titulo: "Personas mirando una laptop",
-        foto: "https://ovacen.com/wp-content/uploads/2020/02/mejorar-calidad-imagenes.jpg",
-        contenido: "Contenido de la lección 2"
-      },
-      // ... Otras lecciones
-    ]
-  };
 
   const cambiarLeccion = (index) => {
-    const leccionSeleccionada = curso.lecciones[index];
+    // cambiar leccionSeleccionada por leccion - api
+    const leccionSeleccionada = listaLecciones[index];
     setImagenSeleccionada(leccionSeleccionada.foto);
     setTituloSeleccionado(leccionSeleccionada.titulo);
     setContenidoSeleccionado(leccionSeleccionada.contenido);
     setAccordeonSeleccionado(index);
   };
-
 
   return (
     <>
@@ -60,13 +73,13 @@ function VerCurso() {
                   Lecciones
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="w-100">
-                  {curso.lecciones.map((leccion, index) => (
+                  {listaLecciones.map((leccion, index) => (
                     <Dropdown.Item
                       key={index}
                       eventKey={index.toString()}
                       onClick={() => cambiarLeccion(index)}
                     >
-                      Leccion {index + 1}: {leccion.titulo}
+                      Leccion {index + 1}: {leccion.NombreLeccion}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>
@@ -79,16 +92,17 @@ function VerCurso() {
             <Col sm={12}>
               <Accordion activeKey={AccordeonSeleccionado.toString()}>
                 {
-                  curso.lecciones.map((leccion, index) => (
+                  listaLecciones.map((leccion, index) => (
                     <Accordion.Item key={index} eventKey={index.toString()}>
-                      <Accordion.Header>#{index + 1}: {leccion.titulo}</Accordion.Header>
-                      <Accordion.Body> {leccion.contenido} </Accordion.Body>
+                      <Accordion.Header>#{index + 1}: {leccion.NombreLeccion}</Accordion.Header>
+                      <Accordion.Body> {leccion.ContenidoLeccion} </Accordion.Body>
                     </Accordion.Item>
                   ))
                 }
               </Accordion>
             </Col>
           </Row>
+          
         </div>
       </div>
     </>
@@ -96,3 +110,5 @@ function VerCurso() {
 }
 
 export default VerCurso;
+
+

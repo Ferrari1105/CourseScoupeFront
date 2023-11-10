@@ -11,6 +11,7 @@ function App() {
   const [cursosCargados, setCursosCargados] = useState(false);
   const {usuarioG} = useContext(UsuarioContext)
   const cargarCursos = async () => {
+
     if (!cursosCargados) {
       const response = await fetch('http://localhost:3000/cursos', {
         method: 'GET',
@@ -21,6 +22,7 @@ function App() {
       setCursosCargados(true); // Marcar que los cursos se han cargado
     }
   };
+
   useEffect(()=>async()=>await cargarCursos(), [])
  
   return (
