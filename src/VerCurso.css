@@ -1,9 +1,6 @@
 /* MenuHamburguesa.css */
 
-.container {
-  display: flex;
-  height: 100vh; /* Establece la altura de la página al 100% de la ventana */
-}
+
 
 .left-half {
   width: 50%;
