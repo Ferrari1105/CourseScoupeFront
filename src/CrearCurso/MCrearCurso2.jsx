@@ -174,7 +174,7 @@ function MCrearCurso2()  {
 
   const Guardar = async() => {
   
-      console.log("updateCurso", cursoG.idCurso)
+      console.log("updateCurso", cursoG?.idCurso)
       let cursoStringified = JSON.stringify(cursoG);
       try {
         
