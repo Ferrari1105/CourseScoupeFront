@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './CrearCursoIA2.css';
 import { Link, useParams } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
@@ -23,6 +23,28 @@ function MCrearCurso2()  {
   const [listaAreas, setListaAreas] = useState([])
   const [listaIdiomas, setListaIdiomas] = useState([])
   const [ListasCargadas, setListasCargadas] = useState(true);
+  
+  useEffect(() => {
+    if (resultadoLlamadaIA && resultadoLlamadaIA.outputs && resultadoLlamadaIA.outputs[0] && resultadoLlamadaIA.outputs[0].text) {
+      const textData = resultadoLlamadaIA.outputs[0].text;
+      const lessonsText = textData.match(/Lección.*/g); // Filtrar solo las partes que comienzan con "Lección"
+  
+      if (lessonsText) {
+        lessonsText.forEach((lesson, index) => {
+          // Aquí podrías asignar cada lección a tus campos de texto si coinciden con el formato esperado.
+          // Por ejemplo:
+          if (index < lessonTitles.length) {
+            setLessonTitles((prevLessonTitles) => {
+              const newLessonTitles = [...prevLessonTitles];
+              newLessonTitles[index].content = lesson;
+              return newLessonTitles;
+            });
+          }
+        });
+      }
+    }
+  }, [resultadoLlamadaIA]);
+  
   const cargarListas= async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
@@ -54,6 +76,7 @@ function MCrearCurso2()  {
     setCosto(e.target.value);
    // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
   };
+  
   
   const siguiente = () => {
     setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
