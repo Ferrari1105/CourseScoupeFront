@@ -1,0 +1,9 @@
+/* cardCurso.css */
+  /* Ocultar la imagen de la tarjeta */
+  .cardCurso .cardBody img {
+    display: none;
+  }
+  
+  /* Puedes agregar estilos adicionales según sea necesario */
+  
+  

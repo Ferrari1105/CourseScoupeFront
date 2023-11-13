@@ -166,12 +166,23 @@
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 15px;
+    max-width: fit-content;
 }
 
 .boton-perfil-editar:hover {
     background-color: #5593f7;
     color: #fff;
 }
+
+.CardsHome{
+  background-color: #FFFFFF;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
   
 .textos{
   color: #000000;
@@ -188,6 +199,7 @@
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 15px;
+  max-width: fit-content;
 }
 
 .crear-otro-curso:hover {

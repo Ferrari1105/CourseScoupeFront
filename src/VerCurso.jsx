@@ -1,5 +1,5 @@
 import './VerCurso.css';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import NavBar from './componentes/navBar';
 import NavBarIniciada from './componentes/navBar-iniciada.jsx';
 import { UsuarioContext } from '../context/usuarioContext';
@@ -8,7 +8,6 @@ import { Col, Row, Accordion } from 'react-bootstrap';
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
 import './App.css'
-import { useEffect } from 'react'
 
 
 function VerCurso() {
@@ -22,7 +21,6 @@ function VerCurso() {
   const [AccordeonSeleccionado, setAccordeonSeleccionado] = useState(0);
 
   const [listaLecciones, setListaLecciones] = useState([])
-  const [LeccionesCargados, setLeccionesCargados] = useState(false);
 
   const cargarLecciones = async () => {
 
@@ -33,7 +31,7 @@ function VerCurso() {
       });
       const dbUser = await response.json();
       setListaLecciones(dbUser);
-      setLeccionesCargados(true); // Marcar que los cursos se han cargado
+      setLeccionesCargados(true); 
     }
   };
 

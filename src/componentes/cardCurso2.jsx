@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom' 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import "./cardCurso.css"; 
+import "./cardCurso2.css"; 
 import { useContext, useEffect } from "react"
 import { CursoContext } from "./../../context/cursoContext"
 
@@ -13,11 +13,7 @@ function CardCurso(prop) {
       <Card.Img variant="top" src={prop.img} />
       <Card.Body className='cardBody'>
         <Card.Title>{prop.name}</Card.Title>
-        <Card.Text>
-          {prop.descripcion}
-        </Card.Text>
-          <Link className='Link linkCard' to={"/Store"} state={{ from: prop.id }} >Comprar</Link>
-
+          <Link className='Link linkCard' to={"/VerCurso"} state={{ from: prop.id }} >Seguir Curso</Link>
       </Card.Body>
     </Card>
   );
