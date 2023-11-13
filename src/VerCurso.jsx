@@ -7,7 +7,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { Col, Row, Accordion } from 'react-bootstrap';
 import Banner from './componentes/banner'
 import CardCurso from './componentes/cardCurso'
+import { useLocation } from 'react-router-dom'
 import './App.css'
+
 
 
 function VerCurso() {
@@ -19,22 +21,20 @@ function VerCurso() {
   const { usuarioG } = useContext(UsuarioContext);
   const [cursosCargados, setCursosCargados] = useState(false);
   const [AccordeonSeleccionado, setAccordeonSeleccionado] = useState(0);
-
+  const location = useLocation()
+  const { from } = location.state || {};
   const [listaLecciones, setListaLecciones] = useState([])
+  const [leccionesCargadas, setLeccionesCargadas] = useState(false);
 
   const cargarLecciones = async () => {
-
     if (!cursosCargados) {
-      const response = await fetch('http://localhost:3000/lecciones', {
-        method: 'GET',
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await fetch(`http://localhost:3000/Leccion/${from}`);
       const dbUser = await response.json();
-      setListaLecciones(dbUser);
-      setLeccionesCargados(true); 
+      setListaLecciones(dbUser); // Asegurar que sea un array
+      setLeccionesCargadas(true);
     }
   };
-
+  console.log(listaLecciones);
   useEffect(() => async () => await cargarLecciones(), [])
 
   // api get leccionXcurso- 
@@ -45,20 +45,18 @@ function VerCurso() {
     setMenuVisible(!menuVisible);
   };
 
-
   const cambiarLeccion = (index) => {
-    // cambiar leccionSeleccionada por leccion - api
     const leccionSeleccionada = listaLecciones[index];
     setImagenSeleccionada(leccionSeleccionada.foto);
     setTituloSeleccionado(leccionSeleccionada.titulo);
     setContenidoSeleccionado(leccionSeleccionada.contenido);
     setAccordeonSeleccionado(index);
   };
-
+  
   return (
     <>
-
       {usuarioG ? <NavBarIniciada /> : <NavBar />}
+
       <div className="ver-curso-container">
         <div className="container-fluid">
           <Row className='rowinsta'>
@@ -71,9 +69,10 @@ function VerCurso() {
                   Lecciones
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="w-100">
-                  {listaLecciones.map((leccion, index) => (
+
+                  {listaLecciones && listaLecciones.map((leccion, index) => (
                     <Dropdown.Item
-                      key={index}
+                      key={leccion.idLeccion}
                       eventKey={index.toString()}
                       onClick={() => cambiarLeccion(index)}
                     >
@@ -89,18 +88,15 @@ function VerCurso() {
           <Row className='rowinsta'>
             <Col sm={12}>
               <Accordion activeKey={AccordeonSeleccionado.toString()}>
-                {
-                  listaLecciones.map((leccion, index) => (
-                    <Accordion.Item key={index} eventKey={index.toString()}>
-                      <Accordion.Header>#{index + 1}: {leccion.NombreLeccion}</Accordion.Header>
-                      <Accordion.Body> {leccion.ContenidoLeccion} </Accordion.Body>
-                    </Accordion.Item>
-                  ))
-                }
+                {listaLecciones.map((leccion, index) => (
+                  <Accordion.Item key={index} eventKey={index.toString()}>
+                    <Accordion.Header>#{index + 1}: {leccion.NombreLeccion}</Accordion.Header>
+                    <Accordion.Body> {leccion.ContenidoLeccion} </Accordion.Body>
+                  </Accordion.Item>
+                ))}
               </Accordion>
             </Col>
           </Row>
-          
         </div>
       </div>
     </>
