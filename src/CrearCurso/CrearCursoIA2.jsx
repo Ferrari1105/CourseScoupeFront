@@ -1,83 +1,78 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CrearCursoIA2.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
 
-function MCrearCurso2()  {
-
+function MCrearCurso2() {
+  const { cursoG, setCursoG } = useContext(CursoContext);
   const [costo, setCosto] = useState(0);
   const [currentLesson, setCurrentLesson] = useState(3);
   const [lessonTitles, setLessonTitles] = useState([
     { title: 'Lección 1', content: '' },
     { title: 'Lección 2', content: '' },
     { title: 'Lección 3', content: '' },
-  ]); // Inicializa con 3 lecciones por defecto
-  const { setCursoG } = useContext(CursoContext);
-  const { cursoG } = useContext(CursoContext);
-  const [selectedCategory, setSelectedCategory] = useState(''); // Estado para la categoría seleccionada
-  const [selectedArea, setSelectedArea] = useState(''); // Estado para el área seleccionada
-  const [selectedLanguage, setSelectedLanguage] = useState(''); // Estado para el idioma seleccionado
-  const [listaCategorias, setListaCategorias] = useState([])
-  const [listaAreas, setListaAreas] = useState([])
-  const [listaIdiomas, setListaIdiomas] = useState([])
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedArea, setSelectedArea] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [listaCategorias, setListaCategorias] = useState([]);
+  const [listaAreas, setListaAreas] = useState([]);
+  const [listaIdiomas, setListaIdiomas] = useState([]);
   const [ListasCargadas, setListasCargadas] = useState(true);
-  
+  const location = useLocation();
+
   useEffect(() => {
-    if (resultadoLlamadaIA && resultadoLlamadaIA.outputs && resultadoLlamadaIA.outputs[0] && resultadoLlamadaIA.outputs[0].text) {
-      const textData = resultadoLlamadaIA.outputs[0].text;
-      const lessonsText = textData.match(/Lección.*/g); // Filtrar solo las partes que comienzan con "Lección"
-  
-      if (lessonsText) {
-        lessonsText.forEach((lesson, index) => {
-          // Aquí podrías asignar cada lección a tus campos de texto si coinciden con el formato esperado.
-          // Por ejemplo:
-          if (index < lessonTitles.length) {
-            setLessonTitles((prevLessonTitles) => {
-              const newLessonTitles = [...prevLessonTitles];
-              newLessonTitles[index].content = lesson;
-              return newLessonTitles;
-            });
-          }
-        });
+    if (location.state && location.state.resultadoLlamadaIA) {
+      const resultadoLlamadaIA = location.state.resultadoLlamadaIA;
+
+      console.log('Resultado de la llamada a la IA:', resultadoLlamadaIA);
+
+      if (resultadoLlamadaIA.Lessons && resultadoLlamadaIA.Lessons.length > 0) {
+        const lessonsData = resultadoLlamadaIA.Lessons;
+
+        console.log('Lecciones de la IA:', lessonsData);
+
+        setLessonTitles(lessonsData.map((lesson, index) => ({
+          title: lesson.title,
+          content: lesson.content,
+        })));
       }
     }
-  }, [resultadoLlamadaIA]);
-  
-  const cargarListas= async () => {
+  }, [location.state]);
+
+  const cargarListas = async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
       });
       const dbUserC = await responseC.json();
-      setListaCategorias(dbUserC)
+      setListaCategorias(dbUserC);
       const responseA = await fetch('http://localhost:3000/Areas', {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
       });
       const dbUserA = await responseA.json();
-      setListaAreas(dbUserA)
+      setListaAreas(dbUserA);
       const responseI = await fetch('http://localhost:3000/Idiomas', {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
       });
       const dbUserI = await responseI.json();
-      setListaIdiomas(dbUserI)
+      setListaIdiomas(dbUserI);
 
       setListasCargadas(false); // Marcar que las listas se han cargado
-   }
-   else{}
+    }
   };
-  cargarListas()
+
+  cargarListas();
+
   const cargarPrecio = (e) => {
-    console.log(cursoG);
     setCosto(e.target.value);
-   // setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
   };
-  
-  
+
   const siguiente = () => {
     setCursoG({ ...cursoG, opciones: [selectedCategory, selectedArea, selectedLanguage] });
     setCursoG({ ...cursoG, PrecioDelCurso: costo });
@@ -149,34 +144,34 @@ function MCrearCurso2()  {
               <h2 htmlFor="campo4">Categorías:</h2>
               <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
                 <option value="">Selecciona una Categoría</option>
-                  {
+                {
                   listaCategorias.map(categoria => (
                     <option key={categoria.NombreCategoria} value={categoria.NombreCategoria}>{categoria.NombreCategoria}</option>
                   ))
-                 }
-                 {/*hacer funcionar como boton que agregue una categoria*/}
+                }
+                {/*hacer funcionar como boton que agregue una categoria*/}
                 <option value="Otra">Escribir Categoria Nueva</option>
               </select>
               <h2 htmlFor="campo5">Áreas:</h2>
               <select value={selectedArea} onChange={(e) => setSelectedArea(e.target.value)}>
-              <option value="">Selecciona un Area</option>
-                  {
+                <option value="">Selecciona un Area</option>
+                {
                   listaAreas.map(area => (
                     <option key={area.NombreArea} value={area.NombreArea}>{area.NombreArea}</option>
                   ))
-                 }
-                 {/*hacer funcionar como boton que agregue un Area*/}
+                }
+                {/*hacer funcionar como boton que agregue un Area*/}
                 <option value="Otra">Escribir Area Nueva</option>
               </select>
               <h2 htmlFor="campo6">Idiomas:</h2>
               <select value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
-              <option value="">Selecciona un Idioma</option>
-                  {
+                <option value="">Selecciona un Idioma</option>
+                {
                   listaIdiomas.map(idioma => (
                     <option key={idioma.Idioma} value={idioma.Idioma}>{idioma.Idioma}</option>
                   ))
-                 }
-                 {/*hacer funcionar como boton que agregue un Idioma*/}
+                }
+                {/*hacer funcionar como boton que agregue un Idioma*/}
                 <option value="Otra">Escribir Otro Idioma</option>
               </select>
             </div>
@@ -190,6 +185,16 @@ function MCrearCurso2()  {
                 onChange={cargarPrecio}
               />
             </div>
+            {/* Añadir un textarea para mostrar el contenido de la primera lección */}
+              <div className="form-group">
+                <h2>Sugerencias de la IA:</h2>
+                <textarea
+                  className="input-field large-input"
+                  value={location.state && location.state.resultadoLlamadaIA && location.state.resultadoLlamadaIA.Lessons && location.state.resultadoLlamadaIA.Lessons.length > 0 ? location.state.resultadoLlamadaIA.Lessons[0].content : ''}
+                  readOnly
+                />
+            </div>
+
           </form>
           <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
             Siguiente
