@@ -13,10 +13,32 @@ function MCrearCurso() {
   const { cursoG, setCursoG } = useContext(CursoContext);
   const location = useLocation();
   const { from } = location.state || {};
+  // Estado inicial del curso
+  const initialCursoState = {
+    idCurso: null,
+    NombreDelCurso: "",
+    ResumenCurso: "",
+    ContenidosCurso: "",
+    NumeroEstudiantes:  Math.floor(Math.random() * 1000000),
+    lesson: "",
+    idEstilo:null,
+    recAdicionales: "",
+    idCategorias: null,
+    idAreas: null,
+    idIdioma: null,
+    Lessons: [],
+    PrecioDelCurso: null,
+    HechoConIa: false,
+    idCreador: usuarioG.IdUsuario,
+    PortadaCurso: "",
+    imagenes: "",
+    videos: "",
+    Terminado: false
+  };
   const [Curso, setCurso] = useState(from || initialCursoState);
   const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
   const [listaEstilos, setListaEstilos] = useState([]);
-  const [cursoGuardado, setCursoGuardado] = useState(null);
+
   const [ListasCargadas, setListasCargadas] = useState(true);
 
 
@@ -31,28 +53,7 @@ function MCrearCurso() {
     }
   }, []);
 
-  // Estado inicial del curso
-  const initialCursoState = {
-    idCurso: null,
-    NombreDelCurso: "",
-    ResumenCurso: "",
-    ContenidosCurso: "",
-    NumeroEstudiantes:  Math.floor(Math.random() * 1000000),
-    Style: null,
-    lesson: "",
-    recAdicionales: "",
-    idCategorias: null,
-    idAreas: null,
-    idIdioma: null,
-    Lessons: [],
-    PrecioDelCurso: null,
-    HechoConIa: false,
-    idCreador: usuarioG.IdUsuario,
-    PortadaCurso: "",
-    imagenes: "",
-    videos: "",
-    Terminado: false
-  };
+  
 
   const cargarListas = async () => {
     if (ListasCargadas) {
@@ -73,9 +74,6 @@ function MCrearCurso() {
   const handleChange = (e) => {
     setCurso({ ...Curso, [e.target.name]: e.target.value });
     localStorage.setItem('Cursof1', JSON.stringify(Curso));
-    console.log("from", from)
-    console.log("curso", Curso)
-    console.log("cursoG", cursoG)
   }
 
   const handleStyleSelect = (e) => {
@@ -86,7 +84,7 @@ function MCrearCurso() {
     } else {
       console.log("Malio Sal");
     }
-    setCurso({ ...Curso, Style: estiloEncontrado.idEstilo });
+    setCurso({ ...Curso, idEstilo: estiloEncontrado.idEstilo });
     localStorage.setItem('Cursof1', JSON.stringify(Curso));
   }
 
@@ -101,13 +99,14 @@ function MCrearCurso() {
     setEstaTodoCargado(true);
   }
   const Guardar = async() => {
+    console.log(Curso)
     if(Curso.idCurso)
     {
   
       let cursoStringified = JSON.stringify(Curso);
       try {
         
-        const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
+        await fetch(`http://localhost:3000/CrearCurso`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: cursoStringified,

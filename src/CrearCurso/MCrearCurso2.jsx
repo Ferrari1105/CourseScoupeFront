@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MCrearCurso2.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from 'react';
 import { CursoContext } from './../../context/cursoContext';
-import { useEffect } from 'react';
-function MCrearCurso2()  {
 
+function MCrearCurso2() {
   const [costo, setCosto] = useState(0);
   const [currentLesson, setCurrentLesson] = useState(3);
   const [lessonTitles, setLessonTitles] = useState([
     { title: 'Lección 1', content: '' },
     { title: 'Lección 2', content: '' },
     { title: 'Lección 3', content: '' },
-  ]); // Inicializa con 3 lecciones por defecto
+  ]);
   const { setCursoG } = useContext(CursoContext);
   const { cursoG } = useContext(CursoContext);
-  const [selectedCategory, setSelectedCategory] = useState(''); // Estado para la categoría seleccionada
-  const [selectedArea, setSelectedArea] = useState(''); // Estado para el área seleccionada
-  const [selectedLanguage, setSelectedIdioma] = useState(''); // Estado para el idioma seleccionado
-  const [listaCategorias, setListaCategorias] = useState([])
-  const [listaAreas, setListaAreas] = useState([])
-  const [listaIdiomas, setListaIdiomas] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedArea, setSelectedArea] = useState('');
+  const [selectedLanguage, setSelectedIdioma] = useState('');
+  const [listaCategorias, setListaCategorias] = useState([]);
+  const [listaAreas, setListaAreas] = useState([]);
+  const [listaIdiomas, setListaIdiomas] = useState([]);
   const [ListasCargadas, setListasCargadas] = useState(true);
   const [Lecciones, setLecciones] = useState([])
   const cargarListas= async () => {
-    console.log("cursoooooooooooo", cursoG)
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
@@ -50,7 +48,8 @@ function MCrearCurso2()  {
    }
    else{}
   };
-  cargarListas()
+  useEffect(()=>async()=>await cargarListas(), [])
+  
   const cargarPrecio = (e) => {
     setCosto(e.target.value);
     guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el precio
@@ -125,7 +124,7 @@ function MCrearCurso2()  {
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
     guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el título
   };
-
+  
   // Actualizar el contenido de la lección cuando cambia
   const handleLessonContentChange = (event, index) => {
     const newLessonTitles = [...lessonTitles];
@@ -140,6 +139,7 @@ function MCrearCurso2()  {
     const cursoAGuardar = { ...cursoG, PrecioDelCurso: costo, Lessons: lessonTitles };
     localStorage.setItem('Cursof1', JSON.stringify(cursoAGuardar));
   };
+  
   const crearNuevaLeccion = async () => {
   const nuevaLeccion = {
     idCurso: 1, // Reemplaza con el ID del curso al que deseas agregar la lección
@@ -157,7 +157,7 @@ function MCrearCurso2()  {
         headers: { "Content-Type": "application/json" }
     });
     
-    const resultadoDelete = await responseDelete.json();
+     await responseDelete.json();
     
   }
   useEffect(() => {
@@ -172,11 +172,11 @@ function MCrearCurso2()  {
   }, []);
 
   const Guardar = async() => {
-  
+    console.log("cursoPASA", cursoG)
       let cursoStringified = JSON.stringify(cursoG);
       try {
         
-        const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
+         await fetch(`http://localhost:3000/CrearCurso`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: cursoStringified,

@@ -27,15 +27,16 @@ function MCrearCurso3() {
 
   const handleShow = async () => {
     const urlBanner = await uploadfile(fileBanner)
+    console.log(urlBanner)
     const urlFoto = await uploadfile(fileFoto)
     const urlVideo = await uploadfile(fileVideo)
     setCursoG({ ...cursoG, PortadaCurso: urlBanner })
-    setCursoG({...cursoG, imagenes: urlFoto})
-    setCursoG({...cursoG, videos: urlVideo})
-
+    // setCursoG({...cursoG, imagenes: urlFoto})
+    // setCursoG({...cursoG, videos: urlVideo})
+    console.log("seCargoElURL",cursoG.PortadaCurso)
     setShowModal(true);
   };
-
+  console.log(cursoG)
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -55,6 +56,7 @@ function MCrearCurso3() {
 
     reader.onload = (e) => {
       setUploadedBanner(e.target.result);
+      console.log("onLoad",e.target.result)
       setCursoG({ ...cursoG, PortadaCurso: e.target.result });
     };
 
@@ -79,13 +81,31 @@ function MCrearCurso3() {
   const terminar = async () => {
     setCursoG({...cursoG, Terminado: true })
     console.log("terminar", cursoG)
+    console.log("terminarURL", cursoG.PortadaCurso)
+   
+      console.log("cursoPASA", cursoG)
+        let cursoStringified = JSON.stringify(cursoG);
+        try {
+          
+           await fetch(`http://localhost:3000/CrearCurso`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: cursoStringified,
+          });
+        } catch {
+          throw new Error(`No se pudo realizar el fetch tipo POST :(`);
+        }
+      
+  
   };
 
   const terminar2 = async () => {
     let cursoStringified = JSON.stringify(cursoG);
+    console.log("portada al back", cursoStringified)
+    
     try {
       
-      const response = await fetch(`http://localhost:3000/CrearCurso`, {
+       await fetch(`http://localhost:3000/CrearCurso`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: cursoStringified,
@@ -98,7 +118,6 @@ function MCrearCurso3() {
   };
 
 useEffect( () => {
-  console.log(cursoG.Terminado)
   if (cursoG.Terminado) {
      terminar2()
   }
