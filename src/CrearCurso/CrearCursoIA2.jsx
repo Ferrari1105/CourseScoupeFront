@@ -23,7 +23,12 @@ function MCrearCurso2() {
   const [listaIdiomas, setListaIdiomas] = useState([])
   const [ListasCargadas, setListasCargadas] = useState(true);
   const [Lecciones, setLecciones] = useState([])
+  const subpartes = iarResult.data.outputs[0].text.split(/Lección \d+: /).filter(Boolean);
+  const subpartesSinPrimero = subpartes.slice(1);
+  console.log(subpartes)
+  console.log(subpartesSinPrimero)
   const cargarListas = async () => {
+
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
@@ -100,21 +105,28 @@ function MCrearCurso2() {
   };
 
   const agregarLeccion = () => {
-    crearNuevaLeccion()
+    const newLesson = { title: `Lección ${currentLesson + 1}`, content: '' };
+  
+    // Actualiza el estado de lecciones y el número actual de lecciones
+    setLessonTitles([...lessonTitles, newLesson]);
     setCurrentLesson(currentLesson + 1);
-    setLessonTitles([
-      ...lessonTitles,
-      { title: `Lección ${currentLesson + 1}`, content: '' },
-    ]);
+  
+    // Actualiza el localStorage
+    guardarEnLocalStorage();
   };
+  
 
-  const eliminarLeccion = () => {
-    deleteLeccion();
-    if (currentLesson > 0) {
+  const eliminarLeccion = (index) => {
+    // Verificar si hay lecciones para eliminar
+    if (lessonTitles.length > 0) {
+      const updatedLessons = [...lessonTitles];
+      updatedLessons.splice(index, 1);
+      setLessonTitles(updatedLessons);
       setCurrentLesson(currentLesson - 1);
-      setLessonTitles(lessonTitles.slice(0, -1));
+      guardarEnLocalStorage();
     }
   };
+  
 
   const handleLessonTitleChange = (event, index) => {
     const newLessonTitles = [...lessonTitles];
@@ -191,7 +203,7 @@ function MCrearCurso2() {
       <div className="formularios-view-container">
         <div className="formularios-view-column">
           <form>
-            {lessonTitles.map((lesson, index) => (
+            {subpartesSinPrimero.map((lesson, index) => (
               <div key={index} className="form-group">
                 <h2 htmlFor={`titulo${index + 1}`}>Título:</h2>
                 <input
@@ -205,7 +217,7 @@ function MCrearCurso2() {
                 <textarea
                   id={`contenido${index + 1}`}
                   className="input-field large-input"
-                  value={lesson.content}
+                  value={lesson}
                   onChange={(e) => handleLessonContentChange(e, index)}
                 />
               </div>
@@ -266,21 +278,17 @@ function MCrearCurso2() {
                 onChange={cargarPrecio}
               />
             </div>
-            <textarea
-              className="input-field large-input"
-              value={iarResult.data.outputs[0].text}
-              readOnly
-            />
           </form>
           <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
             Siguiente
           </Link>
-        </div>
-
-      </div>
-      <div>
+      
         <button className='botonGuardarCambios' onClick={() => Guardar()}>Guardar Cambios</button>
+      
+        </div>
+                
       </div>
+      
     </div>
   );
 }

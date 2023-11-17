@@ -28,5 +28,37 @@ async function LlamadaIA(Tema, NumeroDeLecciones, Topicos) {
     throw error;
   }
 }
+async function DescripcionIA(Tema, Topicos) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer gAAAAABlVtMbimdqoNqP1k0dA3OX_1RLqD9qnganpzon85aiprcpIImWV02iAvX3K9_3m5zDX5Dv30X0KtI0qsuD-TE1Nm12NIBDHvA4RCb5UQCX1KnsJcJpqNX8uTM0JPo1zahB1G8G'
+    },
+    body: JSON.stringify({
+      context: `Necesito que hagas una descripcion sobre un curso de ${Tema} que abarcara los siguientes topicos ${Topicos} no debe superar los 100 caracteres`,
+      keywords: [""],
+      max_tokens: 512,
+      model: "gpt-3.5-turbo-16k",
+      n: 1,
+      source_lang: "en",
+      target_lang: "es",
+      temperature: 0.65,
+      title: "string"
+    }),
+  };
 
-export { LlamadaIA };
+  try {
+    const response = await fetch('https://api.textcortex.com/v1/texts/blogs', options);
+    const data = await response.json();
+    console.log(response)
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+
+
+export { LlamadaIA,DescripcionIA };
