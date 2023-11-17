@@ -24,6 +24,7 @@ function MCrearCurso2() {
   const [ListasCargadas, setListasCargadas] = useState(true);
   const [Lecciones, setLecciones] = useState([])
   const cargarListas= async () => {
+    console.log(cursoG)
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
@@ -43,15 +44,16 @@ function MCrearCurso2() {
       });
       const dbUserI = await responseI.json();
       setListaIdiomas(dbUserI)
-
+      
       setListasCargadas(false); // Marcar que las listas se han cargado
-   }
-   else{}
+    }
+    else{}
   };
   useEffect(()=>async()=>await cargarListas(), [])
   
   const cargarPrecio = (e) => {
     setCosto(e.target.value);
+
     guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el precio
   };
   const handleIdioma  = (e) => {
@@ -169,6 +171,7 @@ function MCrearCurso2() {
         setCurrentLesson(storedCurso.Lessons.length);
       }
     }
+ 
   }, []);
 
   const Guardar = async() => {

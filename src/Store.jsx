@@ -101,40 +101,13 @@ function Store() {
               </text>
             </div>
           </div>
-
-          <div className='row boxPreview'>
-            <h1 style={{ color: 'black' }}> What you'll learn </h1>
-            <div className='col-6'>
-              <ul style={{ fontSize: '15px', color: 'gray' }}>
-                <li>You will master the Python programming language by building 100 unique projects over 100 days.</li>
-                <br />
-                <li></li>
-                <li></li>
-                <br />
-                <li></li>
-                <br />
-                <li></li>
-              </ul>
-            </div>
-            <div className='col-6'>
-              <ul style={{ fontSize: '15px', color: 'gray' }}>
-                <li></li>
-                <br />
-                <li></li>
-                <br />
-                <li></li>
-                <br />
-                <li></li>
-              </ul>
-            </div>
-          </div>
           <br />
           <br />
           <div>
             <h1 style={{ color: 'black' }}>Paso a Paso Del Curso:</h1>
             {Curso?.Lecciones ? (
               Curso.Lecciones.map((item, index) => (
-                <Accordions title={item.NombreLeccion || 'Esta data no fue cargada'} num={index + 1} />
+                <Accordions key={index} title={item.NombreLeccion || 'Esta data no fue cargada'} num={index + 1} />
               ))
             ) : (
               <p>Esta data no fue cargada</p>

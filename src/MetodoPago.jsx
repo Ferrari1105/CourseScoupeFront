@@ -26,6 +26,7 @@ function MetodoPago() {
           body: usuarioGJSON
         });
         const CursoJson = await response.json();
+        console.log("cargandoelCarrito", CursoJson)
         setCarrito(CursoJson)
       }
     
@@ -49,23 +50,7 @@ function MetodoPago() {
 
     const handlePaymentMethodSelect = async(method) => {
         setSelectedPaymentMethod(method);
-        async function eliminarCursoDelCarrito(id) {
-            try {
-              const response = await fetch(`http://localhost:3000/eliminarCursoDelCarrito`, {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id })
-              });
-              // Aquí puedes manejar la respuesta si es necesario
-            } catch (error) {
-              console.error(`Error al eliminar curso con ID ${id}:`, error);
-            }
-          }
-          
-          // Recorre la lista de IDs y realiza un fetch para cada uno
-          carrito.forEach(id => {
-            eliminarCursoDelCarrito(id);
-          });
+       
     };
 
     const handleCardPayment = () => {
@@ -73,8 +58,24 @@ function MetodoPago() {
         // Lógica para procesar el pago con tarjeta de crédito usando cardData
         // Aquí puedes realizar la validación de la tarjeta y enviar los datos al backend
     };
+    const eliminarCursoDelCarrito = async() => {
 
-
+        const id = JSON.stringify(carrito)
+        try {
+            await fetch(`http://localhost:3000/eliminarTodoElCarrito`, {
+                method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: id 
+          });
+          // Aquí puedes manejar la respuesta si es necesario
+          setCarrito(null)
+        } catch (error) {
+            console.error(`Error al eliminar curso con ID ${id}:`, error);
+        }
+        
+    }
+    
+    useEffect(()=>async()=>{ eliminarCursoDelCarrito() } , [carrito])
     return (
         <>
             {usuarioG ? <NavBarIniciada /> : <NavBar />}
