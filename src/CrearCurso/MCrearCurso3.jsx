@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MCrearCurso3.css';
 import NavBar from '../componentes/navBar-iniciada.jsx';
 import { Link, useParams } from 'react-router-dom';
@@ -27,16 +27,15 @@ function MCrearCurso3() {
 
   const handleShow = async () => {
     const urlBanner = await uploadfile(fileBanner)
-    console.log(urlBanner)
     const urlFoto = await uploadfile(fileFoto)
     const urlVideo = await uploadfile(fileVideo)
     setCursoG({ ...cursoG, PortadaCurso: urlBanner })
-    // setCursoG({...cursoG, imagenes: urlFoto})
-    // setCursoG({...cursoG, videos: urlVideo})
-    console.log(cursoG)
+    setCursoG({...cursoG, imagenes: urlFoto})
+    setCursoG({...cursoG, videos: urlVideo})
+
     setShowModal(true);
   };
-  console.log(cursoG)
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -56,7 +55,7 @@ function MCrearCurso3() {
 
     reader.onload = (e) => {
       setUploadedBanner(e.target.result);
-      //setCursoG({ ...cursoG, PortadaCurso: e.target.result });
+      setCursoG({ ...cursoG, PortadaCurso: e.target.result });
     };
 
     if (file) {
@@ -78,8 +77,11 @@ function MCrearCurso3() {
   };
 
   const terminar = async () => {
+    setCursoG({...cursoG, Terminado: true })
+  };
+
+  const terminar2 = async () => {
     let cursoStringified = JSON.stringify(cursoG);
-    //setCursoG()
     try {
       
       const response = await fetch(`http://localhost:3000/CrearCurso`, {
@@ -92,9 +94,17 @@ function MCrearCurso3() {
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
-
   };
 
+useEffect(() => {
+
+  if (cursoG.Terminado) {
+    terminar2()
+  }
+  else {
+    terminar()
+  }
+}, [cursoG.Terminado]);
   return (
     <div>
       <NavBar />
@@ -128,7 +138,7 @@ function MCrearCurso3() {
         </Card>
         <div className='rowLecciones'>
   {cursoG.Lessons.map((lesson, index) => (
-    console.log(lesson),
+
     <Card className="lesson-card" key={index}>
       <Card.Body>
         <h2 className="lesson-title">Lección {index + 1}:</h2>

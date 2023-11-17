@@ -64,7 +64,6 @@ function MCrearCurso2()  {
       console.log("Malio Sal")
     }
     setCursoG({...cursoG, idIdioma: idiomaEncontrado.idIdioma})
-    console.log(cursoG)
   
   }
   const handleArea = (e) => {
@@ -72,14 +71,13 @@ function MCrearCurso2()  {
     const AreaBuscada = e.target.value;
     const AreaEncontrada = listaAreas.find((Area) => Area.NombreArea === AreaBuscada);
     if (AreaEncontrada) {
-      console.log(AreaEncontrada  )
       setSelectedArea(e.target.value)
       
     } else {
       console.log("Malio Sal")
     }
     setCursoG({...cursoG, idAreas: AreaEncontrada.idAreas})
-    console.log(cursoG)
+
   
   }
   const handleCategorias = (e) => {
@@ -92,7 +90,7 @@ function MCrearCurso2()  {
       console.log("Malio Sal")
     }
     setCursoG({...cursoG, idCategorias: CategoryEncontrado.idCategoria})
-    console.log(cursoG)
+
   
   }
   const siguiente = async() => {
@@ -174,7 +172,6 @@ function MCrearCurso2()  {
 
   const Guardar = async() => {
   
-      console.log("updateCurso", cursoG?.idCurso)
       let cursoStringified = JSON.stringify(cursoG);
       try {
         

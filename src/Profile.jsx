@@ -27,9 +27,6 @@ function Profile() {
 
   useEffect(() => async () => await cargarCursos2(), [])
 
-
-
-  console.log(usuarioG)
   const cerrarSesion = () => {
     setUsuarioG(null);
     localStorage.removeItem('usuario')

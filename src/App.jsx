@@ -13,7 +13,7 @@ function App() {
   const cargarCursos = async () => {
 
     if (!cursosCargados) {
-      const response = await fetch('http://localhost:3000/cursos', {
+      const response = await fetch('http://localhost:3000/cursosTerminados', {
         method: 'GET',
         headers: { "Content-Type": "application/json" },
       });

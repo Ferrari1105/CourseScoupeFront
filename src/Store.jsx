@@ -26,20 +26,19 @@ function Store() {
  
 
   const llamada = async () => {
-    console.log(from)
+
     // pasarle nombre en vez del id, y devolver el ultimo curso creado con ese nombre en el backend
     const response1= await fetch(`http://localhost:3000/Cursos/${from}`, {
       method: 'GET',
       headers: { "Content-Type": "application/json"},
     });
     const CursoJson = await response1.json();
-    console.log(CursoJson)
+
       const response2 = await fetch(`http://localhost:3000/CursoProcesado/${CursoJson.idCurso}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json"},
       });
       const dbCurso = await response2.json();
-      console.log(dbCurso)
       setCurso(dbCurso)
       setCursoG(dbCurso)
     
@@ -84,7 +83,7 @@ function Store() {
         headers: { "Content-Type": "application/json" },
         body: idsStringified
       });
-      console.log("Curso agregado al carrito");
+
     }
   };
   
@@ -167,7 +166,7 @@ function Store() {
                 </Card.Title>
                 <div className='botonesStore'>
                 <Link className='Link linkCard botonStore' style={{ backgroundColor: "crimson" }} onClick={añadirCarrito} >Add to cart</Link>
-                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"} onClick={añadirCarrito}>Comprar Ya!</Link>
+                <Link className='Link linkCard botonStore' to={"/CarritoDeCompras"}>Ir al Carrito</Link>
                 </div>
                 <Card.Text>
                  <ul>

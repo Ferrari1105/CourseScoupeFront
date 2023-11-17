@@ -11,7 +11,7 @@ function MCrearCurso3() {
   const [uploadedBanner, setUploadedBanner] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedVideo, setUploadedVideo] = useState(null);
-console.log(cursoG)
+
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();

@@ -34,7 +34,7 @@ function VerCurso() {
       setLeccionesCargadas(true);
     }
   };
-  console.log(listaLecciones);
+
   useEffect(() => async () => await cargarLecciones(), [])
 
   // api get leccionXcurso- 

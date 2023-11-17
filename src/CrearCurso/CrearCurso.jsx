@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBarIniciada from '../componentes/navBar-iniciada.jsx';
 import NavBar from '../componentes/navBar.jsx';
@@ -12,12 +12,30 @@ import { UsuarioContext } from '../../context/usuarioContext';
 function CrearCurso() {
   const {usuarioG} = useContext(UsuarioContext)
   const [proceso, setProceso] = useState(null);
-  console.log(localStorage.getItem('Cursof1'))
+  const [Editar, setEditar] = useState(null);
+
   const crearCursoManual = () =>
   {
     setProceso('manual')
     
   }
+  const traerCursosSinTerminar = async () => {
+    
+    const idsStringified = JSON.stringify(usuarioG);
+      const response = await fetch(`http://localhost:3000/cursosByIdUsuario`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: idsStringified
+      });
+    const dbUser = await response.json();
+    console.log("el fetch trajo", dbUser);
+    if (dbUser !== null) {
+
+  }
+  }
+  useEffect(() => {traerCursosSinTerminar()}, []);
+
+  
   return (
     <>
     <div>

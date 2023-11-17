@@ -39,7 +39,8 @@ function MCrearCurso() {
     idCreador: usuarioG.IdUsuario,
     PortadaCurso: "",
     imagenes: "",
-    videos: ""
+    videos: "",
+    Terminado: false
   };
 
   const [Curso, setCurso] = useState(initialCursoState);
@@ -95,7 +96,7 @@ function MCrearCurso() {
   const Guardar = async() => {
     if(Curso.idCurso)
     {
-      console.log("updateCurso", Curso.idCurso)
+  
       let cursoStringified = JSON.stringify(Curso);
       try {
         
@@ -110,7 +111,7 @@ function MCrearCurso() {
     }
     else
     {    
-    console.log("crearCurso", Curso)
+
     let cursoStringified = JSON.stringify(Curso);
     try {
       const response = await fetch('http://localhost:3000/CrearCurso', {
@@ -119,10 +120,10 @@ function MCrearCurso() {
         body: cursoStringified,
       });
       const dbo = await response.json();
-      console.log(dbo.idCurso)
+  
       setCurso({ ...Curso, idCurso: dbo.idCurso })
       setCursoG({ ...Curso, idCurso: dbo.idCurso })
-      console.log("seteando id: ", Curso)
+
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
