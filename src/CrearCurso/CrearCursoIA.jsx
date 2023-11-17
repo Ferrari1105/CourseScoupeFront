@@ -11,9 +11,8 @@ function MCrearCurso() {
   const { usuarioG } = useContext(UsuarioContext);
   const [selectedStyle, setSelectedStyle] = useState('');
   const [additionalResources, setAdditionalResources] = useState('');
-  const { setCursoG } = useContext(CursoContext)
+  const { setCursoG, iarResult, setIAResult } = useContext(CursoContext); // Cambiado de resultadoLlamadaIA a iarResult
   const [numberOfClasses, setNumberOfClasses] = useState('');
-  const [resultadoLlamadaIA, setResultadoLlamadaIA] = useState(null);
 
   useEffect(() => {
     const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
@@ -95,7 +94,7 @@ function MCrearCurso() {
 
   const Guardar = async () => {
     if (Curso.idCurso) {
-
+      console.log("updateCurso", Curso)
       let cursoStringified = JSON.stringify(Curso);
       try {
         const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
@@ -107,7 +106,7 @@ function MCrearCurso() {
         throw new Error(`No se pudo realizar el fetch tipo POST :(`);
       }
     } else {
-
+      console.log("crearCurso", Curso)
       let cursoStringified = JSON.stringify(Curso);
       try {
         const response = await fetch('http://localhost:3000/CrearCurso', {
@@ -116,9 +115,10 @@ function MCrearCurso() {
           body: cursoStringified,
         });
         const dbo = await response.json();
-  
+        console.log(dbo.idCurso)
         setCurso({ ...Curso, idCurso: dbo.idCurso })
         setCursoG({ ...Curso, idCurso: dbo.idCurso })
+        console.log("seteando id: ", Curso)
       } catch {
         throw new Error(`No se pudo realizar el fetch tipo POST :(`);
       }
@@ -133,19 +133,10 @@ function MCrearCurso() {
   const handleLlamarIA = async () => {
     try {
       const resultado = await LlamadaIA(Curso.NombreDelCurso, numberOfClasses, Curso.ContenidosCurso);
-      setResultadoLlamadaIA(resultado);
-    
-      // Extraer el texto de la llamada a la IA
-      const textoLlamadaIA = resultado.data.outputs[0].text;
-    
-      // Actualizar la lección en la propiedad Lessons del estado del curso
-      setCurso((prevCurso) => ({
-        ...prevCurso,
-        Lessons: [
-          ...prevCurso.Lessons,
-          { title: `Lección ${prevCurso.Lessons.length + 1}`, content: textoLlamadaIA },
-        ],
-      }));
+      console.log(resultado)
+      setIAResult(resultado);
+
+      // Resto de tu código...
     } catch (error) {
       console.error("Error al llamar a la IA:", error);
     }
@@ -219,7 +210,6 @@ function MCrearCurso() {
           <Link
             to={{
               pathname: '/CrearCursoIA2',
-              state: { resultadoLlamadaIA: resultadoLlamadaIA },
             }}
             className={`crear-curso-option`}
             onClick={siguiente}

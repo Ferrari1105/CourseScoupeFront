@@ -3,7 +3,7 @@ async function LlamadaIA(Tema, NumeroDeLecciones, Topicos) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer gAAAAABlTj39LGb-QewxazbEgBK3Mpreyrdp6gqG53wdnKkDgvzhcWBBziVJldZFepI1dVX1fGpF3WN7c2ls4POSF_dvjJXOu-qWFgf8mXRas9rbL0ixEG_Av3IGr9-hIYuJwLogfKkv'
+      'Authorization': 'Bearer gAAAAABlVtMbimdqoNqP1k0dA3OX_1RLqD9qnganpzon85aiprcpIImWV02iAvX3K9_3m5zDX5Dv30X0KtI0qsuD-TE1Nm12NIBDHvA4RCb5UQCX1KnsJcJpqNX8uTM0JPo1zahB1G8G'
     },
     body: JSON.stringify({
       context: `Podrias hacer ${NumeroDeLecciones} lecciones sobre ${Tema} que abarquen los siguientes temas ${Topicos} cada una de estas lleciones deben empezar con el numero de la leccion tambien tenes que desarrollar las lecciones para que parezca un curso real`,
