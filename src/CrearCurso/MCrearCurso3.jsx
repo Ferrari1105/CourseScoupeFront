@@ -78,6 +78,7 @@ function MCrearCurso3() {
 
   const terminar = async () => {
     setCursoG({...cursoG, Terminado: true })
+    console.log("terminar", cursoG)
   };
 
   const terminar2 = async () => {
@@ -96,13 +97,13 @@ function MCrearCurso3() {
     }
   };
 
-useEffect(() => {
-
+useEffect( () => {
+  console.log(cursoG.Terminado)
   if (cursoG.Terminado) {
-    terminar2()
+     terminar2()
   }
   else {
-    terminar()
+     terminar()
   }
 }, [cursoG.Terminado]);
   return (

@@ -8,7 +8,7 @@ import './CrearCurso.css';
 import MisPresentaciones from './MisPresentaciones';
 import { useContext } from "react"
 import { UsuarioContext } from '../../context/usuarioContext';
-
+import { CursoContext } from '../../context/cursoContext';
 function CrearCurso() {
   const {usuarioG} = useContext(UsuarioContext)
   const [proceso, setProceso] = useState(null);
@@ -20,18 +20,19 @@ function CrearCurso() {
     
   }
   const traerCursosSinTerminar = async () => {
-    
     const idsStringified = JSON.stringify(usuarioG);
-      const response = await fetch(`http://localhost:3000/cursosByIdUsuario`, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: idsStringified
-      });
+    const response = await fetch(`http://localhost:3000/cursosByIdUsuario`, {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: idsStringified,
+    });
+  
     const dbUser = await response.json();
     console.log("el fetch trajo", dbUser);
-    if (dbUser !== null) {
 
-  }
+    if(dbUser.length > 0 ? dbUser : null){
+      setEditar(dbUser[0])
+    }
   }
   useEffect(() => {traerCursosSinTerminar()}, []);
 
@@ -50,7 +51,12 @@ function CrearCurso() {
           Antes de comenzar a crear el curso, ¿cómo quieres que sea el proceso?
         </h2>
         <div className="botones-siguiente"> 
-        <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`} onClick={() => crearCursoManual()}>Opcion Manual</Link>
+        {Editar? (
+         <Link to="/MCrearCurso" className={`boton-siguiente-editando`} onClick={() => crearCursoManual() } state={{ from: Editar}}>Seguir Editando El Curso </Link>
+            ) : (
+              <Link to="/MCrearCurso" className={`boton-siguiente ${proceso === 'manual' ? 'active' : ''}`} onClick={() => crearCursoManual()}>Opcion Manual</Link>
+              )}
+       
         <Link to="/CrearCursoIA" className={`boton-siguiente ${ proceso === 'automatica' ? 'active' : '' }`} onClick={() => setProceso('automatica')}>Opción Automática</Link>
         </div>
         <div className="crear-curso-info">

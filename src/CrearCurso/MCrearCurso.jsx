@@ -5,18 +5,29 @@ import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from "react";
 import { CursoContext } from "./../../context/cursoContext";
 import { UsuarioContext } from "./../../context/usuarioContext";
-
+import { useLocation } from 'react-router-dom';
 function MCrearCurso() {
   const { usuarioG } = useContext(UsuarioContext);
   const [ selectedStyle, setSelectedStyle] = useState('');
   const [ additionalResources, setAdditionalResources] = useState('');
   const { cursoG, setCursoG } = useContext(CursoContext);
+  const location = useLocation();
+  const { from } = location.state || {};
+  const [Curso, setCurso] = useState(from || initialCursoState);
+  const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
+  const [listaEstilos, setListaEstilos] = useState([]);
+  const [cursoGuardado, setCursoGuardado] = useState(null);
+  const [ListasCargadas, setListasCargadas] = useState(true);
+
 
   // Recuperar datos de localStorage al cargar la página
   useEffect(() => {
     const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
-    if (storedCurso) {
+    if (storedCurso && !from) {
       setCurso(storedCurso);
+    }
+    else{
+      setCursoG(from)
     }
   }, []);
 
@@ -43,12 +54,6 @@ function MCrearCurso() {
     Terminado: false
   };
 
-  const [Curso, setCurso] = useState(initialCursoState);
-  const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
-  const [listaEstilos, setListaEstilos] = useState([]);
-  const [cursoGuardado, setCursoGuardado] = useState(null);
-  const [ListasCargadas, setListasCargadas] = useState(true);
-
   const cargarListas = async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Estilos', {
@@ -57,7 +62,7 @@ function MCrearCurso() {
       });
       const dbUserC = await responseC.json();
       setListaEstilos(dbUserC);
-      setListasCargadas(false); // Marcar que las listas se han cargado
+      setListasCargadas(false); 
     }
   };
 
@@ -68,6 +73,9 @@ function MCrearCurso() {
   const handleChange = (e) => {
     setCurso({ ...Curso, [e.target.name]: e.target.value });
     localStorage.setItem('Cursof1', JSON.stringify(Curso));
+    console.log("from", from)
+    console.log("curso", Curso)
+    console.log("cursoG", cursoG)
   }
 
   const handleStyleSelect = (e) => {
@@ -89,7 +97,6 @@ function MCrearCurso() {
   };
 
   const siguiente = () => {
-    // Guardar los datos en localStorage
     Guardar()
     setEstaTodoCargado(true);
   }
@@ -105,6 +112,7 @@ function MCrearCurso() {
           headers: { 'Content-Type': 'application/json' },
           body: cursoStringified,
         });
+        
       } catch {
         throw new Error(`No se pudo realizar el fetch tipo POST :(`);
       }
@@ -122,14 +130,12 @@ function MCrearCurso() {
       const dbo = await response.json();
   
       setCurso({ ...Curso, idCurso: dbo.idCurso })
-      setCursoG({ ...Curso, idCurso: dbo.idCurso })
+      setCursoG({ ...Curso, idCurso: dbo.idCurso }) 
 
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
-  
-    }
-      
+    } 
     }
     return (
     <div>

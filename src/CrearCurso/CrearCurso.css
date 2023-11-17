@@ -35,10 +35,32 @@
   cursor: pointer;
 }
 
+
 .boton-siguiente.active {
   background-color: #4287f5;
   color: #fff;
 }
+
+
+.boton-siguiente-editando.active {
+  background-color: orangered;
+  color: #fff;
+}
+.boton-siguiente-editando:hover {
+  background-color: orangered;
+  color: #fff;
+}
+
+.boton-siguiente-editando {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
 
 .crear-curso-info {
   padding: 30px 20px;

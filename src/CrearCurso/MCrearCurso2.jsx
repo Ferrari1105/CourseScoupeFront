@@ -25,6 +25,7 @@ function MCrearCurso2()  {
   const [ListasCargadas, setListasCargadas] = useState(true);
   const [Lecciones, setLecciones] = useState([])
   const cargarListas= async () => {
+    console.log("cursoooooooooooo", cursoG)
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
