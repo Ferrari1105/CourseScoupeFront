@@ -207,18 +207,16 @@ function MCrearCurso() {
             </svg>
             Llamar IA
           </button>
-          <Link
-            to={{
-              pathname: '/CrearCursoIA2',
-            }}
-            className={`crear-curso-option`}
-            onClick={siguiente}
-          >
-            Siguiente
-          </Link>
+
+          {iarResult ? (
+            <Link to="/CrearCursoIA2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
+            ) : (
+              <Link  className={`crear-curso-option`} >Siguiente</Link>
+              )}
+            <button  className='botonGuardarCambios' onClick={() => Guardar()}>Guardar Cambios</button>
+
         </div>
       </div>
-      <button className='botonGuardarCambios' onClick={() => Guardar()}>Guardar Cambios</button>
     </div>
   );
 }
