@@ -9,12 +9,8 @@ function MCrearCurso2() {
 
   const [costo, setCosto] = useState(0);
   const [currentLesson, setCurrentLesson] = useState(3);
-  const [lessonTitles, setLessonTitles] = useState([
-    { title: 'Lección 1', content: '' },
-    { title: 'Lección 2', content: '' },
-    { title: 'Lección 3', content: '' },
-  ]); // Inicializa con 3 lecciones por defecto
-  const { cursoG, setCursoG, iarResult, setIAResult } = useContext(CursoContext);
+  const [lessonTitles, setLessonTitles] = useState([]); // Inicializa sin lecciones por defecto
+  const { cursoG, setCursoG, iarResult, iaResumen } = useContext(CursoContext);
   const [selectedCategory, setSelectedCategory] = useState(''); // Estado para la categoría seleccionada
   const [selectedArea, setSelectedArea] = useState(''); // Estado para el área seleccionada
   const [selectedLanguage, setSelectedIdioma] = useState(''); // Estado para el idioma seleccionado
@@ -23,12 +19,19 @@ function MCrearCurso2() {
   const [listaIdiomas, setListaIdiomas] = useState([])
   const [ListasCargadas, setListasCargadas] = useState(true);
   const [Lecciones, setLecciones] = useState([])
+  const [descripcionCurso, setDescripcionCurso] = useState(''); // Nueva adición
   const subpartes = iarResult.data.outputs[0].text.split(/Lección \d+: /).filter(Boolean);
-  const subpartesSinPrimero = subpartes.slice(1);
-  console.log(subpartes)
-  console.log(subpartesSinPrimero)
-  const cargarListas = async () => {
+  const leccionesFormateadas = subpartes.map((content, index) => ({
+    title: `Lección ${index + 1}`,
+    content,
+  }));
+  const [subpartesSinPrimero, setSubpartesSinPrimero] = useState(
+    leccionesFormateadas.slice(1)
+  );
+  const [lessonContents, setLessonContents] = useState([]);
 
+  const resumenCurso = iaResumen.data.outputs[0].text.split('Blog Body:')
+  const cargarListas = async () => {
     if (ListasCargadas) {
       const responseC = await fetch('http://localhost:3000/Categorias', {
         method: 'GET',
@@ -105,62 +108,74 @@ function MCrearCurso2() {
   };
 
   const agregarLeccion = () => {
-    const newLesson = { title: `Lección ${currentLesson + 1}`, content: '' };
-  
-    // Actualiza el estado de lecciones y el número actual de lecciones
+    const newLesson = { title: `Lección ${subpartesSinPrimero.length + 1}`, content: '' };
     setLessonTitles([...lessonTitles, newLesson]);
-    setCurrentLesson(currentLesson + 1);
-  
-    // Actualiza el localStorage
+
+    // Actualiza subpartesSinPrimero usando el setSubpartesSinPrimero
+    setSubpartesSinPrimero((prevSubpartes) => [
+      ...prevSubpartes,
+      newLesson.content,
+    ]);
+
     guardarEnLocalStorage();
   };
-  
 
-  const eliminarLeccion = (index) => {
-    // Verificar si hay lecciones para eliminar
-    if (lessonTitles.length > 0) {
-      const updatedLessons = [...lessonTitles];
-      updatedLessons.splice(index, 1);
-      setLessonTitles(updatedLessons);
-      setCurrentLesson(currentLesson - 1);
+
+  const eliminarLeccion = () => {
+    if (subpartesSinPrimero.length > 1) {
+      const updatedLessons = subpartesSinPrimero.slice(0, -1);
+      setSubpartesSinPrimero(updatedLessons);
+      setLessonTitles(
+        updatedLessons.map((content, index) => ({
+          title: `Lección ${index + 1}`,
+          content,
+        }))
+      );
       guardarEnLocalStorage();
     }
   };
-  
+
+
 
   const handleLessonTitleChange = (event, index) => {
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].title = event.target.value;
     setLessonTitles(newLessonTitles);
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
-    guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el título
+    guardarEnLocalStorage();
   };
 
-  // Actualizar el contenido de la lección cuando cambia
+
   const handleLessonContentChange = (event, index) => {
+    const newLessonContents = [...lessonContents];
+    newLessonContents[index] = event.target.value;
+    setLessonContents(newLessonContents);
+
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].content = event.target.value;
     setLessonTitles(newLessonTitles);
     setCursoG({ ...cursoG, Lessons: newLessonTitles });
-    guardarEnLocalStorage(); // Guardar en localStorage cuando cambia el contenido
+    guardarEnLocalStorage();
   };
 
-  // Función para guardar en localStorage
+
   const guardarEnLocalStorage = () => {
-    const cursoAGuardar = { ...cursoG, PrecioDelCurso: costo, Lessons: lessonTitles };
+    const cursoAGuardar = { ...cursoG, PrecioDelCurso: costo, DescripcionCurso: descripcionCurso, Lessons: lessonTitles };
     localStorage.setItem('Cursof1', JSON.stringify(cursoAGuardar));
   };
+
+
   const crearNuevaLeccion = async () => {
     const nuevaLeccion = {
-      idCurso: 1, // Reemplaza con el ID del curso al que deseas agregar la lección
+      idCurso: 1,
       nombreLeccion: "Nueva Lección",
       contenidoLeccion: "Contenido de la nueva lección"
     };
+  };
 
-  }
   const deleteLeccion = async () => {
-    const idCurso = 1; // Reemplaza con el ID del curso
-    const idLeccion = 1; // Reemplaza con el ID de la lección que deseas eliminar
+    const idCurso = 1;
+    const idLeccion = 1;
 
     const responseDelete = await fetch(`http://localhost:3000/deleteLeccion/${idCurso}/${idLeccion}`, {
       method: 'DELETE',
@@ -168,13 +183,19 @@ function MCrearCurso2() {
     });
 
     const resultadoDelete = await responseDelete.json();
+  };
 
-  }
   useEffect(() => {
     const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
     if (storedCurso) {
       setCosto(storedCurso.PrecioDelCurso || 0);
+      setDescripcionCurso(storedCurso.DescripcionCurso || ''); // Nueva adición
+      setLessonTitles(subpartesSinPrimero.map((content, index) => ({
+        title: `Lección ${index + 1}`,
+        content,
+      })));
       if (storedCurso.Lessons && Array.isArray(storedCurso.Lessons)) {
+        setLessonContents(storedCurso.Lessons.map((lesson) => lesson.content))
         setLessonTitles(storedCurso.Lessons);
         setCurrentLesson(storedCurso.Lessons.length);
       }
@@ -182,10 +203,8 @@ function MCrearCurso2() {
   }, []);
 
   const Guardar = async () => {
-
     let cursoStringified = JSON.stringify(cursoG);
     try {
-
       const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -194,34 +213,33 @@ function MCrearCurso2() {
     } catch {
       throw new Error(`No se pudo realizar el fetch tipo POST :(`);
     }
-
-  }
-
+  };
   return (
     <div>
       <NavBar></NavBar>
       <div className="formularios-view-container">
         <div className="formularios-view-column">
           <form>
-            {subpartesSinPrimero.map((lesson, index) => (
+            {subpartesSinPrimero.map((lessonContent, index) => (
               <div key={index} className="form-group">
                 <h2 htmlFor={`titulo${index + 1}`}>Título:</h2>
                 <input
                   type="text"
                   id={`titulo${index + 1}`}
                   className="input-field large-input"
-                  value={lesson.title}
+                  value={`Lección ${index + 1}`}
                   onChange={(e) => handleLessonTitleChange(e, index)}
                 />
                 <h2 htmlFor={`contenido${index + 1}`}>Contenido:</h2>
                 <textarea
                   id={`contenido${index + 1}`}
                   className="input-field large-input"
-                  value={lesson}
+                  value={lessonContent.content}
                   onChange={(e) => handleLessonContentChange(e, index)}
                 />
               </div>
             ))}
+
             <button type="button" onClick={agregarLeccion}>
               Agregar Lección
             </button>
@@ -233,6 +251,17 @@ function MCrearCurso2() {
         <div className="formularios-view-column">
           <form>
             <div className="form-group">
+              <h2 htmlFor="campo7">Descripción del Curso:</h2>
+              <textarea
+                id="campo7"
+                className="input-field large-input"
+                value={resumenCurso}
+                onChange={(e) => setDescripcionCurso(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+
               <h2 htmlFor="campo4">Categorías:</h2>
               <select value={selectedCategory} onChange={handleCategorias}>
                 <option value="">Selecciona una Categoría</option>
@@ -282,13 +311,13 @@ function MCrearCurso2() {
           <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
             Siguiente
           </Link>
-      
-        <button className='botonGuardarCambios' onClick={() => Guardar()}>Guardar Cambios</button>
-      
+
+          <button className='botonGuardarCambios' onClick={() => Guardar()}>Guardar Cambios</button>
+
         </div>
-                
+
       </div>
-      
+
     </div>
   );
 }

@@ -5,13 +5,13 @@ import NavBar from '../componentes/navBar-iniciada.jsx';
 import { useContext } from "react";
 import { CursoContext } from "./../../context/cursoContext";
 import { UsuarioContext } from "./../../context/usuarioContext";
-import { LlamadaIA } from '../LlamarIA.jsx'
+import { LlamadaIA,DescripcionIA } from '../LlamarIA.jsx'
 
 function MCrearCurso() {
   const { usuarioG } = useContext(UsuarioContext);
   const [selectedStyle, setSelectedStyle] = useState('');
   const [additionalResources, setAdditionalResources] = useState('');
-  const { setCursoG, iarResult, setIAResult } = useContext(CursoContext); // Cambiado de resultadoLlamadaIA a iarResult
+  const { setCursoG, iarResult, setIAResult,setIaResumen } = useContext(CursoContext); // Cambiado de resultadoLlamadaIA a iarResult
   const [numberOfClasses, setNumberOfClasses] = useState('');
 
   useEffect(() => {
@@ -133,10 +133,11 @@ function MCrearCurso() {
   const handleLlamarIA = async () => {
     try {
       const resultado = await LlamadaIA(Curso.NombreDelCurso, numberOfClasses, Curso.ContenidosCurso);
+      const resumen = await  DescripcionIA(Curso.NombreDelCurso,Curso.ContenidosCurso)
       console.log(resultado)
       setIAResult(resultado);
-
-      // Resto de tu código...
+      setIaResumen(resumen)
+      console.log(resumen)
     } catch (error) {
       console.error("Error al llamar a la IA:", error);
     }
@@ -154,11 +155,6 @@ function MCrearCurso() {
               <h2 htmlFor="campo1">Título del curso:</h2>
               <h5>Ingrese un titulo para identificar su curso</h5>
               <input value={Curso.NombreDelCurso} type="text" id="campo1" name="NombreDelCurso" className="input-field large-input" placeholder="Ingrese el titulo del curso:" onChange={handleChange} />
-            </div>
-            <div className="form-group">
-              <h2 htmlFor="campo2">Descrpicion del curso:</h2>
-              <h5>Ingrese una breve descripcion de lo que va a mostrar en su curso</h5>
-              <input value={Curso.ResumenCurso} type="text" id="campo2" name="ResumenCurso" className="input-field large-input" placeholder="Ingrese la descripción del curso:" onChange={handleChange} />
             </div>
             <div className="form-group">
               <h2 htmlFor="campo3">Contenidos del curso:</h2>

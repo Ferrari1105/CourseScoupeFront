@@ -11,27 +11,6 @@ function MCrearCurso() {
   const [ selectedStyle, setSelectedStyle] = useState('');
   const [ additionalResources, setAdditionalResources] = useState('');
   const { cursoG, setCursoG } = useContext(CursoContext);
-  const location = useLocation();
-  const { from } = location.state || {};
-  const [Curso, setCurso] = useState(from || initialCursoState);
-  const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
-  const [listaEstilos, setListaEstilos] = useState([]);
-  const [cursoGuardado, setCursoGuardado] = useState(null);
-  const [ListasCargadas, setListasCargadas] = useState(true);
-
-
-  // Recuperar datos de localStorage al cargar la página
-  useEffect(() => {
-    const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
-    if (storedCurso && !from) {
-      setCurso(storedCurso);
-    }
-    else{
-      setCursoG(from)
-    }
-  }, []);
-
-  // Estado inicial del curso
   const initialCursoState = {
     idCurso: null,
     NombreDelCurso: "",
@@ -53,6 +32,28 @@ function MCrearCurso() {
     videos: "",
     Terminado: false
   };
+  const location = useLocation();
+  const { from } = location.state || {};
+  const [Curso, setCurso] = useState(from || initialCursoState);
+  const [EstaTodoCargado, setEstaTodoCargado] = useState(false);
+  const [listaEstilos, setListaEstilos] = useState([]);
+  const [cursoGuardado, setCursoGuardado] = useState(null);
+  const [ListasCargadas, setListasCargadas] = useState(true);
+
+
+  // Recuperar datos de localStorage al cargar la página
+  useEffect(() => {
+    const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
+    if (storedCurso && !from) {
+      setCurso(storedCurso);
+    }
+    else{
+      setCursoG(from)
+    }
+  }, []);
+
+  // Estado inicial del curso
+  
 
   const cargarListas = async () => {
     if (ListasCargadas) {
@@ -189,10 +190,10 @@ function MCrearCurso() {
             ) : (
               <Link to="/MCrearCurso2" className={`crear-curso-option`} onClick={() => siguiente()}>Siguiente</Link>
               )}
-         
+          <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
+
         </div>
       </div>
-              <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
     </div>
   );
 }

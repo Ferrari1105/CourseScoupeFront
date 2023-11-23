@@ -275,10 +275,10 @@ function MCrearCurso2() {
           <Link to="/MCrearCurso3" className={`crear-curso-option`} onClick={siguiente}>
             Siguiente
           </Link>
+              <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
         </div>
       </div>
       <div>
-              <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
     </div>
     </div>
   );
