@@ -8,13 +8,13 @@ import { CursoContext } from './../../context/cursoContext';
 function MCrearCurso2() {
   const [costo, setCosto] = useState(0);
   const [currentLesson, setCurrentLesson] = useState(3);
-  const [lessonTitles, setLessonTitles] = useState([
+  const { cursoG } = useContext(CursoContext);
+  const [lessonTitles, setLessonTitles] = useState( cursoG?.lessons || [
     { title: 'Lección 1', content: '' },
     { title: 'Lección 2', content: '' },
     { title: 'Lección 3', content: '' },
   ]);
   const { setCursoG } = useContext(CursoContext);
-  const { cursoG } = useContext(CursoContext);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedArea, setSelectedArea] = useState('');
   const [selectedLanguage, setSelectedIdioma] = useState('');
@@ -278,6 +278,9 @@ function MCrearCurso2() {
               <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
         </div>
       </div>
+      <Link to="/MCrearCurso" className={`crear-curso-option`} onClick={siguiente}>
+            Atras
+          </Link>
       <div>
     </div>
     </div>

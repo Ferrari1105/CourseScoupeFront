@@ -1,27 +1,32 @@
-.cardCurso{
-    width: 23%;
-    border-color: black;
+.cardCurso {
+  width: 23%;
+  border-color: black;
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  .Link{
-    text-decoration: none;
-    color: white;
-    background-color: #333BF7;
-    border-radius: 12px;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
-  .Link:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.linkCard{
-  
+
+.Link {
+  text-decoration: none;
+  color: white;
+  background-color: #333BF7;
+  border-radius: 12px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.1rem;
+  transition: .3s ease all;
+}
+
+.Link:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.1), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.linkCard {
+
   justify-content: center;
 }

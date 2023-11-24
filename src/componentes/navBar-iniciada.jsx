@@ -41,14 +41,9 @@ function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav className='colorTexto'>
-              <Link to={"/MisPresentaciones"}>Mis Presentaciones mas arreglos</Link>
-            </Nav>
+      
           </Nav>
-          <Form className="SearchBar">
-            <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-            <Button variant="outline-success" className='colorTexto'>No anda estamos en arreglos....</Button>
-          </Form>
+      
           <Nav className='navbar-container usuario-navbar'>
               <Link to={"/Profile"}>
             <div className='cuadrado-perfil'>  

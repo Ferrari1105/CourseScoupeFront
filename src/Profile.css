@@ -141,16 +141,14 @@
   background-color: #dfdede;
 }
   .card-images {
-    
+    gap: 1rem;
     display: flex;
     align-items: center; /* Centra verticalmente las imágenes en la tarjeta */
     margin-top: 10px; /* Margen superior para separar el contenido de la tarjeta */
   }
-  
   .card-images img {
     margin-bottom: 7px;
-    margin-right: 20px;
-    width: 300px;
+    margin-right: 20px; 
     flex: 0 0 30%;
     max-height: 100%; 
     object-fit: cover; 

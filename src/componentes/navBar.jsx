@@ -237,15 +237,7 @@ function NavBar() {
           <Nav className="me-auto">
               <Link onClick={handleShow3} className='colorTexto'>Mis Presentaciones</Link>
           </Nav>
-     <Form className="SearchBar">
-      <Form.Control
-        type="search"
-        placeholder="Search"
-        className="me-2"
-        aria-label="Search"
-        />
-      <Button variant="outline-success" className='colorTexto'>Search</Button>
-    </Form>
+
           <Nav className='navbar-button-container'>
             <Button  className='colorTexto sinFondo' onClick={handleShow1} >Iniciar Sesion</Button>
             <Button  className='colorTexto sinFondo' onClick={handleShow2}>Registrarse</Button>

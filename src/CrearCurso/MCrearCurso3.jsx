@@ -129,6 +129,7 @@ useEffect( () => {
     <div>
       <NavBar />
       <div className="upload-container">
+        
         <Card className="banner-card">
           <Card.Body>
             <h2 className="lesson-title">Curso:</h2>
@@ -161,6 +162,7 @@ useEffect( () => {
 
     <Card className="lesson-card" key={index}>
       <Card.Body>
+        
         <h2 className="lesson-title">Lección {index + 1}:</h2>
         <div className="row">
           <h2 className="row-title">Imagenes:</h2>
@@ -204,14 +206,17 @@ useEffect( () => {
           <label htmlFor={`video-upload-${index}`} className="custom-upload-button">
             Seleccionar Video
           </label>
+          
         </div>
+    
       </Card.Body>
     </Card>
   ))}
 
         </div>
       </div>
-      <Link className={`crear-curso-option`} onClick={handleShow}>
+
+      <Link className={`crear-curso-option bg-danger`} onClick={handleShow}>
         Terminar
       </Link>
       <Modal show={showModal} onHide={handleClose}>

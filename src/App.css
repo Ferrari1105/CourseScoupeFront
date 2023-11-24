@@ -27,4 +27,11 @@
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
+  overflow: auto;
+}
+
+.CardsHome div{
+  flex: 1;
+  min-width: 300px;
+  min-height: 70px;
 }

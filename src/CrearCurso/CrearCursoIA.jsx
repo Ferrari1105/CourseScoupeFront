@@ -55,7 +55,7 @@ function MCrearCurso() {
       });
       const dbUserC = await responseC.json();
       setListaEstilos(dbUserC);
-      setListasCargadas(false);
+      setListasCargadas(false)
     }
   };
 

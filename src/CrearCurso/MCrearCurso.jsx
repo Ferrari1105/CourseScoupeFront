@@ -17,7 +17,7 @@ function MCrearCurso() {
     ResumenCurso: "",
     ContenidosCurso: "",
     NumeroEstudiantes:  Math.floor(Math.random() * 1000000),
-    Style: null,
+    idEstilo: null,
     lesson: "",
     recAdicionales: "",
     idCategorias: null,
@@ -87,7 +87,7 @@ function MCrearCurso() {
     } else {
       console.log("Malio Sal");
     }
-    setCurso({ ...Curso, Style: estiloEncontrado.idEstilo });
+    setCurso({ ...Curso, idEstilo: estiloEncontrado.idEstilo });
     localStorage.setItem('Cursof1', JSON.stringify(Curso));
   }
 
@@ -193,6 +193,7 @@ function MCrearCurso() {
           <button className='botonGuardarCambios' onClick={()=>Guardar()}>Guardar Cambios</button> 
 
         </div>
+        
       </div>
     </div>
   );
