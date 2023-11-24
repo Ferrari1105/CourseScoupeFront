@@ -110,8 +110,6 @@ function MCrearCurso2() {
   const agregarLeccion = () => {
     const newLesson = { title: `Lección ${subpartesSinPrimero.length + 1}`, content: '' };
     setLessonTitles([...lessonTitles, newLesson]);
-
-    // Actualiza subpartesSinPrimero usando el setSubpartesSinPrimero
     setSubpartesSinPrimero((prevSubpartes) => [
       ...prevSubpartes,
       newLesson.content,
@@ -141,7 +139,7 @@ function MCrearCurso2() {
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].title = event.target.value;
     setLessonTitles(newLessonTitles);
-    setCursoG({ ...cursoG, Lessons: newLessonTitles });
+    setCursoG({ ...cursoG, Lessons: subpartesSinPrimero });
     guardarEnLocalStorage();
   };
 
@@ -150,12 +148,12 @@ function MCrearCurso2() {
     const newLessonContents = [...lessonContents];
     newLessonContents[index] = event.target.value;
     setLessonContents(newLessonContents);
-
     const newLessonTitles = [...lessonTitles];
     newLessonTitles[index].content = event.target.value;
     setLessonTitles(newLessonTitles);
-    setCursoG({ ...cursoG, Lessons: newLessonTitles });
+    setCursoG({ ...cursoG, Lessons: subpartesSinPrimero });
     guardarEnLocalStorage();
+    
   };
 
 
@@ -165,25 +163,6 @@ function MCrearCurso2() {
   };
 
 
-  const crearNuevaLeccion = async () => {
-    const nuevaLeccion = {
-      idCurso: 1,
-      nombreLeccion: "Nueva Lección",
-      contenidoLeccion: "Contenido de la nueva lección"
-    };
-  };
-
-  const deleteLeccion = async () => {
-    const idCurso = 1;
-    const idLeccion = 1;
-
-    const responseDelete = await fetch(`http://localhost:3000/deleteLeccion/${idCurso}/${idLeccion}`, {
-      method: 'DELETE',
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const resultadoDelete = await responseDelete.json();
-  };
 
   useEffect(() => {
     const storedCurso = JSON.parse(localStorage.getItem('Cursof1'));
@@ -203,9 +182,10 @@ function MCrearCurso2() {
   }, []);
 
   const Guardar = async () => {
+    console.log("cursoPASA", cursoG)
     let cursoStringified = JSON.stringify(cursoG);
     try {
-      const responseeee = await fetch(`http://localhost:3000/CrearCurso`, {
+      const responseeee = await fetch(`http://localhost:3001/CrearCurso`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: cursoStringified,
